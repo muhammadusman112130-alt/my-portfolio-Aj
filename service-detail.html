@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Details | Signatures Studio - Muhammad Arslan</title>
+
+    <link rel="stylesheet" href="style.css">
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* Dedicated Service Detail Page Styling */
+        .service-detail-page {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding-top: 7.5rem;
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Override global section min-height from style.css so sections don't stretch to full viewport height */
+        .service-detail-page section {
+            min-height: 60vh !important;
+        }
+
+        /* Top Navigation Bar */
+        .service-nav-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.4rem 9%;
+            background: rgba(8, 8, 10, 0.95);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(95, 206, 155, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .service-nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .service-nav-logo img {
+            width: 4.4rem;
+            height: 4.4rem;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 2px solid var(--main-color);
+            box-shadow: 0 0 15px var(--main-glow);
+            transition: transform 0.3s ease;
+        }
+
+        .service-nav-logo:hover img {
+            transform: scale(1.08);
+        }
+
+        .service-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.6rem;
+        }
+
+        .back-home-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #ffffff;
+            padding: 0.75rem 1.8rem;
+            border-radius: 2.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .back-home-btn:hover {
+            color: var(--main-color);
+            border-color: var(--main-color);
+            background: rgba(95, 206, 155, 0.12);
+            transform: translateX(-3px);
+        }
+
+        .service-nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--bg-color);
+            background: var(--main-color);
+            padding: 0.75rem 2rem;
+            border-radius: 2.5rem;
+            text-decoration: none;
+            box-shadow: 0 0 18px var(--main-glow);
+            transition: all 0.3s ease;
+        }
+
+        .service-nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 28px rgba(95, 206, 155, 0.7);
+        }
+
+        /* ==================== 1. HERO SECTION (BOLD, MIDDLE, COMPACT BOTTOM) ==================== */
+        .service-hero-centered {
+            min-height: auto !important;
+            padding: 6rem 9% 2rem;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center top, rgba(95, 206, 155, 0.08) 0%, rgba(8, 8, 10, 0.98) 70%);
+            border-bottom: 1px solid rgba(95, 206, 155, 0.15);
+        }
+
+        .hero-specialize-tag {
+            display: inline-block;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--main-color);
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            background: rgba(95, 206, 155, 0.1);
+            border: 1px solid rgba(95, 206, 155, 0.3);
+            padding: 0.35rem 1.6rem;
+            border-radius: 2rem;
+            margin-bottom: 0.8rem;
+            box-shadow: 0 0 12px rgba(95, 206, 155, 0.12);
+        }
+
+        /* Bold & Big Title in Center Middle (White & Green) */
+        .hero-big-title {
+            font-size: 5.6rem;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.15;
+            margin: 0 auto 0.4rem;
+            max-width: 110rem;
+            letter-spacing: -0.02rem;
+            text-shadow: 0 4px 25px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-big-title span {
+            color: var(--main-color);
+            text-shadow: 0 0 28px rgba(95, 206, 155, 0.5);
+        }
+
+        .hero-tagline-text {
+            font-size: 1.85rem;
+            font-weight: 600;
+            color: rgba(237, 237, 237, 0.8);
+            max-width: 85rem;
+            margin: 0 auto;
+            line-height: 1.45;
+        }
+
+        /* ==================== 2. SPOTLIGHT SECTION (NO CARDS, DIRECT ON BACKGROUND) ==================== */
+        .service-spotlight-section {
+            padding: 2.5rem 9% 3.5rem;
+            background: transparent;
+            border-bottom: 1px solid rgba(95, 206, 155, 0.1);
+            position: relative;
+        }
+
+        .spotlight-container {
+            max-width: 130rem;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.6fr 1.25fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* Left: Bold Field Label */
+        .spotlight-left {
+            text-align: left;
+        }
+
+        .spotlight-mini-badge {
+            display: inline-block;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--main-color);
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .spotlight-bold-name {
+            font-size: 3.4rem;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.22;
+            margin: 0 0 1.4rem;
+            text-transform: capitalize;
+        }
+
+        .spotlight-bold-name span {
+            color: var(--main-color);
+        }
+
+        .spotlight-accent-line {
+            width: 6rem;
+            height: 0.35rem;
+            background: var(--main-color);
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--main-glow);
+        }
+
+        /* Center: Pure White Paragraphs (Direct on Background) */
+        .spotlight-center {
+            text-align: left;
+        }
+
+        .spotlight-center h3 {
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: var(--main-color);
+            margin-bottom: 1.2rem;
+            line-height: 1.35;
+        }
+
+        .spotlight-center p {
+            font-size: 1.58rem;
+            color: #ffffff;
+            line-height: 1.8;
+            margin-bottom: 1.4rem;
+        }
+
+        .spotlight-center p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Right: Direct Image (NO CARD, clean display) */
+        .spotlight-right {
+            display: flex;
+            justify-content: center;
+        }
+
+        .spotlight-direct-img {
+            width: 100%;
+            height: 30rem;
+            object-fit: cover;
+            border-radius: 1.6rem;
+            display: block;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(95, 206, 155, 0.35);
+            transition: transform 0.5s ease;
+        }
+
+        .spotlight-direct-img:hover {
+            transform: scale(1.03);
+            border-color: var(--main-color);
+        }
+
+        /* ==================== 3. 2-COLUMN SECTION: CAPABILITIES (LEFT) & INTRO BRANDING (RIGHT) ==================== */
+        .capabilities-intro-section {
+            padding: 4.5rem 9% 5rem;
+            background: transparent;
+            border-bottom: 1px solid rgba(95, 206, 155, 0.1);
+        }
+
+        .capabilities-intro-grid {
+            max-width: 130rem;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5.5rem;
+            align-items: flex-start;
+        }
+
+        .section-tag-green {
+            display: inline-block;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--main-color);
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-heading-clean {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 1.2rem;
+            line-height: 1.25;
+        }
+
+        .section-heading-clean span {
+            color: var(--main-color);
+        }
+
+        .section-lead-clean {
+            font-size: 1.55rem;
+            color: rgba(237, 237, 237, 0.75);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        /* Clean Capabilities List (NO CARDS, direct on background) */
+        .capabilities-clean-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .capability-row {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            font-size: 1.55rem;
+            color: #ffffff;
+            font-weight: 600;
+            transition: transform 0.25s ease;
+        }
+
+        .capability-row:hover {
+            transform: translateX(4px);
+        }
+
+        .capability-row i {
+            color: var(--main-color);
+            font-size: 2.2rem;
+            flex-shrink: 0;
+        }
+
+        /* Clean Intro Branding Column (NO CARDS, direct on background) */
+        .intro-clean-col {
+            text-align: left;
+        }
+
+        .clean-body-text {
+            font-size: 1.6rem;
+            color: rgba(237, 237, 237, 0.88);
+            line-height: 1.85;
+            margin-bottom: 1.8rem;
+        }
+
+        .clean-body-text:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ==================== 4. LIVE PORTFOLIO WORK GALLERY (FROM GOOGLE DRIVE) ==================== */
+        .portfolio-work-section {
+            padding: 5rem 9% 6rem;
+            background: rgba(10, 10, 14, 0.5);
+            border-bottom: 1px solid rgba(95, 206, 155, 0.12);
+        }
+
+        .portfolio-work-container {
+            max-width: 130rem;
+            margin: 0 auto;
+        }
+
+        .work-header {
+            text-align: left;
+            margin-bottom: 3.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .drive-folder-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.9rem;
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--main-color);
+            background: rgba(95, 206, 155, 0.12);
+            border: 1.5px solid rgba(95, 206, 155, 0.4);
+            padding: 0.9rem 2.2rem;
+            border-radius: 2.5rem;
+            text-decoration: none;
+            transition: all 0.35s ease;
+            box-shadow: 0 0 15px rgba(95, 206, 155, 0.15);
+        }
+
+        .drive-folder-btn:hover {
+            color: var(--bg-color);
+            background: var(--main-color);
+            border-color: var(--main-color);
+            box-shadow: 0 0 25px var(--main-glow);
+            transform: translateY(-2px);
+        }
+
+        .drive-folder-btn i {
+            font-size: 1.9rem;
+        }
+
+        .work-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+            gap: 2.4rem;
+        }
+
+        .work-gallery-item {
+            position: relative;
+            height: 26rem;
+            border-radius: 1.6rem;
+            overflow: hidden;
+            border: 1px solid rgba(95, 206, 155, 0.25);
+            background: #060c09;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            display: block;
+            text-decoration: none;
+        }
+
+        .work-gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .work-gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .work-gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(8, 8, 10, 0.92) 0%, rgba(8, 8, 10, 0.3) 60%, transparent 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .work-gallery-item:hover .work-gallery-overlay {
+            opacity: 1;
+        }
+
+        .work-caption-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0 0 0.4rem;
+        }
+
+        .work-caption-tag {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--main-color);
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+        }
+
+        /* ==================== 5. FAQ SECTION (NO CARDS, LEFT-ALIGNED ON BACKGROUND) ==================== */
+        .faq-clean-section {
+            padding: 5rem 9% 6rem;
+            background: transparent;
+        }
+
+        .faq-clean-container {
+            max-width: 95rem;
+            margin: 0;
+            text-align: left;
+        }
+
+        .faq-clean-list {
+            display: flex;
+            flex-direction: column;
+            margin-top: 2rem;
+        }
+
+        .faq-clean-item {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(95, 206, 155, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .faq-clean-item:hover,
+        .faq-clean-item.active {
+            border-bottom-color: var(--main-color);
+        }
+
+        .faq-clean-question {
+            padding: 2rem 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            user-select: none;
+        }
+
+        .faq-clean-question h4 {
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+
+        .faq-clean-item.active .faq-clean-question h4,
+        .faq-clean-question:hover h4 {
+            color: var(--main-color);
+        }
+
+        .faq-clean-icon {
+            width: 3.4rem;
+            height: 3.4rem;
+            border-radius: 50%;
+            background: rgba(95, 206, 155, 0.1);
+            border: 1px solid rgba(95, 206, 155, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--main-color);
+            font-size: 2rem;
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+
+        .faq-clean-item.active .faq-clean-icon {
+            background: var(--main-color);
+            color: var(--bg-color);
+            transform: rotate(180deg);
+        }
+
+        .faq-clean-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0;
+            background: transparent;
+        }
+
+        .faq-clean-item.active .faq-clean-answer {
+            max-height: 40rem;
+            padding: 0 0 2rem;
+        }
+
+        .faq-clean-answer p {
+            font-size: 1.55rem;
+            color: rgba(237, 237, 237, 0.85);
+            line-height: 1.8;
+            margin: 0;
+        }
+
+        /* ==================== 6. COMPREHENSIVE DETAIL FOOTER ==================== */
+        .detail-main-footer {
+            background: #040406;
+            border-top: 1px solid rgba(95, 206, 155, 0.2);
+            padding: 6.5rem 9% 3rem;
+            color: rgba(237, 237, 237, 0.75);
+            position: relative;
+        }
+
+        .footer-top-grid {
+            max-width: 130rem;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1.2fr 1.3fr;
+            gap: 4.5rem;
+            margin-bottom: 4.5rem;
+        }
+
+        .footer-col-brand .footer-logo-row {
+            display: flex;
+            align-items: center;
+            gap: 1.4rem;
+            margin-bottom: 1.8rem;
+            text-decoration: none;
+        }
+
+        .footer-col-brand .footer-logo-row img {
+            width: 4.8rem;
+            height: 4.8rem;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 2px solid var(--main-color);
+            box-shadow: 0 0 15px var(--main-glow);
+        }
+
+        .footer-col-brand h3 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .footer-col-brand h3 span {
+            color: var(--main-color);
+        }
+
+        .footer-col-brand p {
+            font-size: 1.45rem;
+            line-height: 1.75;
+            color: rgba(237, 237, 237, 0.75);
+            margin-bottom: 2.2rem;
+        }
+
+        .footer-social-links {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .footer-social-btn {
+            width: 4.2rem;
+            height: 4.2rem;
+            border-radius: 50%;
+            background: rgba(95, 206, 155, 0.1);
+            border: 1px solid rgba(95, 206, 155, 0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--main-color);
+            font-size: 2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social-btn:hover {
+            background: var(--main-color);
+            color: var(--bg-color);
+            transform: translateY(-3px);
+            box-shadow: 0 0 18px var(--main-glow);
+        }
+
+        .footer-col-title {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .footer-col-title::after {
+            content: '';
+            position: absolute;
+            bottom: -0.6rem;
+            left: 0;
+            width: 3.5rem;
+            height: 2px;
+            background: var(--main-color);
+        }
+
+        .footer-nav-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .footer-nav-list li a {
+            color: rgba(237, 237, 237, 0.75);
+            font-size: 1.45rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .footer-nav-list li a:hover {
+            color: var(--main-color);
+            transform: translateX(4px);
+        }
+
+        .footer-contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.2rem;
+            font-size: 1.45rem;
+            color: rgba(237, 237, 237, 0.8);
+            line-height: 1.5;
+        }
+
+        .footer-contact-item i {
+            color: var(--main-color);
+            font-size: 2.1rem;
+            margin-top: 0.2rem;
+            flex-shrink: 0;
+        }
+
+        .footer-contact-item a {
+            color: rgba(237, 237, 237, 0.85);
+            text-decoration: none;
+            transition: color 0.25s ease;
+        }
+
+        .footer-contact-item a:hover {
+            color: var(--main-color);
+        }
+
+        .footer-bottom-bar {
+            max-width: 130rem;
+            margin: 0 auto;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.35rem;
+            color: rgba(237, 237, 237, 0.55);
+        }
+
+        .footer-bottom-bar a {
+            color: var(--main-color);
+            text-decoration: none;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 1100px) {
+            .spotlight-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .capabilities-intro-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .footer-top-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .service-nav-bar {
+                padding: 1.2rem 5%;
+            }
+
+            .service-hero-centered {
+                min-height: auto !important;
+                padding: 4rem 5% 1.5rem;
+            }
+
+            .hero-big-title {
+                font-size: 3.8rem;
+            }
+
+            .hero-tagline-text {
+                font-size: 1.55rem;
+            }
+
+            .service-spotlight-section {
+                padding: 2.5rem 5% 3rem;
+            }
+
+            .spotlight-bold-name {
+                font-size: 2.6rem;
+            }
+
+            .capabilities-intro-section {
+                padding: 3rem 5% 3.5rem;
+            }
+
+            .portfolio-work-section {
+                padding: 3.5rem 5% 4rem;
+            }
+
+            .work-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .faq-clean-section {
+                padding: 3.5rem 5% 4.5rem;
+            }
+
+            .footer-top-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .footer-bottom-bar {
+                flex-direction: column;
+                gap: 1.2rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body class="service-detail-page">
+
+    <!-- Top Navigation Bar (Logo Emblem Only, text removed) -->
+    <header class="service-nav-bar">
+        <a href="index.html" class="service-nav-logo" title="Back to Home">
+            <img src="images/logo.png" alt="Signatures Studio Logo">
+        </a>
+
+        <div class="service-nav-links">
+            <a href="https://wa.me/923067517024" target="_blank" class="service-nav-cta">
+                <i class='bx bxl-whatsapp'></i>
+                <span>Let's Talk</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- ==================== 1. HERO SECTION (BIG, BOLD IN MIDDLE, COMPACT BOTTOM) ==================== -->
+    <section class="service-hero-centered">
+        <div>
+            <span class="hero-specialize-tag" id="hero-category-tag">Our Specialize</span>
+        </div>
+
+        <!-- Big Bold Title in Center Middle (White & Green) -->
+        <h1 class="hero-big-title" id="hero-service-title">
+            Product & <span>Social Media</span>
+        </h1>
+
+        <!-- Subtitle / Tagline -->
+        <p class="hero-tagline-text" id="hero-service-tagline">
+            Bringing Strategy and Creativity Into Every Frame & Pixel
+        </p>
+    </section>
+
+    <!-- ==================== 2. SPOTLIGHT SECTION (NO CARDS, DIRECT BACKGROUND) ==================== -->
+    <section class="service-spotlight-section">
+        <div class="spotlight-container">
+            <!-- Left: Bold Service Name -->
+            <div class="spotlight-left">
+                <span class="spotlight-mini-badge">SPECIALIZED SERVICE</span>
+                <h2 class="spotlight-bold-name" id="spotlight-bold-title">
+                    Services Designing <br><span>Social Media Content</span>
+                </h2>
+                <div class="spotlight-accent-line"></div>
+            </div>
+
+            <!-- Center: Relevant Detailed Text in White Paragraphs -->
+            <div class="spotlight-center">
+                <h3 id="spotlight-subheading">Bringing Strategy & Visual Excellence Into Every Asset</h3>
+                <p id="spotlight-p1">
+                    At Signatures Studio, designing social media content and product assets is where visual storytelling
+                    meets conversion strategy. We capture attention, build deep consumer connection, and elevate your
+                    brand credibility. From high-converting e-commerce product feature graphics to viral-ready social
+                    media campaigns, we engineer visual assets that your audience won’t forget.
+                </p>
+                <p id="spotlight-p2">
+                    Whether you're launching a new product line on Shopify or Amazon, introducing your company to new
+                    demographics, or scaling your paid Meta and Google ads, our creative process turns your marketing
+                    objectives into powerful digital visuals. We craft every graphic with calculated purpose—to catch
+                    attention, spark immediate curiosity, and drive measurable revenue. We don’t just create images; we
+                    craft visual stories that connect and deliver.
+                </p>
+            </div>
+
+            <!-- Right: Direct Image (NO CARD) -->
+            <div class="spotlight-right">
+                <img id="spotlight-image" class="spotlight-direct-img" src="images/services/service-product.jpg"
+                    alt="Service Graphic">
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 3. 2-COLUMN SECTION: CORE CAPABILITIES (LEFT) & INTRO BRANDING (RIGHT) ==================== -->
+    <section class="capabilities-intro-section">
+        <div class="capabilities-intro-grid">
+            <!-- Left: CORE CAPABILITIES (No card, direct on background) -->
+            <div class="capabilities-clean-col">
+                <span class="section-tag-green">CORE CAPABILITIES</span>
+                <h2 class="section-heading-clean">What We <span>Deliver & Offer</span></h2>
+                <p class="section-lead-clean">Every project is executed with commercial-grade precision, platform
+                    optimization, and organized source files:</p>
+
+                <div class="capabilities-clean-list" id="offerings-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Right: INTRO BRANDING (No card, direct on background) -->
+            <div class="intro-clean-col">
+                <span class="section-tag-green" id="deepdive-mini-tag">INTRO BRANDING</span>
+                <h2 class="section-heading-clean" id="deepdive-heading">From Concept to Conversion: <span>Visuals That
+                        Resonate</span></h2>
+                <p class="clean-body-text" id="deepdive-p1">
+                    Our product & social media design services go far beyond standard templates. We don’t just place
+                    text over photos; we tell your product’s story frame by frame. Whether it’s bold product feature
+                    infographics, compelling social ad creatives, or crisp lifestyle visuals, we create content that
+                    stops the scroll, sparks curiosity, and drives customer action. Every design we craft is built to
+                    speak your message—loud, clear, and beautifully.
+                </p>
+                <p class="clean-body-text" id="deepdive-p2">
+                    From creative briefing and moodboarding to final pixel-perfect export, we deliver full-scale visual
+                    production tailored for digital impact. Think scroll-stopping social media assets, polished
+                    promotional banners, striking product highlights, and branded visual storytelling, all crafted with
+                    pro-level composition, color harmony, typography, and editing. If your brand needs to be seen and
+                    felt, we’re here to bring that vision to life, one unforgettable visual at a time.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 4. REAL WORK & PORTFOLIO VAULT (GOOGLE DRIVE ASSETS) ==================== -->
+    <section class="portfolio-work-section">
+        <div class="portfolio-work-container">
+            <div class="work-header">
+                <div>
+                    <span class="section-tag-green">PORTFOLIO VAULT</span>
+                    <h2 class="section-heading-clean">Selected <span>Work & Live Deliverables</span></h2>
+                    <p class="section-lead-clean" style="margin-bottom: 0;">Real-world client deliverables and
+                        commercial visual assets from our design archive.</p>
+                </div>
+                <div>
+                    <a id="drive-folder-link"
+                        href="https://drive.google.com/drive/folders/1Awoa0lRmnk44OlNBI99wCkwplcvmFoAx?usp=drive_link"
+                        target="_blank" class="drive-folder-btn">
+                        <i class='bx bxl-google-cloud'></i>
+                        <span>Open Drive Portfolio</span>
+                        <i class='bx bx-right-arrow-alt'></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Work Images Grid -->
+            <div class="work-gallery-grid" id="work-gallery-grid">
+                <!-- Populated by JS with real Drive work images -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 5. FAQ SECTION (NO CARDS, LEFT-ALIGNED ON BACKGROUND) ==================== -->
+    <section class="faq-clean-section">
+        <div class="faq-clean-container">
+            <span class="section-tag-green">GOT QUESTIONS?</span>
+            <h2 class="section-heading-clean">Frequently Asked <span>Questions</span></h2>
+            <p class="section-lead-clean">Everything you need to know about our design workflow, turnaround, revisions,
+                and deliverables:</p>
+
+            <div class="faq-clean-list" id="faq-accordion-container">
+                <!-- Populated by JS without cards -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 6. COMPREHENSIVE DETAIL FOOTER ==================== -->
+    <footer class="detail-main-footer">
+        <div class="footer-top-grid">
+            <!-- Col 1: Brand Info -->
+            <div class="footer-col-brand">
+                <a href="index.html" class="footer-logo-row">
+                    <img src="images/logo.png" alt="Signatures Studio Logo">
+                    <h3>Muhammad <span>Arslan</span></h3>
+                </a>
+                <p>
+                    Creative Graphic Designer & Brand Strategist with 2+ years of freelance experience delivering
+                    high-converting social media marketing assets, commercial print designs, and distinctive visual
+                    brand identities.
+                </p>
+                <div class="footer-social-links">
+                    <a href="https://wa.me/923067517024" target="_blank" class="footer-social-btn" title="WhatsApp"><i
+                            class='bx bxl-whatsapp'></i></a>
+                    <a href="https://linktr.ee/SignaturesStudio" target="_blank" class="footer-social-btn"
+                        title="Linktree"><i class='bx bx-link-alt'></i></a>
+                    <a href="mailto:workstation.arslan@gmail.com" class="footer-social-btn" title="Email"><i
+                            class='bx bx-envelope'></i></a>
+                    <a href="index.html#contact" class="footer-social-btn" title="Contact"><i
+                            class='bx bx-paper-plane'></i></a>
+                </div>
+            </div>
+
+            <!-- Col 2: Navigation Links -->
+            <div>
+                <h4 class="footer-col-title">Quick Links</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="index.html"><i class='bx bx-chevron-right'></i> Home</a></li>
+                    <li><a href="index.html#about"><i class='bx bx-chevron-right'></i> About Me</a></li>
+                    <li><a href="index.html#services"><i class='bx bx-chevron-right'></i> Services</a></li>
+                    <li><a href="index.html#education"><i class='bx bx-chevron-right'></i> My Journey</a></li>
+                    <li><a href="index.html#portfolio"><i class='bx bx-chevron-right'></i> Portfolio</a></li>
+                    <li><a href="index.html#contact"><i class='bx bx-chevron-right'></i> Contact Me</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3: Services Links -->
+            <div>
+                <h4 class="footer-col-title">Services</h4>
+                <ul class="footer-nav-list">
+                    <li><a href="service-detail.html?service=product-social"><i class='bx bx-chevron-right'></i> Product
+                            & Social</a></li>
+                    <li><a href="service-detail.html?service=logo-design"><i class='bx bx-chevron-right'></i> Logo
+                            Design</a></li>
+                    <li><a href="service-detail.html?service=advertisement"><i class='bx bx-chevron-right'></i>
+                            Advertisement</a></li>
+                    <li><a href="service-detail.html?service=illustration"><i class='bx bx-chevron-right'></i>
+                            Illustration</a></li>
+                    <li><a href="service-detail.html?service=book-cover"><i class='bx bx-chevron-right'></i> Book
+                            Cover</a></li>
+                    <li><a href="service-detail.html?service=brand-identity"><i class='bx bx-chevron-right'></i> Brand
+                            Identity</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 4: Contact & Location Info -->
+            <div>
+                <h4 class="footer-col-title">Get In Touch</h4>
+                <div class="footer-contact-info">
+                    <div class="footer-contact-item">
+                        <i class='bx bx-map-pin'></i>
+                        <span>Garden Town, Multan, Punjab, Pakistan</span>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class='bx bx-envelope'></i>
+                        <a href="mailto:workstation.arslan@gmail.com">workstation.arslan@gmail.com</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class='bx bxl-whatsapp'></i>
+                        <a href="https://wa.me/923067517024" target="_blank">+92 306 7517024</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class='bx bx-book-open'></i>
+                        <span>BBA Entrepreneurship, MNS University of Agriculture</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom-bar">
+            <div>
+                &copy; 2026 <strong>Muhammad Arslan</strong> | Signatures Studio. All rights reserved.
+            </div>
+            <div>
+                <a href="#top" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <span>Back to Top</span>
+                    <i class='bx bx-up-arrow-alt'></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Service Data & Dynamic Page Script -->
+    <script>
+        const servicesData = {
+            "product-social": {
+                id: "product-social",
+                category: "E-Commerce & Digital Marketing",
+                heroTitleFormatted: "Product & <span>Social Media</span>",
+                tagline: "Bringing Strategy and Creativity Into Every Frame & Pixel",
+                spotlightLeftBold: "Services Designing <br><span>Social Media Content</span>",
+                spotlightSubheading: "Bringing Strategy & Visual Excellence Into Every Asset",
+                spotlightP1: "At Signatures Studio, designing social media content and product assets is where visual storytelling meets conversion strategy. We capture attention, build deep consumer connection, and elevate your brand credibility. From high-converting e-commerce product feature graphics to viral-ready social media campaigns, we engineer visual assets that your audience won’t forget.",
+                spotlightP2: "Whether you're launching a new product line on Shopify or Amazon, introducing your company to new demographics, or scaling your paid Meta and Google ads, our creative process turns your marketing objectives into powerful digital visuals. We craft every graphic with calculated purpose—to catch attention, spark immediate curiosity, and drive measurable revenue. We don’t just create images; we craft visual stories that connect and deliver.",
+                spotlightImage: "images/services/service-product.jpg",
+                driveFolder: "https://drive.google.com/drive/folders/1Awoa0lRmnk44OlNBI99wCkwplcvmFoAx?usp=drive_link",
+                offerings: [
+                    "Brand & Product Social Media Posts",
+                    "Promotional & Campaign Ad Creatives",
+                    "E-Commerce Listing Graphics & Feature Callouts",
+                    "High-Converting Instagram Carousel Sets",
+                    "Paid Meta Ad Layouts (1:1 & 4:5 Ratios)",
+                    "Short-Form Cover Graphics for Reels & TikTok",
+                    "Shopify & Amazon Storefront Banner Assets",
+                    "Brand-Consistent Social Media Design Kits",
+                    "Professional Photo Retouching & Asset Extraction"
+                ],
+                deepDiveMiniTag: "INTRO BRANDING",
+                deepDiveHeading: "From Concept to Conversion: <span>Visuals That Resonate</span>",
+                deepDiveP1: "Our product & social media design services go far beyond standard templates. We don’t just place text over photos; we tell your product’s story frame by frame. Whether it’s bold product feature infographics, compelling social ad creatives, or crisp lifestyle visuals, we create content that stops the scroll, sparks curiosity, and drives customer action. Every design we craft is built to speak your message—loud, clear, and beautifully.",
+                deepDiveP2: "From creative briefing and moodboarding to final pixel-perfect export, we deliver full-scale visual production tailored for digital impact. Think scroll-stopping social media assets, polished promotional banners, striking product highlights, and branded visual storytelling, all crafted with pro-level composition, color harmony, typography, and editing. If your brand needs to be seen and felt, we’re here to bring that vision to life, one unforgettable visual at a time.",
+                workImages: [
+                    { src: "images/services/work-social-front.jpg", title: "Commercial Product Front Layout", tag: "E-Commerce" },
+                    { src: "images/services/work-social-branding.jpg", title: "Product Branding & Ad Creative", tag: "Social Ads" },
+                    { src: "images/services/work-social-back.jpg", title: "Product Features & Technical Specs", tag: "Infographics" },
+                    { src: "images/services/work-social-0001.jpg", title: "E-Commerce Promotional Campaign", tag: "Amazon / Shopify" }
+                ],
+                faqs: [
+                    {
+                        q: "What types of product & social media design services do you offer?",
+                        a: "We offer comprehensive e-commerce product graphics (Amazon/eBay/Shopify listing images, feature infographics, comparison charts), Instagram & Facebook static ads, multi-slide educational carousels, promotional sales banners, and custom social media branding templates."
+                    },
+                    {
+                        q: "Do you help with concept, copy hierarchy, and creative direction?",
+                        a: "Yes! If you only have raw product images or a rough marketing goal, we assist in structuring the visual hierarchy, selecting high-impact headlines, and defining a creative direction that highlights your product's competitive advantages."
+                    },
+                    {
+                        q: "Will the content be optimized for social media platforms and websites?",
+                        a: "Absolutely. All deliverables are formatted in native platform aspect ratios (1:1 square, 4:5 vertical portrait for Instagram/Facebook feed, 9:16 for Reels/Stories) and exported in optimized PNG/JPG/WebP formats for fast web loading and crystal-clear clarity."
+                    },
+                    {
+                        q: "How long does it take to complete a project?",
+                        a: "Standard social media sets (3-6 designs) typically take 24 to 48 hours. Larger product launch packages or monthly campaign bundles are delivered within 3 to 5 business days, with urgent expedited turnaround available upon request."
+                    },
+                    {
+                        q: "Do you provide editing, revisions, and layered source files?",
+                        a: "Yes, we include revisions to ensure complete satisfaction. Upon final approval, you receive organized, fully layered Adobe Photoshop (PSD) source files along with all high-resolution web exports and commercial usage rights."
+                    },
+                    {
+                        q: "How do I get started?",
+                        a: "Simply click 'Let's Talk' on WhatsApp or send an email with your project brief. Share your product photos, brand logo, text requirements, and any visual references, and we will get back to you with an immediate plan and timeline!"
+                    }
+                ]
+            },
+            "logo-design": {
+                id: "logo-design",
+                category: "Brand Mark & Visual Signature",
+                heroTitleFormatted: "Logo Design & <span>Brand Mark</span>",
+                tagline: "Crafting Timeless Identity Marks That Build Instant Recognition",
+                spotlightLeftBold: "Services Designing <br><span>Brand Logos & Marks</span>",
+                spotlightSubheading: "Distilling Brand Essence into Timeless Geometric Marks",
+                spotlightP1: "At Signatures Studio, logo design is where company vision meets mathematical geometric balance. We distill your business mission into an iconic mark that inspires authority, commands customer trust, and stands resilient against changing design trends.",
+                spotlightP2: "Whether you're founding an ambitious startup, rebranding an established firm, or updating an outdated visual mark, we create distinctive logos engineered for versatile real-world application. Every vector path is mathematically aligned to guarantee flawless clarity from smartphone app icons to massive storefront signage.",
+                spotlightImage: "images/services/service-logo-v2.jpg",
+                driveFolder: "https://drive.google.com/drive/folders/1jiJzG9vRMzTrw_TUez2B62y0aPyGEVPb?usp=drive_link",
+                offerings: [
+                    "Minimalist & Modern Brand Wordmarks",
+                    "Distinctive Vector Emblems & Crests",
+                    "Abstract Geometric Identity Marks",
+                    "Monogram & Typographic Letterforms",
+                    "Combination Logo Marks (Icon + Type)",
+                    "Social Media Profile Kits & Favicons",
+                    "Black, White & Monochrome Inversions",
+                    "Infinitely Scalable Vector Source Files",
+                    "Typography & Color Hierarchy Guides"
+                ],
+                deepDiveMiniTag: "INTRO BRANDING",
+                deepDiveHeading: "From Concept to Identity: <span>Marks That Stand the Test of Time</span>",
+                deepDiveP1: "Our logo design services go far beyond simple icon generators or generic clip-art. We don’t just sketch shapes; we translate your brand’s personality and competitive edge into an authentic visual signature. Whether it’s clean modern minimalism, bold corporate authority, or intricate illustrative character, we design logos that command respect, spark curiosity, and build instant recognition.",
+                deepDiveP2: "From initial concept research and mind-mapping to mathematical grid alignment and final vector master exports, we deliver full-scale logo systems built for versatile commercial use. Think perfect legibility at 16x16 pixels on a mobile screen up to 50-foot outdoor signage, crafted with balanced geometry and thoughtful color psychology. If your brand needs to be respected and remembered, we're here to craft that signature mark.",
+                workImages: [
+                    { src: "images/services/work-logo-1.png", title: "Minimalist Modern Wordmark & Icon", tag: "Logo Design" },
+                    { src: "images/services/work-logo-2.png", title: "Brand Identity Monogram & Symbol", tag: "Brand Mark" },
+                    { src: "images/services/work-logo-3.jpg", title: "Commercial Emblem & Identity System", tag: "Vector Emblem" },
+                    { src: "images/services/work-logo-4.jpg", title: "Corporate Business Logo Presentation", tag: "Identity Concept" },
+                    { src: "images/services/work-logo-design.jpg", title: "Geometric Logo Construction Layout", tag: "Vector Grid" }
+                ],
+                faqs: [
+                    {
+                        q: "What types of logo design services do you offer?",
+                        a: "We design modern minimalist logos, geometric abstract symbols, luxury typographic wordmarks, emblems, crests, and mascot marks suitable for tech startups, corporate businesses, e-commerce, and personal brands."
+                    },
+                    {
+                        q: "Do you help with concept and creative direction?",
+                        a: "Yes! We begin with an in-depth creative discovery phase where we discuss your industry, competitors, target audience, and aesthetic preferences before presenting unique, distinct concept directions."
+                    },
+                    {
+                        q: "Will the logo be optimized for print, embroidery, and digital screens?",
+                        a: "Yes. All logos are designed in 100% mathematical vectors, allowing infinite scaling from tiny website favicons and business cards to large outdoor signage and embroidery without any loss of quality."
+                    },
+                    {
+                        q: "How long does it take to complete a project?",
+                        a: "Initial concept presentations are ready within 48 to 72 hours. Once you select your favorite direction, refinement and final asset preparation take an additional 1 to 2 days."
+                    },
+                    {
+                        q: "Do you provide editing, revisions, and source files?",
+                        a: "Yes! We provide collaborative revisions until you are completely satisfied. The final package includes Adobe Illustrator (AI), EPS, SVG, PDF, and high-resolution transparent PNG files with full commercial copyright."
+                    },
+                    {
+                        q: "How do I get started?",
+                        a: "Click 'Let's Talk' on WhatsApp or send an email with your company name, business niche, and any design preferences or inspirations. We will review your brief and start crafting right away!"
+                    }
+                ]
+            },
+            "advertisement": {
+                id: "advertisement",
+                category: "Commercial Marketing & Print Media",
+                heroTitleFormatted: "Commercial <span>Advertisement</span>",
+                tagline: "Large-Format Impact and High-Return Commercial Campaigns",
+                spotlightLeftBold: "Services Designing <br><span>Commercial Campaigns</span>",
+                spotlightSubheading: "Commercial Print & Billboard Artwork Built for High Visibility",
+                spotlightP1: "At Signatures Studio, advertisement design is engineered to stop foot and highway traffic. Backed by 6+ months of specialized Canadian signage and large-format print production experience, we design commercial billboards, storefront signage, roll-up banners, and promotional print media that deliver undeniable presence.",
+                spotlightP2: "Whether you are outfitting a retail commercial space in Canada or launching a multi-channel digital ad campaign, we craft artwork with strict adherence to viewing distance, color profiles, bleed tolerances, and safe zones. We create high-converting advertising collateral that attracts high-value prospects and amplifies your brand's reach.",
+                spotlightImage: "images/services/service-ad-pointing.png",
+                driveFolder: "https://drive.google.com/drive/folders/1f18YtVHh3Ln0ZRAb_HSkAoUM7lXShJgR?usp=drive_link",
+                offerings: [
+                    "Commercial Outdoor Roadside Billboards",
+                    "Storefront Signage & Large-Format Banners",
+                    "Retractable Roll-Up Banners & Pop-Up Displays",
+                    "Trade Show Backdrops & Exhibition Booths",
+                    "Promotional Print Flyers & Tri-Fold Brochures",
+                    "Digital Google Display Ad Banner Sets",
+                    "Commercial Vehicle Graphics & Decal Layouts",
+                    "Print-Ready Press PDFs with Bleed & Crop Marks",
+                    "Canada & North American Print Spec Files"
+                ],
+                deepDiveMiniTag: "INTRO BRANDING",
+                deepDiveHeading: "From High Visibility to Conversion: <span>Visuals That Resonate</span>",
+                deepDiveP1: "Our advertisement and billboard services go far beyond basic print layouts. We don’t just fill space; we engineer viewing distance readability, color contrast, and message retention. Whether it’s an 84-inch highway billboard, a high-street storefront sign, or a glossy sales brochure, we create advertising that stops viewers in their tracks, sparks immediate curiosity, and drives action.",
+                deepDiveP2: "From dimensional scaling and CMYK color profiling to bleed calculations and final press-ready PDF delivery, we provide full-scale print production tailored for physical and digital impact. Think crisp typography legible at 60 mph, high-DPI imagery, and clean layout hierarchies. If your brand needs to command attention on the street or on the web, we're here to deliver that commercial power.",
+                workImages: [
+                    { src: "images/services/work-ad-mockups.jpeg", title: "Commercial Signage & Storefront Mockups", tag: "Signage & Billboard" },
+                    { src: "images/services/work-ad-joybeans.jpeg", title: "Joy Beans Commercial Ad Campaign", tag: "Marketing Ad" },
+                    { src: "images/services/work-ad-rock.jpg", title: "Large-Format Canadian Billboard Production", tag: "Print Media" },
+                    { src: "images/services/work-ad-skinzeal.jpg", title: "Skinzeal Skincare Commercial Layout", tag: "Commercial Ad" },
+                    { src: "images/services/work-ad-vistatech.png", title: "Vista Tech Corporate Advertising Banner", tag: "Digital & Print" },
+                    { src: "images/services/work-ad-immigration.jpeg", title: "Global Immigration Consultancy Campaign", tag: "Promo Campaign" }
+                ],
+                faqs: [
+                    {
+                        q: "What types of advertisement and signage services do you offer?",
+                        a: "We design outdoor billboards, storefront signage, roll-up banners, trade show booths, promotional flyers, tri-fold brochures, vehicle wrap layouts, and digital Google display ad banners."
+                    },
+                    {
+                        q: "Do you understand Canadian and international commercial print specifications?",
+                        a: "Yes! With 6+ months of dedicated experience supporting Canadian signage firms, we have mastered large-format dimensions, bleed allowances (0.125\" - 0.5\"), safe margins, CMYK press color profiles, and resolution scaling."
+                    },
+                    {
+                        q: "Will the files be press-ready for our local commercial printing company?",
+                        a: "Yes. You receive press-ready PDF/X-1a files with crop marks, embedded fonts, and exact bleed margins, along with high-res TIFF/JPG exports and layered Adobe Illustrator/Photoshop source files."
+                    },
+                    {
+                        q: "How long does it take to complete a project?",
+                        a: "Brochures, flyers, and digital ad sets typically take 24 to 48 hours. Large-format billboards and complex exhibition booth systems take 2 to 4 business days."
+                    },
+                    {
+                        q: "Do you provide revisions if my printer requests minor adjustments?",
+                        a: "Yes! We provide complete pre-press support and will make any technical adjustments required by your print vendor at no additional charge."
+                    },
+                    {
+                        q: "How do I get started?",
+                        a: "Click 'Let's Talk' on WhatsApp or send an email with your sign dimensions, text copy, brand logo, and print specifications, and we will initiate your artwork immediately."
+                    }
+                ]
+            },
+            "illustration": {
+                id: "illustration",
+                category: "Custom Creative & Vector Artwork",
+                heroTitleFormatted: "Creative <span>Illustration</span>",
+                tagline: "Distinctive Vector Artistry and Character Storytelling",
+                spotlightLeftBold: "Services Designing <br><span>Vector Illustrations</span>",
+                spotlightSubheading: "Infusing Unmistakable Originality into Digital & Physical Media",
+                spotlightP1: "At Signatures Studio, custom vector illustration is a powerful creative differentiator. In an era dominated by generic stock photos and repetitive AI art, our hand-crafted vector graphics, character mascots, and editorial compositions inject warmth, soul, and unforgettable identity into your product.",
+                spotlightP2: "Whether you require hero illustrations for your web application, bespoke vector icons, custom apparel graphics, or packaging patterns, each artwork is crafted in mathematical vectors with clean anchor points. This guarantees crisp, pixel-perfect rendering across any device display or physical print medium.",
+                spotlightImage: "images/services/service-illustration-v2.png",
+                driveFolder: "https://drive.google.com/drive/folders/1QGxx5J0kp4HjtTHvu5i5s4sG3YfAdcMq?usp=drive_link",
+                offerings: [
+                    "Bespoke Vector Brand & Editorial Illustrations",
+                    "Custom Character & Mascot Designs",
+                    "Custom Website & App UI/UX Icon Sets",
+                    "T-Shirt, Apparel & Merchandise Artwork",
+                    "Packaging, Label & Pattern Vector Graphics",
+                    "Infographic Vector Assets & Data Visuals",
+                    "Sticker, Badge & Emblem Illustrations",
+                    "Full Layered Adobe Illustrator (AI) Masters",
+                    "Infinitely Scalable Vectors (SVG, EPS, PDF)"
+                ],
+                deepDiveMiniTag: "INTRO BRANDING",
+                deepDiveHeading: "From Concept Sketch to Vector Mastery: <span>Art That Resonates</span>",
+                deepDiveP1: "Our illustration services go far beyond generic stock libraries. We don’t just copy existing trends; we develop a unique visual language tailored to your brand identity. Whether it’s playful flat characters, sophisticated isometric diagrams, or bold stylized pop art, we create illustrations that stop the scroll, spark curiosity, and make your brand instantly recognizable.",
+                deepDiveP2: "From pencil thumbnail sketches and digital ink passes to harmonious color palettes and clean anchor-point vectorization, we deliver master-grade artwork ready for any screen or print medium. Every asset is organized with separated layers for easy web animation or print separation. If your brand needs a one-of-a-kind creative voice, we're here to craft it.",
+                workImages: [
+                    { src: "images/services/work-illustration-arts.jpg", title: "Creative Digital Vector Illustration", tag: "Vector Art" },
+                    { src: "images/services/work-illustration-creative.png", title: "Creative Digital Artist & Vector Scene", tag: "Digital Illustration" },
+                    { src: "images/services/work-illustration-character.png", title: "Stylized Vector Character & Mascot Art", tag: "Character Art" }
+                ],
+                faqs: [
+                    {
+                        q: "What types of illustration services do you offer?",
+                        a: "We offer custom vector illustrations, character mascots, website hero scenes, custom UI icon sets, apparel/t-shirt designs, packaging patterns, and technical infographic assets."
+                    },
+                    {
+                        q: "Can the illustrations be animated by web developers?",
+                        a: "Yes! All artwork is delivered with neatly labeled and separated layers in Adobe Illustrator (AI) and clean SVG code, making it effortless for motion designers to animate via Lottie, CSS, or After Effects."
+                    },
+                    {
+                        q: "Are the illustrations scalable without losing sharpness?",
+                        a: "Yes. Everything is created in 100% mathematical vector format. You can scale an icon from a 20-pixel button up to a 40-foot building mural without any pixelation or loss of clarity."
+                    },
+                    {
+                        q: "How long does it take to complete an illustration project?",
+                        a: "Single spot illustrations or icon sets typically take 24 to 48 hours. Complex multi-character compositions or full brand illustration kits take 3 to 5 business days."
+                    },
+                    {
+                        q: "Do I get full commercial copyright to the artwork?",
+                        a: "Yes. You receive 100% full commercial rights and ownership to use the illustrations across your digital products, marketing, physical merchandise, and packaging."
+                    },
+                    {
+                        q: "How do I get started?",
+                        a: "Click 'Let's Talk' on WhatsApp or send an email describing your idea, theme, style references, and intended usage, and we will sketch initial concepts right away!"
+                    }
+                ]
+            },
+            "book-cover": {
+                id: "book-cover",
+                category: "Editorial & Publishing Media",
+                heroTitleFormatted: "Book Cover & <span>Editorial Layout</span>",
+                tagline: "Publishing-Grade Book Covers Engineered to Captivate Readers",
+                spotlightLeftBold: "Services Designing <br><span>Book Covers & Spines</span>",
+                spotlightSubheading: "Publishing-Grade Book Jackets Engineered for Amazon & Print",
+                spotlightP1: "At Signatures Studio, book cover design is where literary storytelling meets commercial publishing impact. A standout book cover must evoke mood, signal genre conventions instantly, and command clicks in crowded online bookstores like Amazon Kindle and Apple Books.",
+                spotlightP2: "We engineer complete mechanical print files for paperbacks and hardcovers—calculating spine widths down to millimeter accuracy based on paper GSM and final page count. Combined with ISBN barcode placement and genre-specific typography, our book covers pass Amazon KDP and IngramSpark technical checks on the first upload.",
+                spotlightImage: "images/services/service-bookcover-v2.jpg",
+                driveFolder: "https://drive.google.com/drive/folders/1Kj8kcu-jD0KNyNeNWeh3r8CRguNX45He?usp=drive_link",
+                offerings: [
+                    "Full Wrap Paperback Covers (Front, Spine, Back)",
+                    "Hardcover Dust Jacket & Case Laminate Wraps",
+                    "Amazon KDP & IngramSpark Print Compliant Layouts",
+                    "Kindle eBook, Apple Books & Audible Cover Art",
+                    "Exact Spine Width Calculation by Page Count & Paper Stock",
+                    "Barcode, ISBN & Price Block Positioning",
+                    "3D Photorealistic Book Mockups for Marketing",
+                    "Genre-Specific Typography & Title Styling",
+                    "300 DPI CMYK Press-Ready PDFs & Layered Source Files"
+                ],
+                deepDiveMiniTag: "INTRO BRANDING",
+                deepDiveHeading: "From Manuscript to Bestseller: <span>Covers That Resonate</span>",
+                deepDiveP1: "Our book cover design services go far beyond simple photo collages. We don’t just place a title over a stock photo; we research genre conventions, reader psychology, and Amazon marketplace trends to ensure your book immediately signals its genre while standing out uniquely in search results.",
+                deepDiveP2: "From precise spine width calculations based on your printer's paper GSM to spine text alignment and barcode placement, we deliver publisher-grade mechanical artwork ready for instant approval with zero print rejections. If your manuscript deserves a cover that turns casual browsers into eager buyers, we're here to craft it.",
+                workImages: [
+                    { src: "images/services/work-book-front.jpg", title: "Commercial Novel Front Cover Artwork", tag: "Front Cover" },
+                    { src: "images/services/work-book-back.jpg", title: "Full Jacket Print Spread & Back Cover", tag: "Print Spread" },
+                    { src: "images/services/service-bookcover-v2.jpg", title: "Vintage Hardcover & Leather Spine Collection", tag: "Book Design" }
+                ],
+                faqs: [
+                    {
+                        q: "What types of book cover design services do you offer?",
+                        a: "We design Amazon KDP paperback wraps, hardcover dust jackets, Kindle eBooks, audiobook covers (Audible), and complete marketing promotional mockup suites."
+                    },
+                    {
+                        q: "How do you calculate the exact spine width for the print cover?",
+                        a: "We calculate spine width mathematically using your exact final page count and your printer's paper type (white, cream, or color) to guarantee a flawless fit with zero text drifting off the spine."
+                    },
+                    {
+                        q: "Will the cover pass Amazon KDP and IngramSpark technical checks?",
+                        a: "Yes! We guarantee 100% compliance with Amazon KDP, IngramSpark, and Barnes & Noble requirements, including 300 DPI CMYK resolution, exact trim sizes, bleed margins, and barcode placement."
+                    },
+                    {
+                        q: "How long does it take to complete a project?",
+                        a: "Initial cover concepts are delivered within 48 hours. Revisions and final mechanical file preparation are completed within 1 to 2 business days."
+                    },
+                    {
+                        q: "Do you include 3D mockups for my book launch campaign?",
+                        a: "Yes! Every book cover package includes photorealistic 3D book mockups (paperback, hardcover, and tablet/eBook views) ready for social media promotion and author website headers."
+                    },
+                    {
+                        q: "How do I get started?",
+                        a: "Click 'Let's Talk' on WhatsApp or send an email with your book title, author name, genre, page count, and any cover ideas or examples you love, and we will get to work!"
+                    }
+                ]
+            },
+            "brand-identity": {
+                id: "brand-identity",
+                category: "Corporate Branding & Visual Strategy",
+                heroTitleFormatted: "Brand Identity & <span>Style Guidelines</span>",
+                tagline: "Building Complete, Unified Brand Ecosystems for Modern Businesses",
+                spotlightLeftBold: "Services Designing <br><span>Brand Guidelines</span>",
+                spotlightSubheading: "Unifying Your Visual Ecosystem for Unwavering Market Authority",
+                spotlightP1: "At Signatures Studio, brand identity is the complete visual operating system of your business. Combining formal agribusiness entrepreneurship studies with hands-on international design experience, we build identity systems that align design elegance with commercial growth.",
+                spotlightP2: "We construct exhaustive brand guidelines covering primary and secondary logo lockups, digital and print color systems (HEX, CMYK, Pantone), typography rules, luxury business cards, executive stationery, and social media kits. This empowers your company to project premium consistency across every client touchpoint.",
+                spotlightImage: "images/services/service-branding-v2.jpg",
+                driveFolder: "https://drive.google.com/drive/folders/1ufEEa8sXFrWPf_SinYk9uBpdIsl3NcVP?usp=drive_link",
+                offerings: [
+                    "Complete Brand Identity Style Guide (PDF Booklet)",
+                    "Primary, Secondary & Sub-Mark Logo Suites",
+                    "Curated Brand Color Palette (HEX, RGB, CMYK, Pantone)",
+                    "Typography Rules, Hierarchy & Font Pairing Guides",
+                    "Luxury Business Cards, Letterhead & Envelope Stationery",
+                    "Branded Invoice & Presentation Slide Templates",
+                    "Email Signature Design & Social Media Kit Assets",
+                    "Brand Imagery & Iconography Guidelines",
+                    "Master Vector Brand Asset Library (AI, EPS, SVG, PDF)"
+                ],
+                deepDiveMiniTag: "INTRO BRANDING",
+                deepDiveHeading: "From Strategic Foundation to Market Authority: <span>Branding That Resonates</span>",
+                deepDiveP1: "Our brand identity services go far beyond simply handing over a logo file. We create a unified design language that governs how your business looks, communicates, and feels across every customer touchpoint. Whether it’s luxury business cards, executive stationery, digital marketing materials, or corporate presentations, we ensure your brand projects unwavering confidence and premium quality.",
+                deepDiveP2: "From color theory and typographic hierarchy to stationery print production and digital asset guidelines, we deliver an exhaustive corporate branding package tailored for commercial scalability. Think clear brand rules your internal team or external vendors can follow seamlessly. If your brand needs to command premium pricing and stand out in crowded markets, we're here to build that foundation.",
+                workImages: [
+                    { src: "images/services/work-brand-1.jpg", title: "Corporate Stationery & Visual System", tag: "Brand Kit" },
+                    { src: "images/services/work-brand-2.jpg", title: "Official Letterhead & Identity System", tag: "Corporate Identity" },
+                    { src: "images/services/work-brand-3.jpg", title: "Brand Assets & Typography Guidelines", tag: "Brand Guidelines" },
+                    { src: "images/services/work-brand-4.jpg", title: "Complete Commercial Visual Identity Suite", tag: "Identity Suite" },
+                    { src: "images/services/service-branding-v2.jpg", title: "Creative Brand Strategy & Typography Layout", tag: "Brand Strategy" }
+                ],
+                faqs: [
+                    {
+                        q: "What is included in a complete Brand Identity package?",
+                        a: "A complete package includes your primary logo, secondary variations, sub-marks, brand color palette (with exact digital HEX, RGB, print CMYK and Pantone codes), typography hierarchy, full stationery kit (business cards, letterhead, envelope), email signatures, social media kit, and a comprehensive Brand Guidelines PDF booklet."
+                    },
+                    {
+                        q: "Do you help with strategic brand positioning and moodboarding?",
+                        a: "Yes! We conduct initial brand discovery to define your brand personality, target audience persona, and competitive positioning before establishing the visual identity direction."
+                    },
+                    {
+                        q: "Can I provide the Brand Guidelines to other printers and web developers?",
+                        a: "Absolutely. The Brand Guidelines PDF is specifically crafted as a universal manual that any printer, marketing agency, or web developer can follow to reproduce your brand with 100% accuracy."
+                    },
+                    {
+                        q: "How long does a complete brand identity project take?",
+                        a: "Full brand identity development generally takes 4 to 7 business days, including concept presentation, stationery mockups, revisions, and compilation of the style guide booklet."
+                    },
+                    {
+                        q: "Will the stationery files be print-ready?",
+                        a: "Yes! All stationery files (business cards, letterhead, etc.) are delivered in 300 DPI CMYK press-ready formats with proper bleeds and cut marks, along with editable source files."
+                    },
+                    {
+                        q: "How do I get started?",
+                        a: "Click 'Let's Talk' on WhatsApp or send an email with your company name, industry, and target market, and we will schedule an initial brand consultation right away!"
+                    }
+                ]
+            }
+        };
+
+        // Render Service by Key
+        function renderService(activeKey) {
+            if (!servicesData[activeKey]) {
+                activeKey = "product-social";
+            }
+
+            const data = servicesData[activeKey];
+
+            // 1. Update Document Title
+            document.title = `${data.heroTitleFormatted.replace(/<[^>]*>?/gm, '')} | Signatures Studio - Muhammad Arslan`;
+
+            // 2. Bold Middle Hero Section
+            document.getElementById('hero-category-tag').textContent = data.category;
+            document.getElementById('hero-service-title').innerHTML = data.heroTitleFormatted;
+            document.getElementById('hero-service-tagline').textContent = data.tagline;
+
+            // 3. Spotlight Section (No Card)
+            document.getElementById('spotlight-bold-title').innerHTML = data.spotlightLeftBold;
+            document.getElementById('spotlight-subheading').textContent = data.spotlightSubheading;
+            document.getElementById('spotlight-p1').textContent = data.spotlightP1;
+            document.getElementById('spotlight-p2').textContent = data.spotlightP2;
+            const spotlightImg = document.getElementById('spotlight-image');
+            spotlightImg.src = data.spotlightImage;
+            if (activeKey === 'advertisement') {
+                spotlightImg.style.objectFit = 'contain';
+                spotlightImg.style.background = 'radial-gradient(circle, rgba(95, 206, 155, 0.16) 0%, rgba(10, 14, 12, 0.9) 75%)';
+            } else {
+                spotlightImg.style.objectFit = 'cover';
+                spotlightImg.style.background = 'transparent';
+            }
+
+            // 5. 2-Column Section (No Cards)
+            const offeringsContainer = document.getElementById('offerings-container');
+            offeringsContainer.innerHTML = data.offerings.map(item => `
+                <div class="capability-row">
+                    <i class='bx bxs-check-circle'></i>
+                    <span>${item}</span>
+                </div>
+            `).join('');
+
+            document.getElementById('deepdive-mini-tag').textContent = data.deepDiveMiniTag;
+            document.getElementById('deepdive-heading').innerHTML = data.deepDiveHeading;
+            document.getElementById('deepdive-p1').textContent = data.deepDiveP1;
+            document.getElementById('deepdive-p2').textContent = data.deepDiveP2;
+
+            // 6. Work Portfolio Gallery (Live Drive Images)
+            document.getElementById('drive-folder-link').href = data.driveFolder;
+            const workGalleryContainer = document.getElementById('work-gallery-grid');
+            workGalleryContainer.innerHTML = data.workImages.map(img => `
+                <a href="${data.driveFolder}" target="_blank" class="work-gallery-item">
+                    <img src="${img.src}" alt="${img.title}">
+                    <div class="work-gallery-overlay">
+                        <div>
+                            <div class="work-caption-tag">${img.tag}</div>
+                            <h4 class="work-caption-title">${img.title}</h4>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+
+            // 7. Frequently Asked Questions (Clean list on background)
+            const faqContainer = document.getElementById('faq-accordion-container');
+            faqContainer.innerHTML = data.faqs.map((faq, index) => `
+                <div class="faq-clean-item ${index === 0 ? 'active' : ''}">
+                    <div class="faq-clean-question">
+                        <h4>${faq.q}</h4>
+                        <div class="faq-clean-icon"><i class='bx bx-chevron-down'></i></div>
+                    </div>
+                    <div class="faq-clean-answer">
+                        <p>${faq.a}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            // Accordion Interactive Click Handler
+            const faqItems = document.querySelectorAll('.faq-clean-item');
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-clean-question');
+                question.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    faqItems.forEach(otherItem => otherItem.classList.remove('active'));
+                    if (!isActive) {
+                        item.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // Initialize from URL query param
+        const urlParams = new URLSearchParams(window.location.search);
+        let initialKey = urlParams.get('service') || "product-social";
+        renderService(initialKey);
+    </script>
+</body>
+
+</html>
