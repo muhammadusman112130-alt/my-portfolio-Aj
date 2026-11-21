@@ -1273,12 +1273,6 @@
                     <p class="section-lead-clean" style="margin-bottom: 0;">Real-world client deliverables and
                         commercial visual assets from our design archive.</p>
                 </div>
-                <div>
-                    <span class="gallery-interactive-chip">
-                        <i class='bx bx-zoom-in'></i>
-                        <span>Click Any Image to Enlarge</span>
-                    </span>
-                </div>
             </div>
 
             <!-- Work Images Grid -->
@@ -1397,6 +1391,26 @@
             </div>
         </div>
     </footer>
+
+    <!-- Image Lightbox Modal Popup (Placed before script for guaranteed instant DOM access) -->
+    <div id="image-lightbox-modal" class="image-lightbox-modal" aria-hidden="true">
+        <div class="lightbox-overlay" id="lightbox-backdrop"></div>
+        <div class="lightbox-card-container">
+            <button class="lightbox-close-btn" id="lightbox-close-btn" aria-label="Close Preview" title="Close Preview">
+                <i class='bx bx-x'></i>
+            </button>
+            <div class="lightbox-card-header">
+                <span class="lightbox-tag" id="lightbox-tag">PORTFOLIO WORK</span>
+                <h3 class="lightbox-title" id="lightbox-title">Image Preview</h3>
+            </div>
+            <div class="lightbox-image-wrap">
+                <img src="" alt="" id="lightbox-img" class="lightbox-main-img">
+            </div>
+            <div class="lightbox-card-footer">
+                <span class="lightbox-hint"><i class='bx bx-info-circle'></i> Click anywhere outside or press ESC to close</span>
+            </div>
+        </div>
+    </div>
 
     <!-- Service Data & Dynamic Page Script -->
     <script>
@@ -1605,8 +1619,8 @@
                 deepDiveP2: "From pencil thumbnail sketches and digital ink passes to harmonious color palettes and clean anchor-point vectorization, we deliver master-grade artwork ready for any screen or print medium. Every asset is organized with separated layers for easy web animation or print separation. If your brand needs a one-of-a-kind creative voice, we're here to craft it.",
                 workImages: [
                     { src: "images/services/work-illustration-arts.jpg", title: "Creative Digital Vector Illustration", tag: "Vector Art" },
-                    { src: "images/services/work-illustration-creative.png", title: "Creative Digital Artist & Vector Scene", tag: "Digital Illustration" },
-                    { src: "images/services/work-illustration-character.png", title: "Stylized Vector Character & Mascot Art", tag: "Character Art" }
+                    { src: "images/services/work-illustration-creative.jpg", title: "Creative Digital Artist & Vector Scene", tag: "Digital Illustration" },
+                    { src: "images/services/work-illustration-character.jpg", title: "Stylized Vector Character & Mascot Art", tag: "Character Art" }
                 ],
                 faqs: [
                     {
@@ -2103,7 +2117,7 @@
             function renderGalleryItems() {
                 const imagesHtml = currentAllImages.map((img) => `
                     <div class="work-gallery-item" data-src="${img.src}" data-title="${img.title}" data-tag="${img.tag}" title="Click to enlarge view">
-                        <img src="${img.src}" alt="${img.title}" loading="lazy">
+                        <img src="${img.src}" alt="${img.title}" loading="eager" decoding="async">
                         <div class="work-gallery-overlay">
                             <div>
                                 <div class="work-caption-tag">${img.tag}</div>
@@ -2210,35 +2224,45 @@
         }
 
         // Lightbox Modal Controller
-        const lightboxModal = document.getElementById('image-lightbox-modal');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxTitle = document.getElementById('lightbox-title');
-        const lightboxTag = document.getElementById('lightbox-tag');
-        const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
-        const lightboxBackdrop = document.getElementById('lightbox-backdrop');
-
         function openImageLightbox(src, title, tag) {
-            if (!lightboxModal || !lightboxImg) return;
-            lightboxImg.src = src;
-            lightboxImg.alt = title || 'Work Preview';
-            if (lightboxTitle) lightboxTitle.textContent = title || 'Portfolio Showcase';
-            if (lightboxTag) lightboxTag.textContent = tag || 'DELIVERABLE';
-            lightboxModal.classList.add('active');
-            lightboxModal.setAttribute('aria-hidden', 'false');
+            const modal = document.getElementById('image-lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            const titleEl = document.getElementById('lightbox-title');
+            const tagEl = document.getElementById('lightbox-tag');
+            if (!modal || !img) return;
+            img.src = src;
+            img.alt = title || 'Work Preview';
+            if (titleEl) titleEl.textContent = title || 'Portfolio Showcase';
+            if (tagEl) tagEl.textContent = tag || 'DELIVERABLE';
+            modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
             document.body.style.overflow = 'hidden';
         }
 
         function closeImageLightbox() {
-            if (!lightboxModal) return;
-            lightboxModal.classList.remove('active');
-            lightboxModal.setAttribute('aria-hidden', 'true');
+            const modal = document.getElementById('image-lightbox-modal');
+            if (!modal) return;
+            modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
         }
 
-        if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeImageLightbox);
-        if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeImageLightbox);
+        document.addEventListener('DOMContentLoaded', () => {
+            const closeBtn = document.getElementById('lightbox-close-btn');
+            const backdrop = document.getElementById('lightbox-backdrop');
+            if (closeBtn) closeBtn.addEventListener('click', closeImageLightbox);
+            if (backdrop) backdrop.addEventListener('click', closeImageLightbox);
+        });
+
+        // Also bind immediately if DOM is already parsed
+        const closeBtn = document.getElementById('lightbox-close-btn');
+        const backdrop = document.getElementById('lightbox-backdrop');
+        if (closeBtn) closeBtn.addEventListener('click', closeImageLightbox);
+        if (backdrop) backdrop.addEventListener('click', closeImageLightbox);
+
         window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && lightboxModal && lightboxModal.classList.contains('active')) {
+            const modal = document.getElementById('image-lightbox-modal');
+            if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
                 closeImageLightbox();
             }
         });
@@ -2248,26 +2272,6 @@
         let initialKey = urlParams.get('service') || "product-social";
         renderService(initialKey);
     </script>
-
-    <!-- Image Lightbox Modal Popup (Card with Close Button) -->
-    <div id="image-lightbox-modal" class="image-lightbox-modal" aria-hidden="true">
-        <div class="lightbox-overlay" id="lightbox-backdrop"></div>
-        <div class="lightbox-card-container">
-            <button class="lightbox-close-btn" id="lightbox-close-btn" aria-label="Close Preview" title="Close Preview">
-                <i class='bx bx-x'></i>
-            </button>
-            <div class="lightbox-card-header">
-                <span class="lightbox-tag" id="lightbox-tag">PORTFOLIO WORK</span>
-                <h3 class="lightbox-title" id="lightbox-title">Image Preview</h3>
-            </div>
-            <div class="lightbox-image-wrap">
-                <img src="" alt="" id="lightbox-img" class="lightbox-main-img">
-            </div>
-            <div class="lightbox-card-footer">
-                <span class="lightbox-hint"><i class='bx bx-info-circle'></i> Click anywhere outside or press ESC to close</span>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>
