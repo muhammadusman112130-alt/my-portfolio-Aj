@@ -4,12 +4,16 @@
  * Author: Muhammad Arslan (workstation112130@gmail.com)
  * Description: Secure serverless Google Apps Script Web App that reads portfolio
  *              images directly from your designated Google Drive folders and serves
- *              them as JSON to your static portfolio website without exposing private
- *              credentials or tokens.
+ *              them as JSON to your static portfolio website.
+ *
+ * SECURITY RESTRICTIONS:
+ * - Only predefined portfolio services can be queried.
+ * - Passing arbitrary folder IDs is strictly disabled.
+ * - No credentials, OAuth tokens, or secrets are exposed.
  * ====================================================================================
  */
 
-// Mapping of portfolio services to their designated Google Drive Folder IDs
+// Strict Mapping of allowed portfolio services to their designated Google Drive Folder IDs
 const FOLDERS_CONFIG = {
   "product-social": "1Awoa0lRmnk44OlNBI99wCkwplcvmFoAx",
   "logo-design":    "1jiJzG9vRMzTrw_TUez2B62y0aPyGEVPb",
@@ -20,15 +24,15 @@ const FOLDERS_CONFIG = {
 };
 
 /**
- * Handles HTTP GET requests from your portfolio website
+ * Handles HTTP GET requests from your portfolio website.
+ * Validates requested service against whitelist.
  */
 function doGet(e) {
   try {
     const params = e && e.parameter ? e.parameter : {};
     const service = params.service ? params.service.toLowerCase().trim() : "";
-    const customFolderId = params.folderId ? params.folderId.trim() : "";
 
-    // 1. If requesting all services in one single request
+    // 1. If requesting all predefined services in one batch
     if (service === "all") {
       const allServicesData = {};
       for (const serviceKey in FOLDERS_CONFIG) {
@@ -42,27 +46,22 @@ function doGet(e) {
       });
     }
 
-    // 2. Determine target folder ID
-    let targetFolderId = customFolderId;
-    if (!targetFolderId && service && FOLDERS_CONFIG[service]) {
-      targetFolderId = FOLDERS_CONFIG[service];
-    }
-
-    if (!targetFolderId) {
+    // 2. Strict Whitelist Check: Service MUST match one of the predefined services
+    if (!service || !FOLDERS_CONFIG.hasOwnProperty(service)) {
       return createJsonResponse({
         success: false,
-        error: "Invalid request. Please provide a valid service name ('product-social', 'logo-design', etc.) or 'folderId'.",
-        availableServices: Object.keys(FOLDERS_CONFIG)
+        error: "Access Denied: Invalid service requested. Only predefined portfolio services are accessible.",
+        allowedServices: Object.keys(FOLDERS_CONFIG)
       });
     }
 
-    // 3. Fetch images from the designated folder
+    // 3. Fetch images from the designated whitelist folder
+    const targetFolderId = FOLDERS_CONFIG[service];
     const files = fetchFolderFiles(targetFolderId);
 
     return createJsonResponse({
       success: true,
-      service: service || "custom",
-      folderId: targetFolderId,
+      service: service,
       count: files.length,
       files: files,
       timestamp: new Date().toISOString()
@@ -77,7 +76,7 @@ function doGet(e) {
 }
 
 /**
- * Reads all image files from a given Google Drive folder
+ * Reads all image files from a designated Google Drive folder
  */
 function fetchFolderFiles(folderId) {
   const folder = DriveApp.getFolderById(folderId);
@@ -123,11 +122,8 @@ function fetchFolderFiles(folderId) {
  * e.g. "branding_concept_01.jpg" -> "Branding Concept 01"
  */
 function formatTitle(filename) {
-  // Remove file extension
   let clean = filename.replace(/\.[^/.]+$/, "");
-  // Replace underscores, hyphens, and multiple spaces with a single space
   clean = clean.replace(/[-_]+/g, " ").trim();
-  // Capitalize first letter of each word
   return clean.replace(/\b\w/g, char => char.toUpperCase());
 }
 

@@ -777,6 +777,12 @@
             .work-header {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 1.6rem;
+            }
+
+            .work-gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+                gap: 2rem;
             }
 
             .faq-clean-section {
@@ -792,6 +798,89 @@
                 flex-direction: column;
                 gap: 1.2rem;
                 text-align: center;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .service-hero-centered {
+                padding: 3.5rem 4% 1.2rem;
+            }
+
+            .hero-big-title {
+                font-size: 3rem;
+            }
+
+            .hero-tagline-text {
+                font-size: 1.4rem;
+            }
+
+            .spotlight-bold-name {
+                font-size: 2.2rem;
+            }
+
+            .spotlight-direct-img {
+                height: 22rem;
+            }
+
+            .drive-folder-btn {
+                width: 100%;
+                justify-content: center;
+                padding: 1.2rem 2rem;
+                font-size: 1.45rem;
+            }
+
+            .work-gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .work-gallery-item {
+                height: 24rem;
+            }
+
+            .work-gallery-overlay {
+                opacity: 1;
+                background: linear-gradient(to top, rgba(8, 8, 10, 0.9) 0%, rgba(8, 8, 10, 0.3) 50%, transparent 80%);
+                padding: 1.6rem;
+            }
+
+            .section-heading-clean {
+                font-size: 2.4rem;
+            }
+
+            .faq-clean-question h4 {
+                font-size: 1.6rem;
+            }
+
+            .footer-contact-item a {
+                word-break: break-all;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .hero-big-title {
+                font-size: 2.5rem;
+            }
+
+            .spotlight-bold-name {
+                font-size: 1.95rem;
+            }
+
+            .work-gallery-item {
+                height: 20rem;
+            }
+
+            .service-nav-bar {
+                padding: 1rem 4%;
+            }
+
+            .service-nav-logo img {
+                height: 3.4rem;
+            }
+
+            .service-nav-cta {
+                padding: .6rem 1.2rem;
+                font-size: 1.3rem;
             }
         }
     </style>

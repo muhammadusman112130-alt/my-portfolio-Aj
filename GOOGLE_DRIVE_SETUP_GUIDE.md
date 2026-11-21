@@ -6,6 +6,22 @@ Once set up, whenever you drop or upload new images into your designated Google 
 
 ---
 
+## Security Model & Whitelist Restrictions
+
+To ensure maximum security and privacy:
+- **No Arbitrary Folder IDs:** The Apps Script does NOT accept arbitrary folder IDs from the public web. Only the 6 predefined services listed below are permitted:
+  - `product-social`
+  - `logo-design`
+  - `advertisement`
+  - `illustration`
+  - `book-cover`
+  - `brand-identity`
+- **Zero Exposed Credentials:** No Google API keys, OAuth secrets, client tokens, or service account keys exist in the frontend code or the GitHub repository.
+- **Strict Isolation:** Visitors cannot access, browse, or query any other folder or file in your personal Google Drive account.
+- **Static Fallback:** If the Google Apps Script endpoint is ever unreachable or offline, the portfolio instantly and seamlessly displays the local curated project assets so the site never shows a blank gallery or error.
+
+---
+
 ## Architecture Overview
 
 ```

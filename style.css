@@ -41,11 +41,17 @@
 html {
     font-size: 62.5%;
     overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
 }
 
 body {
     background: var(--bg-color);
     color: var(--text-color);
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+    position: relative;
 }
 
 .header {
@@ -2028,10 +2034,14 @@ section:nth-child(odd) .animate.scroll,
 @media (max-width: 768px) {
     .header {
         background: var(--bg-color);
+        padding: 1.6rem 5%;
     }
 
     #menu-icon {
         display: block;
+        font-size: 3.6rem;
+        cursor: pointer;
+        padding: .5rem;
     }
 
     .navbar {
@@ -2039,11 +2049,14 @@ section:nth-child(odd) .animate.scroll,
         top: 100%;
         left: -100%;
         width: 100%;
-        padding: 1rem 4%;
+        padding: 1rem 5%;
         background: var(--second-bg-color);
         box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .5);
         border-top: .1rem solid var(--main-color);
-        z-index: 1;
+        z-index: 999;
+        max-height: 85vh;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
         transition: .25s ease;
         transition-delay: .25s;
     }
@@ -2073,8 +2086,8 @@ section:nth-child(odd) .animate.scroll,
 
     .navbar a {
         display: block;
-        font-size: 2rem;
-        margin: 3rem 0;
+        font-size: 1.9rem;
+        margin: 2rem 0;
         transform: translateX(-20rem);
         transition: .25s ease;
         transition-delay: 0s;
@@ -2084,6 +2097,78 @@ section:nth-child(odd) .animate.scroll,
         transform: translateX(0);
         transition-delay: .25s;
     }
+
+    /* Hide extra bubble labels on mobile so they never bleed out of viewport */
+    .bubble-label {
+        display: none !important;
+    }
+
+    .education .education-row,
+    .skills .skills-row {
+        gap: 3.5rem;
+    }
+
+    .education-row .education-column,
+    .skills-row .skills-column {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    .services-container {
+        grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+        gap: 2.2rem;
+    }
+
+    .contact form .input-box .input-field {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero-actions-right {
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    .hero-actions-right .hero-btn-box {
+        justify-content: flex-start;
+        width: 100%;
+        margin-bottom: 1.6rem;
+    }
+
+    .hero-actions-right .hero-btn-box .btn {
+        width: 100%;
+        max-width: 20rem;
+    }
+
+    .hero-actions-right .hero-sci-right {
+        justify-content: flex-start;
+        width: 100%;
+        gap: 1.5rem;
+    }
+
+    .services-container {
+        grid-template-columns: 1fr;
+    }
+
+    .service-box .service-img-box {
+        height: 18rem;
+    }
+
+    .contact-info-cards {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .contact form .btn-box.btns {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .contact form .btn-box.btns .btn {
+        width: 100%;
+        max-width: 24rem;
+    }
 }
 
 @media (max-width: 520px) {
@@ -2091,34 +2176,40 @@ section:nth-child(odd) .animate.scroll,
         font-size: 50%;
     }
 
+    .portfolio-title,
+    .portfolio-text-wrapper {
+        max-width: 100%;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .portfolio-letters,
+    .portfolio-floor-shadow {
+        gap: 0;
+        justify-content: center;
+        max-width: 100%;
+    }
+
     .portfolio-letters .p-letter,
     .portfolio-floor-shadow .p-letter {
-        font-size: 4.2rem;
+        font-size: 3.3rem;
     }
 
     .portfolio-floor-shadow {
         margin-top: 0rem;
     }
 
-    .bubble-ps {
-        left: -0.5rem;
+    .bubble-ps, .bubble-ai {
+        left: 0.5rem;
     }
 
-    .bubble-ai {
-        left: -0.8rem;
-    }
-
-    .bubble-meta {
-        right: -0.5rem;
-    }
-
-    .bubble-etsy {
-        right: -0.8rem;
+    .bubble-meta, .bubble-etsy {
+        right: 0.5rem;
     }
 
     .skill-bubble {
-        width: 3.6rem;
-        height: 3.6rem;
+        width: 3.2rem;
+        height: 3.2rem;
     }
 
     .logo .nav-logo-img {
@@ -2131,15 +2222,7 @@ section:nth-child(odd) .animate.scroll,
     }
 
     .services-header-left .services-heading {
-        font-size: 3.8rem;
-    }
-
-    .services-container {
-        grid-template-columns: 1fr;
-    }
-
-    .service-box .service-img-box {
-        height: 16rem;
+        font-size: 3.6rem;
     }
 
     .floating-whatsapp {
@@ -2153,45 +2236,25 @@ section:nth-child(odd) .animate.scroll,
         font-size: 3rem;
     }
 
-    .portfolio-letters,
-    .portfolio-floor-shadow {
-        gap: 0.1rem;
-    }
-
     .eye-letter {
-        width: 4.2rem;
-        height: 4.2rem;
+        width: 3.3rem;
+        height: 3.3rem;
     }
 
     .eye-letter .eye {
-        width: 4rem;
-        height: 4rem;
+        width: 3.1rem;
+        height: 3.1rem;
     }
 
     .eye-letter .eyebrow {
-        width: 3.6rem;
-        height: .7rem;
-        top: -1.2rem;
+        width: 2.8rem;
+        height: .6rem;
+        top: -1rem;
     }
 
     .eye-letter .pupil {
-        width: 1.8rem;
-        height: 1.8rem;
-    }
-
-    .eye-letter .pupil .shine-1 {
-        width: .6rem;
-        height: .6rem;
-    }
-
-    .eye-letter .pupil .shine-2 {
-        width: .3rem;
-        height: .3rem;
-    }
-
-    .about-img {
-        width: 22rem;
-        height: 22rem;
+        width: 1.6rem;
+        height: 1.6rem;
     }
 
     .about-stats-grid {
@@ -2199,16 +2262,7 @@ section:nth-child(odd) .animate.scroll,
     }
 
     .hero-text h1 {
-        font-size: 3.5rem;
-    }
-
-    .home-sci {
-        width: 160px;
-    }
-
-    .home-sci a {
-        width: 38px;
-        height: 38px;
+        font-size: 3.4rem;
     }
 
     .about-btn-row .btn {
@@ -2225,51 +2279,89 @@ section:nth-child(odd) .animate.scroll,
 }
 
 @media (max-width: 462px) {
+    .about-btn-row {
+        flex-direction: column;
+        gap: 1.2rem;
+        width: 100%;
+    }
+
+    .about-btn-row .btn {
+        width: 100%;
+        max-width: 100%;
+    }
+
     .hero-text h1 {
         font-size: 3rem;
+        word-break: break-word;
     }
 
     .education {
-        padding: 10rem 4% 5rem 5%;
-    }
-
-    .contact form .input-box .input-field {
-        width: 100%;
+        padding: 8rem 4% 4rem;
     }
 
     .footer {
         flex-direction: column-reverse;
+        gap: 1.5rem;
     }
 
     .footer p {
-        margin-top: 2rem;
+        margin-top: 1rem;
         text-align: center;
     }
 }
 
 @media (max-width: 371px) {
+    html {
+        font-size: 45%;
+    }
+
     .portfolio-letters .p-letter,
     .portfolio-floor-shadow .p-letter {
-        font-size: 3.2rem;
+        font-size: 2.7rem;
     }
 
     .portfolio-floor-shadow {
-        margin-top: 0.2rem;
+        margin-top: 0.1rem;
     }
 
     .skill-bubble {
-        width: 3rem;
-        height: 3rem;
+        width: 2.8rem;
+        height: 2.8rem;
     }
 
     .eye-letter {
-        width: 3.2rem;
-        height: 3.2rem;
+        width: 2.7rem;
+        height: 2.7rem;
     }
 
     .eye-letter .eye {
-        width: 3rem;
-        height: 3rem;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .eye-letter .eyebrow {
+        width: 2.2rem;
+        height: .4rem;
+        top: -.8rem;
+    }
+
+    .hero-text h1 {
+        font-size: 2.7rem;
+    }
+
+    .hero-text .text-animate h3 {
+        font-size: 2.1rem;
+    }
+
+    .floating-whatsapp {
+        width: 4.6rem;
+        height: 4.6rem;
+        bottom: 1.6rem;
+        right: 1.6rem;
+    }
+
+    .floating-whatsapp i {
+        font-size: 2.6rem;
     }
 }
 

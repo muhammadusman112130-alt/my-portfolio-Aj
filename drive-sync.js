@@ -5,6 +5,11 @@
  * Description: Client-side integration that dynamically loads and displays portfolio
  *              projects directly from your Google Drive folders.
  *              Whenever you add new designs to Google Drive, they automatically appear here!
+ *
+ * SECURITY:
+ * - Only queries the 6 whitelisted service categories.
+ * - No private keys or OAuth secrets are stored or transmitted.
+ * - Graceful fallback to local static assets if endpoint is not configured or offline.
  * ====================================================================================
  */
 
@@ -15,7 +20,17 @@ const GoogleDriveSync = (function() {
     // Set your deployed Google Apps Script Web App URL below:
     let SCRIPT_WEB_APP_URL = window.GOOGLE_DRIVE_WEB_APP_URL || "";
 
-    // Local in-memory / session cache to ensure blazing-fast navigation
+    // Whitelist of valid service categories
+    const ALLOWED_SERVICES = [
+        "product-social",
+        "logo-design",
+        "advertisement",
+        "illustration",
+        "book-cover",
+        "brand-identity"
+    ];
+
+    // Local in-memory cache to ensure instant back-and-forth navigation
     const cache = {};
 
     /**
@@ -39,26 +54,31 @@ const GoogleDriveSync = (function() {
     } catch (e) {}
 
     /**
-     * Fetches files for a specific service or folder from the Google Apps Script endpoint
+     * Fetches files for a specific predefined service from the Google Apps Script endpoint
      * @param {string} serviceName - e.g. 'logo-design', 'product-social', etc.
-     * @param {string} [folderId] - Optional direct Google Drive folder ID
-     * @returns {Promise<Array>} Array of file objects
+     * @returns {Promise<Array|null>} Array of file objects or null on fallback
      */
-    async function fetchDriveFiles(serviceName, folderId) {
+    async function fetchDriveFiles(serviceName) {
+        if (!serviceName) return null;
+
+        const normalizedService = serviceName.toLowerCase().trim();
+        if (!ALLOWED_SERVICES.includes(normalizedService)) {
+            console.warn(`[Google Drive Sync] Unauthorized service "${serviceName}". Request blocked.`);
+            return null;
+        }
+
         if (!SCRIPT_WEB_APP_URL) {
             console.info('[Google Drive Sync] Google Apps Script endpoint URL is not configured yet. Using local portfolio assets.');
             return null;
         }
 
-        const cacheKey = serviceName || folderId || 'default';
-        if (cache[cacheKey] && Array.isArray(cache[cacheKey])) {
-            return cache[cacheKey];
+        if (cache[normalizedService] && Array.isArray(cache[normalizedService])) {
+            return cache[normalizedService];
         }
 
         try {
             const url = new URL(SCRIPT_WEB_APP_URL);
-            if (serviceName) url.searchParams.set('service', serviceName);
-            if (folderId) url.searchParams.set('folderId', folderId);
+            url.searchParams.set('service', normalizedService);
 
             const response = await fetch(url.toString(), {
                 method: 'GET',
@@ -71,12 +91,12 @@ const GoogleDriveSync = (function() {
             }
 
             const data = await response.json();
-            if (data && data.success && Array.isArray(data.files)) {
-                cache[cacheKey] = data.files;
-                console.log(`[Google Drive Sync] Successfully loaded ${data.files.length} items from Google Drive for "${serviceName}".`);
+            if (data && data.success && Array.isArray(data.files) && data.files.length > 0) {
+                cache[normalizedService] = data.files;
+                console.log(`[Google Drive Sync] Successfully loaded ${data.files.length} items from Google Drive for "${normalizedService}".`);
                 return data.files;
             } else {
-                console.warn('[Google Drive Sync] Endpoint returned non-success response:', data);
+                console.warn('[Google Drive Sync] Endpoint returned empty or unsuccessful response:', data);
                 return null;
             }
         } catch (err) {
@@ -125,7 +145,7 @@ const GoogleDriveSync = (function() {
         const galleryGrid = document.getElementById('work-gallery-grid');
         if (!galleryGrid) return;
 
-        // If no endpoint configured yet, keep fallback
+        // If no endpoint configured yet, keep fallback images
         if (!SCRIPT_WEB_APP_URL) return;
 
         // Fetch live items from Google Drive in background
@@ -140,7 +160,8 @@ const GoogleDriveSync = (function() {
         fetchDriveFiles,
         renderGallery,
         syncServiceDetailGallery,
-        get endpointUrl() { return SCRIPT_WEB_APP_URL; }
+        get endpointUrl() { return SCRIPT_WEB_APP_URL; },
+        get allowedServices() { return [...ALLOWED_SERVICES]; }
     };
 })();
 
