@@ -18,7 +18,7 @@ const GoogleDriveSync = (function() {
     // CONFIGURATION
     // --------------------------------------------------------------------------------
     // Set your deployed Google Apps Script Web App URL below:
-    let SCRIPT_WEB_APP_URL = window.GOOGLE_DRIVE_WEB_APP_URL || "";
+    let SCRIPT_WEB_APP_URL = window.GOOGLE_DRIVE_WEB_APP_URL || "https://script.google.com/macros/s/AKfycbyoy0JHkeDK3x58836is9cPMdeoqAMF378lPHS2rGn3j0g_o5-K_rAM3BRjG29eEK7M/exec";
 
     // Whitelist of valid service categories
     const ALLOWED_SERVICES = [
