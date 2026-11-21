@@ -1043,6 +1043,9 @@
         </div>
     </footer>
 
+    <!-- Google Drive Live Sync Module -->
+    <script src="drive-sync.js"></script>
+
     <!-- Service Data & Dynamic Page Script -->
     <script>
         const servicesData = {
@@ -1463,6 +1466,15 @@
                     </div>
                 </a>
             `).join('');
+
+            // Automatically check and sync live files from Google Drive in background
+            if (window.GoogleDriveSync) {
+                window.GoogleDriveSync.syncServiceDetailGallery(
+                    serviceKey,
+                    data.workImages,
+                    data.category || data.heroTitleFormatted.replace(/<[^>]*>/g, '')
+                );
+            }
 
             // 7. Frequently Asked Questions (Clean list on background)
             const faqContainer = document.getElementById('faq-accordion-container');
