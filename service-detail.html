@@ -2094,7 +2094,7 @@
             // Load any custom images added in this session for this specific service
             let customImages = [];
             try {
-                const stored = sessionStorage.getItem('custom_work_' + serviceKey);
+                const stored = sessionStorage.getItem('custom_work_' + activeKey);
                 if (stored) customImages = JSON.parse(stored);
             } catch (e) {}
 
@@ -2168,7 +2168,7 @@
                                 currentAllImages.push(newImg);
                                 customImages.push(newImg);
                                 try {
-                                    sessionStorage.setItem('custom_work_' + serviceKey, JSON.stringify(customImages));
+                                    sessionStorage.setItem('custom_work_' + activeKey, JSON.stringify(customImages));
                                 } catch (err) {}
                                 renderGalleryItems();
                                 openImageLightbox(newImg.src, newImg.title, newImg.tag);
