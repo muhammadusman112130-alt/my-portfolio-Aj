@@ -5,102 +5,104 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signature Studio — Brand Identity Case Study</title>
+    <title>Signature Studio — Brand Identity</title>
 
     <link rel="stylesheet" href="style.css">
     <!-- Box icons -->
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
     <style>
-        /* ==================== BRAND IDENTITY CASE STUDY PAGE STYLES ==================== */
+        /* ==================== SIGNATURE STUDIO BRAND IDENTITY (DARK & MINT THEME) ==================== */
         :root {
-            --brand-mint: #5fce9b;
-            --brand-mint-glow: rgba(95, 206, 155, 0.45);
-            --brand-bg: #081b29;
-            --brand-second-bg: #112e42;
-            --brand-card-bg: rgba(17, 46, 66, 0.7);
+            --bg-color: #081b29;
+            --second-bg-color: #112e42;
+            --text-color: #ededed;
+            --main-color: #5fce9b;
+            --main-glow: rgba(95, 206, 155, 0.45);
         }
 
-        body.brand-case-study {
-            background: var(--brand-bg);
-            color: #ededed;
+        body.brand-showcase-page {
+            background-color: var(--bg-color);
+            color: var(--text-color);
             font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
+            margin: 0;
+            padding: 0;
             -webkit-hyphens: none !important;
             hyphens: none !important;
             word-break: normal !important;
             overflow-wrap: break-word !important;
         }
 
-        /* Top Header Nav */
-        .case-nav-bar {
+        /* Fixed Navigation */
+        .brand-nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            padding: 1.6rem 7%;
-            background: rgba(8, 27, 41, 0.88);
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
+            padding: 1.6rem 8%;
+            background: rgba(8, 27, 41, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            border-bottom: 1px solid rgba(95, 206, 155, 0.18);
+            border-bottom: 1px solid rgba(95, 206, 155, 0.2);
             transition: all 0.3s ease;
         }
 
-        .case-nav-logo {
+        .brand-nav-logo {
             display: inline-flex;
             align-items: center;
             gap: 1.2rem;
             text-decoration: none;
         }
 
-        .case-nav-logo img {
+        .brand-nav-logo img {
             width: 5.6rem;
             height: 5.6rem;
             object-fit: contain;
-            filter: drop-shadow(0 0 14px var(--brand-mint-glow));
+            filter: drop-shadow(0 0 14px var(--main-glow));
             transition: transform 0.35s ease;
         }
 
-        .case-nav-logo:hover img {
+        .brand-nav-logo:hover img {
             transform: scale(1.1) rotate(4deg);
         }
 
-        .case-nav-logo .case-logo-text {
+        .brand-nav-logo .nav-titles {
             display: flex;
             flex-direction: column;
             line-height: 1.15;
         }
 
-        .case-nav-logo .brand-title {
+        .brand-nav-logo .title-bold {
             font-size: 1.85rem;
             font-weight: 700;
             color: #ffffff;
-            letter-spacing: .05rem;
+            letter-spacing: .04rem;
         }
 
-        .case-nav-logo .brand-title span {
-            color: var(--brand-mint);
+        .brand-nav-logo .title-bold span {
+            color: var(--main-color);
         }
 
-        .case-nav-logo .brand-sub {
+        .brand-nav-logo .sub-badge {
             font-size: 1.15rem;
-            color: #9ab4c7;
+            color: #9cb4c5;
             font-weight: 500;
             text-transform: uppercase;
             letter-spacing: .12rem;
         }
 
-        .case-nav-actions {
+        .brand-nav-actions {
             display: flex;
             align-items: center;
             gap: 1.5rem;
         }
 
-        .btn-nav-back {
+        .btn-nav-return {
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
@@ -115,52 +117,52 @@
             transition: all 0.3s ease;
         }
 
-        .btn-nav-back:hover {
-            border-color: var(--brand-mint);
-            color: var(--brand-mint);
+        .btn-nav-return:hover {
+            border-color: var(--main-color);
+            color: var(--main-color);
             transform: translateX(-3px);
         }
 
-        .btn-nav-whatsapp {
+        .btn-nav-cta {
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
-            padding: 0.8rem 2rem;
+            padding: 0.8rem 2.2rem;
             font-size: 1.45rem;
             font-weight: 600;
-            color: var(--brand-bg);
-            background: var(--brand-mint);
-            border: 1.5px solid var(--brand-mint);
+            color: var(--bg-color);
+            background: var(--main-color);
+            border: 1.5px solid var(--main-color);
             border-radius: 2.5rem;
             text-decoration: none;
-            box-shadow: 0 0 18px var(--brand-mint-glow);
+            box-shadow: 0 0 18px var(--main-glow);
             transition: all 0.3s ease;
         }
 
-        .btn-nav-whatsapp:hover {
+        .btn-nav-cta:hover {
             background: transparent;
-            color: var(--brand-mint);
-            box-shadow: 0 0 26px var(--brand-mint-glow);
+            color: var(--main-color);
+            box-shadow: 0 0 28px var(--main-glow);
             transform: translateY(-2px);
         }
 
-        /* Hero Banner */
-        .case-hero {
-            padding: 14rem 7% 5rem;
+        /* ==================== HERO SECTION ==================== */
+        .brand-hero {
             position: relative;
-            background: radial-gradient(circle at 50% 20%, rgba(95, 206, 155, 0.12) 0%, transparent 60%);
+            padding: 13rem 8% 6rem;
             text-align: center;
+            background: radial-gradient(circle at 50% 30%, rgba(95, 206, 155, 0.14) 0%, transparent 65%);
         }
 
-        .case-tag-pill {
+        .brand-pill-tag {
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
-            padding: 0.65rem 1.8rem;
+            padding: 0.65rem 2rem;
             background: rgba(95, 206, 155, 0.12);
-            border: 1.5px solid var(--brand-mint);
+            border: 1.5px solid var(--main-color);
             border-radius: 3rem;
-            color: var(--brand-mint);
+            color: var(--main-color);
             font-size: 1.35rem;
             font-weight: 600;
             letter-spacing: .08rem;
@@ -169,380 +171,344 @@
             box-shadow: 0 0 18px rgba(95, 206, 155, 0.25);
         }
 
-        .case-title {
-            font-size: 5rem;
+        .brand-hero h1 {
+            font-size: 5.2rem;
             font-weight: 800;
             line-height: 1.15;
             color: #ffffff;
-            margin-bottom: 2rem;
+            margin: 0 auto 1.5rem;
         }
 
-        .case-title span {
-            color: var(--brand-mint);
-            text-shadow: 0 0 25px rgba(95, 206, 155, 0.5);
+        .brand-hero h1 span {
+            color: var(--main-color);
+            text-shadow: 0 0 30px rgba(95, 206, 155, 0.55);
         }
 
-        .case-lead {
+        .brand-hero-sub {
             font-size: 1.85rem;
             color: #c4d7e5;
-            max-width: 82rem;
-            margin: 0 auto 3.5rem;
-            line-height: 1.7;
-            text-align: center;
+            max-width: 80rem;
+            margin: 0 auto 4rem;
+            line-height: 1.65;
         }
 
-        /* Project Metadata Strip */
-        .case-meta-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            max-width: 100rem;
-            margin: 0 auto;
-            padding: 2.5rem;
-            background: var(--brand-card-bg);
-            border: 1px solid rgba(95, 206, 155, 0.22);
-            border-radius: 2rem;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-        }
-
-        .meta-item {
-            text-align: left;
-            border-left: 3px solid var(--brand-mint);
-            padding-left: 1.5rem;
-        }
-
-        .meta-label {
-            font-size: 1.25rem;
-            text-transform: uppercase;
-            letter-spacing: .08rem;
-            color: #8da6b8;
-            margin-bottom: 0.4rem;
-            font-weight: 500;
-        }
-
-        .meta-value {
-            font-size: 1.65rem;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        /* Container & Sections */
-        .case-content-wrap {
-            max-width: 120rem;
-            margin: 0 auto;
-            padding: 4rem 7% 8rem;
-        }
-
-        .section-header-clean {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header-clean .sec-badge {
-            font-size: 1.3rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: .15rem;
-            color: var(--brand-mint);
-            display: inline-block;
-            margin-bottom: 0.8rem;
-        }
-
-        .section-header-clean h2 {
-            font-size: 3.6rem;
-            font-weight: 700;
-            color: #ffffff;
-            line-height: 1.2;
-        }
-
-        .section-header-clean h2 span {
-            color: var(--brand-mint);
-        }
-
-        .section-header-clean p {
-            font-size: 1.65rem;
-            color: #9cb4c5;
-            max-width: 72rem;
-            margin: 1.2rem auto 0;
-            line-height: 1.6;
-        }
-
-        /* Brand Colors & Palette Card */
-        .color-palette-card {
-            background: var(--brand-card-bg);
-            border: 1px solid rgba(95, 206, 155, 0.22);
-            border-radius: 2.2rem;
-            padding: 3.5rem;
-            margin-bottom: 6rem;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.35);
-        }
-
-        .color-palette-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2.5rem;
-            margin-top: 2.5rem;
-        }
-
-        .swatch-card {
-            background: rgba(8, 27, 41, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1.8rem;
-            padding: 2rem;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .swatch-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--brand-mint);
-        }
-
-        .swatch-circle {
-            width: 6.5rem;
-            height: 6.5rem;
-            border-radius: 50%;
-            flex-shrink: 0;
-            box-shadow: 0 0 18px rgba(0, 0, 0, 0.5);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .swatch-info h4 {
-            font-size: 1.7rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 0.4rem;
-        }
-
-        .swatch-info p {
-            font-size: 1.35rem;
-            color: #9cb4c5;
-            line-height: 1.4;
-        }
-
-        .swatch-code {
-            font-family: monospace;
-            font-size: 1.35rem;
-            color: var(--brand-mint);
-            font-weight: 600;
-            margin-top: 0.4rem;
-            display: block;
-        }
-
-        /* Screen Presentation Blocks */
-        .screen-feature-block {
-            margin-bottom: 7rem;
-            background: var(--brand-card-bg);
-            border: 1px solid rgba(95, 206, 155, 0.22);
-            border-radius: 2.4rem;
-            overflow: hidden;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
-            transition: border-color 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .screen-feature-block:hover {
-            border-color: var(--brand-mint);
-            box-shadow: 0 22px 55px rgba(95, 206, 155, 0.2);
-        }
-
-        .screen-img-wrap {
+        /* ==================== HERO FOX WITH GLOWING RED EYE ANIMATION ==================== */
+        .hero-fox-wrapper {
             position: relative;
-            cursor: pointer;
-            overflow: hidden;
-            background: #000000;
+            max-width: 52rem;
+            margin: 0 auto 4rem;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
         }
 
-        .screen-img-wrap img {
+        .hero-fox-glow-backdrop {
+            position: absolute;
+            top: 25%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 38rem;
+            height: 38rem;
+            background: radial-gradient(circle, rgba(95, 206, 155, 0.28) 0%, rgba(95, 206, 155, 0.08) 50%, transparent 75%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            animation: backdropPulse 4s infinite ease-in-out;
+        }
+
+        @keyframes backdropPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+            50% { transform: translate(-50%, -50%) scale(1.12); opacity: 1; }
+        }
+
+        .hero-fox-stage {
+            position: relative;
+            width: 100%;
+            z-index: 2;
+        }
+
+        .fox-base-logo {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0 0 30px rgba(95, 206, 155, 0.55));
+            transition: transform 0.4s ease;
+        }
+
+        /* THE ANIMATED BOLD RED EYE OVERLAY */
+        .fox-red-eye-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 3;
+            animation: fierceRedEyeGaze 3.2s infinite ease-in-out;
+            will-change: opacity, filter;
+        }
+
+        /* Keyframe animation for fierce, bold looking red eye */
+        @keyframes fierceRedEyeGaze {
+            0% {
+                opacity: 0.85;
+                filter: drop-shadow(0 0 12px #ff0033) drop-shadow(0 0 25px #ff1744);
+            }
+            20% {
+                opacity: 1;
+                filter: drop-shadow(0 0 22px #ff0022) drop-shadow(0 0 45px #ff0033) drop-shadow(0 0 70px #ff2a4b) brightness(1.3);
+            }
+            35% {
+                opacity: 0.92;
+                filter: drop-shadow(0 0 15px #ff0033) drop-shadow(0 0 32px #ff1744);
+            }
+            50% {
+                opacity: 1;
+                filter: drop-shadow(0 0 26px #ff0022) drop-shadow(0 0 55px #ff0033) drop-shadow(0 0 90px #ff1744) brightness(1.4);
+            }
+            70% {
+                opacity: 0.88;
+                filter: drop-shadow(0 0 14px #ff0033) drop-shadow(0 0 30px #ff1744);
+            }
+            85% {
+                opacity: 1;
+                filter: drop-shadow(0 0 20px #ff0022) drop-shadow(0 0 42px #ff0033) brightness(1.25);
+            }
+            100% {
+                opacity: 0.85;
+                filter: drop-shadow(0 0 12px #ff0033) drop-shadow(0 0 25px #ff1744);
+            }
+        }
+
+        .hero-fox-wrapper:hover .fox-red-eye-overlay {
+            animation-duration: 1.5s;
+            filter: drop-shadow(0 0 30px #ff0022) drop-shadow(0 0 70px #ff0033) drop-shadow(0 0 100px #ff1744) brightness(1.5) !important;
+        }
+
+        /* Single-Line Project Metadata Bar (No Cards) */
+        .brand-meta-strip {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3.5rem;
+            flex-wrap: wrap;
+            max-width: 95rem;
+            margin: 0 auto;
+            padding: 1.8rem 3rem;
+            border-top: 1px solid rgba(95, 206, 155, 0.25);
+            border-bottom: 1px solid rgba(95, 206, 155, 0.25);
+            background: rgba(17, 46, 66, 0.35);
+        }
+
+        .meta-pill-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.55rem;
+            color: #d1e2ee;
+        }
+
+        .meta-pill-item i {
+            color: var(--main-color);
+            font-size: 2rem;
+        }
+
+        .meta-pill-item strong {
+            color: #ffffff;
+        }
+
+        /* ==================== FULL-WIDTH FLOWING SHOWCASE (NO CARDS) ==================== */
+        .showcase-flow-container {
+            max-width: 115rem;
+            margin: 0 auto;
+            padding: 4rem 8% 8rem;
+        }
+
+        /* Each Section is an Open, Full Presentation Block (NO CARDS) */
+        .flow-item {
+            margin-bottom: 9rem;
+            position: relative;
+            opacity: 0;
+            transform: translateY(35px);
+            transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .flow-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Full-Width Presentation Image Frame */
+        .flow-img-frame {
+            position: relative;
+            width: 100%;
+            background: #000000;
+            border-radius: 1.8rem;
+            overflow: hidden;
+            border: 1px solid rgba(95, 206, 155, 0.3);
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.6);
+            cursor: pointer;
+            transition: border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .flow-img-frame:hover {
+            border-color: var(--main-color);
+            box-shadow: 0 22px 60px rgba(95, 206, 155, 0.28);
+        }
+
+        .flow-img-frame img {
             width: 100%;
             height: auto;
             display: block;
             object-fit: contain;
-            transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
 
-        .screen-img-wrap:hover img {
-            transform: scale(1.02);
+        .flow-img-frame:hover img {
+            transform: scale(1.015);
         }
 
-        .screen-zoom-hint {
+        .flow-zoom-badge {
             position: absolute;
-            bottom: 2rem;
+            bottom: 2.2rem;
             right: 2.5rem;
-            background: rgba(8, 27, 41, 0.82);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(95, 206, 155, 0.4);
+            background: rgba(8, 27, 41, 0.88);
+            border: 1px solid rgba(95, 206, 155, 0.5);
             border-radius: 2rem;
-            padding: 0.7rem 1.6rem;
+            padding: 0.75rem 1.8rem;
             font-size: 1.35rem;
-            color: var(--brand-mint);
+            color: var(--main-color);
+            font-weight: 600;
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
             pointer-events: none;
-            opacity: 0.85;
-            transition: opacity 0.3s ease;
+            transition: background 0.3s ease;
         }
 
-        .screen-img-wrap:hover .screen-zoom-hint {
-            opacity: 1;
+        .flow-img-frame:hover .flow-zoom-badge {
+            background: var(--main-color);
+            color: var(--bg-color);
         }
 
-        .screen-caption-row {
-            padding: 3rem 3.5rem;
+        /* Clean Typography Directly Beneath Image (NO CARDS) */
+        .flow-text-wrap {
+            margin-top: 2.8rem;
+            padding: 0 0.5rem;
+        }
+
+        .flow-header-row {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            gap: 3rem;
-            background: rgba(17, 46, 66, 0.95);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1.2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1.2rem;
         }
 
-        .screen-caption-left {
-            max-width: 80rem;
-        }
-
-        .screen-caption-left .badge-num {
-            display: inline-block;
-            font-size: 1.25rem;
+        .flow-step-tag {
+            font-size: 1.35rem;
             font-weight: 700;
-            color: var(--brand-mint);
+            color: var(--main-color);
             text-transform: uppercase;
-            letter-spacing: .1rem;
-            margin-bottom: 0.6rem;
+            letter-spacing: .12rem;
         }
 
-        .screen-caption-left h3 {
-            font-size: 2.4rem;
+        .flow-title {
+            font-size: 3rem;
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 1rem;
+            margin: 0;
+            line-height: 1.2;
         }
 
-        .screen-caption-left p {
-            font-size: 1.55rem;
-            color: #a4bccd;
-            line-height: 1.65;
+        .flow-title span {
+            color: var(--main-color);
+        }
+
+        .flow-description {
+            font-size: 1.7rem;
+            color: #b0c7d8;
+            line-height: 1.75;
             text-align: justify;
+            margin: 1.2rem 0 0;
         }
 
-        .screen-caption-right {
+        /* Color Palette Direct Section */
+        .flow-colors-wrap {
+            margin: 3rem 0;
             display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-            align-items: flex-end;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .flow-color-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .flow-color-circle {
+            width: 4.8rem;
+            height: 4.8rem;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
             flex-shrink: 0;
         }
 
-        .screen-tag {
-            background: rgba(95, 206, 155, 0.12);
-            border: 1px solid rgba(95, 206, 155, 0.35);
-            color: var(--brand-mint);
-            padding: 0.5rem 1.4rem;
-            border-radius: 1.5rem;
+        .flow-color-data h5 {
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .flow-color-data span {
             font-size: 1.3rem;
+            font-family: monospace;
+            color: var(--main-color);
             font-weight: 600;
         }
 
-        /* 2-Column Grid for Smaller Screens */
-        .screen-pair-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3.5rem;
-            margin-bottom: 7rem;
-        }
-
-        .screen-pair-card {
-            background: var(--brand-card-bg);
-            border: 1px solid rgba(95, 206, 155, 0.22);
-            border-radius: 2.2rem;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-            transition: all 0.4s ease;
-        }
-
-        .screen-pair-card:hover {
-            border-color: var(--brand-mint);
-            transform: translateY(-4px);
-        }
-
-        .screen-pair-card .screen-img-wrap {
-            height: 38rem;
-        }
-
-        .screen-pair-card .screen-img-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .screen-pair-caption {
-            padding: 2.5rem;
-        }
-
-        .screen-pair-caption h4 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 0.8rem;
-        }
-
-        .screen-pair-caption p {
-            font-size: 1.45rem;
-            color: #9cb4c5;
-            line-height: 1.6;
-        }
-
-        /* Call To Action Box */
-        .case-cta-section {
+        /* ==================== CALL TO ACTION SECTION ==================== */
+        .brand-cta-wrap {
+            margin-top: 4rem;
+            padding: 6.5rem 8%;
             background: linear-gradient(135deg, rgba(17, 46, 66, 0.95), rgba(8, 27, 41, 0.95));
-            border: 2px solid var(--brand-mint);
-            border-radius: 2.8rem;
-            padding: 6rem 5%;
+            border: 2px solid var(--main-color);
+            border-radius: 2.5rem;
             text-align: center;
-            box-shadow: 0 25px 60px rgba(95, 206, 155, 0.25);
+            box-shadow: 0 25px 65px rgba(95, 206, 155, 0.25);
             position: relative;
             overflow: hidden;
-            margin-top: 5rem;
         }
 
-        .case-cta-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60rem;
-            height: 60rem;
-            background: radial-gradient(circle, rgba(95, 206, 155, 0.15) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .case-cta-section h2 {
-            font-size: 4rem;
+        .brand-cta-wrap h2 {
+            font-size: 4.2rem;
             font-weight: 800;
             color: #ffffff;
-            margin-bottom: 1.5rem;
+            margin: 0 0 1.5rem;
         }
 
-        .case-cta-section h2 span {
-            color: var(--brand-mint);
+        .brand-cta-wrap h2 span {
+            color: var(--main-color);
+            text-shadow: 0 0 25px rgba(95, 206, 155, 0.5);
         }
 
-        .case-cta-section p {
-            font-size: 1.75rem;
-            color: #b5cad8;
-            max-width: 68rem;
+        .brand-cta-wrap p {
+            font-size: 1.8rem;
+            color: #c4d7e5;
+            max-width: 72rem;
             margin: 0 auto 3.5rem;
             line-height: 1.65;
         }
 
-        .case-cta-buttons {
+        .cta-btn-group {
             display: inline-flex;
             gap: 2rem;
             justify-content: center;
@@ -550,34 +516,34 @@
             flex-wrap: wrap;
         }
 
-        .cta-btn-main {
+        .cta-btn-primary {
             display: inline-flex;
             align-items: center;
             gap: 0.9rem;
-            padding: 1.4rem 3.6rem;
-            background: var(--brand-mint);
-            color: var(--brand-bg);
-            border: 2px solid var(--brand-mint);
+            padding: 1.5rem 3.8rem;
+            background: var(--main-color);
+            color: var(--bg-color);
+            border: 2px solid var(--main-color);
             border-radius: 3rem;
             font-size: 1.65rem;
             font-weight: 700;
             text-decoration: none;
-            box-shadow: 0 10px 30px var(--brand-mint-glow);
+            box-shadow: 0 10px 30px var(--main-glow);
             transition: all 0.35s ease;
         }
 
-        .cta-btn-main:hover {
+        .cta-btn-primary:hover {
             background: transparent;
-            color: var(--brand-mint);
+            color: var(--main-color);
             transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 12px 35px rgba(95, 206, 155, 0.6);
+            box-shadow: 0 14px 40px rgba(95, 206, 155, 0.6);
         }
 
-        .cta-btn-alt {
+        .cta-btn-secondary {
             display: inline-flex;
             align-items: center;
             gap: 0.9rem;
-            padding: 1.4rem 3.6rem;
+            padding: 1.5rem 3.8rem;
             background: rgba(255, 255, 255, 0.05);
             color: #ffffff;
             border: 2px solid rgba(255, 255, 255, 0.25);
@@ -588,24 +554,24 @@
             transition: all 0.35s ease;
         }
 
-        .cta-btn-alt:hover {
-            border-color: var(--brand-mint);
-            color: var(--brand-mint);
+        .cta-btn-secondary:hover {
+            border-color: var(--main-color);
+            color: var(--main-color);
             transform: translateY(-3px);
         }
 
-        /* Lightbox Modal */
+        /* ==================== LIGHTBOX MODAL ==================== */
         .lightbox-modal {
             position: fixed;
             inset: 0;
-            background: rgba(4, 15, 23, 0.94);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            background: rgba(4, 15, 23, 0.95);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
             z-index: 9999;
             display: none;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+            padding: 2.5rem;
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -615,7 +581,7 @@
             opacity: 1;
         }
 
-        .lightbox-content-box {
+        .lightbox-box {
             position: relative;
             max-width: 95vw;
             max-height: 92vh;
@@ -624,477 +590,401 @@
             align-items: center;
         }
 
-        .lightbox-content-box img {
+        .lightbox-box img {
             max-width: 92vw;
-            max-height: 85vh;
+            max-height: 84vh;
             border-radius: 1.2rem;
-            border: 1px solid rgba(95, 206, 155, 0.3);
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+            border: 1px solid rgba(95, 206, 155, 0.35);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);
             object-fit: contain;
         }
 
-        .lightbox-close-btn {
+        .lightbox-close {
             position: absolute;
             top: -4.5rem;
             right: 0;
-            font-size: 3.5rem;
+            font-size: 3.6rem;
             color: #ffffff;
             cursor: pointer;
             transition: color 0.2s ease, transform 0.2s ease;
         }
 
-        .lightbox-close-btn:hover {
-            color: var(--brand-mint);
+        .lightbox-close:hover {
+            color: var(--main-color);
             transform: rotate(90deg);
         }
 
-        .lightbox-caption {
-            color: #b5cad8;
-            font-size: 1.5rem;
+        .lightbox-title {
+            color: #c4d7e5;
+            font-size: 1.55rem;
             margin-top: 1.2rem;
             text-align: center;
             font-weight: 500;
         }
 
         /* Footer */
-        .case-footer {
-            padding: 4rem 7%;
+        .brand-footer {
+            padding: 4rem 8%;
             background: #041018;
             border-top: 1px solid rgba(255, 255, 255, 0.08);
             text-align: center;
         }
 
-        .case-footer p {
+        .brand-footer p {
             font-size: 1.45rem;
             color: #7b93a4;
+            margin: 0;
         }
 
         /* ==================== RESPONSIVE DESIGN ==================== */
         @media (max-width: 991px) {
-            .case-title {
-                font-size: 4rem;
+            .brand-hero h1 {
+                font-size: 4.2rem;
             }
 
-            .case-meta-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 2rem;
+            .hero-fox-wrapper {
+                max-width: 44rem;
             }
 
-            .color-palette-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .screen-pair-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .screen-caption-row {
-                flex-direction: column;
-                gap: 1.8rem;
-            }
-
-            .screen-caption-right {
-                align-items: flex-start;
+            .flow-title {
+                font-size: 2.6rem;
             }
         }
 
         @media (max-width: 768px) {
-            .case-nav-bar {
+            .brand-nav {
                 padding: 1.4rem 5%;
             }
 
-            .case-nav-logo .brand-sub {
+            .brand-nav-logo .sub-badge {
                 display: none;
             }
 
-            .case-nav-logo img {
+            .brand-nav-logo img {
                 width: 4.6rem;
                 height: 4.6rem;
             }
 
-            .btn-nav-back span,
-            .btn-nav-whatsapp span {
+            .btn-nav-return span,
+            .btn-nav-cta span {
                 display: none;
             }
 
-            .btn-nav-back,
-            .btn-nav-whatsapp {
+            .btn-nav-return,
+            .btn-nav-cta {
                 padding: 0.8rem 1.2rem;
                 font-size: 1.8rem;
             }
 
-            .case-hero {
+            .brand-hero {
                 padding: 11rem 5% 4rem;
             }
 
-            .case-title {
+            .brand-hero h1 {
                 font-size: 3.2rem;
             }
 
-            .case-lead {
+            .brand-hero-sub {
                 font-size: 1.6rem;
             }
 
-            .case-meta-grid {
-                grid-template-columns: 1fr;
-                padding: 2rem;
+            .hero-fox-wrapper {
+                max-width: 36rem;
             }
 
-            .section-header-clean h2 {
-                font-size: 2.8rem;
+            .brand-meta-strip {
+                gap: 2rem;
+                padding: 1.5rem;
             }
 
-            .screen-caption-row {
-                padding: 2.2rem;
+            .showcase-flow-container {
+                padding: 3rem 5% 6rem;
             }
 
-            .screen-caption-left h3 {
-                font-size: 2rem;
+            .flow-item {
+                margin-bottom: 6rem;
             }
 
-            .case-cta-section {
+            .flow-title {
+                font-size: 2.3rem;
+            }
+
+            .flow-description {
+                font-size: 1.55rem;
+            }
+
+            .brand-cta-wrap {
                 padding: 4.5rem 5%;
             }
 
-            .case-cta-section h2 {
+            .brand-cta-wrap h2 {
                 font-size: 3rem;
             }
 
-            .case-cta-buttons {
+            .cta-btn-group {
                 flex-direction: column;
                 width: 100%;
             }
 
-            .cta-btn-main,
-            .cta-btn-alt {
+            .cta-btn-primary,
+            .cta-btn-secondary {
                 width: 100%;
                 justify-content: center;
             }
         }
 
         @media (max-width: 462px) {
-            .case-title {
-                font-size: 2.7rem;
+            .brand-hero h1 {
+                font-size: 2.6rem;
             }
 
-            .case-tag-pill {
+            .brand-pill-tag {
                 font-size: 1.15rem;
                 padding: 0.5rem 1.4rem;
             }
 
-            .case-nav-logo img {
+            .hero-fox-wrapper {
+                max-width: 30rem;
+            }
+
+            .brand-nav-logo img {
                 width: 4.2rem;
                 height: 4.2rem;
             }
 
-            .case-nav-logo .brand-title {
+            .brand-nav-logo .title-bold {
                 font-size: 1.6rem;
+            }
+
+            .flow-title {
+                font-size: 2rem;
             }
         }
     </style>
 </head>
 
-<body class="brand-case-study">
+<body class="brand-showcase-page">
 
     <!-- Top Navigation Bar -->
-    <header class="case-nav-bar">
-        <a href="index.html" class="case-nav-logo" title="Back to Portfolio Home">
+    <header class="brand-nav">
+        <a href="index.html" class="brand-nav-logo" title="Back to Portfolio Home">
             <img src="images/logo.png" alt="Signature Studio Fox Emblem">
-            <div class="case-logo-text">
-                <span class="brand-title">Signature <span>Studio</span></span>
-                <span class="brand-sub">Brand Identity Case Study</span>
+            <div class="nav-titles">
+                <span class="title-bold">Signature <span>Studio</span></span>
+                <span class="sub-badge">Brand Identity</span>
             </div>
         </a>
 
-        <div class="case-nav-actions">
-            <a href="index.html" class="btn-nav-back" title="Back to Portfolio">
+        <div class="brand-nav-actions">
+            <a href="index.html" class="btn-nav-return" title="Back to Portfolio">
                 <i class='bx bx-arrow-back'></i>
                 <span>Portfolio</span>
             </a>
-            <a href="https://wa.me/923067517024?text=Hello%20Muhammad%20Arslan%2C%20I%20saw%20your%20Signature%20Studio%20Brand%20Identity%20case%20study%20and%20would%20like%20to%20discuss%20a%20project!" target="_blank" class="btn-nav-whatsapp" title="Let's Talk">
+            <a href="https://wa.me/923067517024?text=Hello%20Muhammad%20Arslan%2C%20I%20saw%20your%20Signature%20Studio%20Brand%20Identity%20showcase%20and%20would%20like%20to%20discuss%20a%20project!" target="_blank" class="btn-nav-cta" title="Let's Talk">
                 <i class='bx bxl-whatsapp'></i>
                 <span>Let's Talk</span>
             </a>
         </div>
     </header>
 
-    <!-- Hero Header -->
-    <section class="case-hero">
-        <div class="case-tag-pill">
+    <!-- ==================== HERO SECTION WITH ANIMATED RED EYE FOX ==================== -->
+    <section class="brand-hero">
+        <div class="brand-pill-tag">
             <i class='bx bx-badge-check'></i>
-            <span>Official Brand Identity Case Study</span>
+            <span>Official Brand Identity</span>
         </div>
 
-        <h1 class="case-title">
-            Signature Studio <span>Brand Identity</span>
-        </h1>
-
-        <p class="case-lead">
-            A comprehensive, modern visual identity built around a powerful geometric wolf motif. Engineered to command market authority, digital elegance, and timeless brand recognition.
+        <h1>Signature Studio <span>Brand Identity</span></h1>
+        <p class="brand-hero-sub">
+            A powerful, modern visual identity built around a fierce geometric wolf motif. Designed to command attention, digital elegance, and timeless authority.
         </p>
 
-        <!-- Project Metadata Grid -->
-        <div class="case-meta-grid">
-            <div class="meta-item">
-                <div class="meta-label">Studio / Brand</div>
-                <div class="meta-value">Signature Studio</div>
+        <!-- Fox Logo in Hero with Animated Bold Red Eye -->
+        <div class="hero-fox-wrapper" title="Signature Studio Official Emblem">
+            <div class="hero-fox-glow-backdrop"></div>
+            <div class="hero-fox-stage">
+                <!-- Base Fox Logo + SIGNATURE STUDIO wordmark -->
+                <img src="images/fox-full.png" alt="Signature Studio Fox Logo" class="fox-base-logo">
+                <!-- Exact overlay with fierce glowing animated red eye -->
+                <img src="images/fox-eye-red.png" alt="Fierce Glowing Red Eye Animation" class="fox-red-eye-overlay">
             </div>
-            <div class="meta-item">
-                <div class="meta-label">Design Fields</div>
-                <div class="meta-value">Branding & Logo Design</div>
+        </div>
+
+        <!-- Clean Metadata Strip (Single Horizontal Line, No Cards) -->
+        <div class="brand-meta-strip">
+            <div class="meta-pill-item">
+                <i class='bx bx-building-house'></i>
+                <span>Studio: <strong>Signature Studio</strong></span>
             </div>
-            <div class="meta-item">
-                <div class="meta-label">Core Motif</div>
-                <div class="meta-value">Wolf Geometric Emblem</div>
+            <div class="meta-pill-item">
+                <i class='bx bx-palette'></i>
+                <span>Design: <strong>Brand Identity & Logo</strong></span>
             </div>
-            <div class="meta-item">
-                <div class="meta-label">Tools Used</div>
-                <div class="meta-value">Illustrator & Photoshop</div>
+            <div class="meta-pill-item">
+                <i class='bx bx-vector'></i>
+                <span>Motif: <strong>Geometric Wolf Emblem</strong></span>
+            </div>
+            <div class="meta-pill-item">
+                <i class='bx bx-terminal'></i>
+                <span>Tools: <strong>Illustrator & Photoshop</strong></span>
             </div>
         </div>
     </section>
 
-    <!-- Main Content Presentation -->
-    <main class="case-content-wrap">
+    <!-- ==================== FULL-WIDTH FLOWING SHOWCASE (ONE AFTER ANOTHER IN A LINE, NO CARDS) ==================== -->
+    <main class="showcase-flow-container">
 
-        <!-- Section 1: Brand Guidelines Overview -->
-        <div class="section-header-clean">
-            <span class="sec-badge">Visual System Manual</span>
-            <h2>Brand Identity <span>Guidelines</span></h2>
-            <p>
-                Shaping unique visual identities that stand out, building powerful brand recognition with purpose, and establishing clear guidelines for a consistent legacy.
-            </p>
-        </div>
-
-        <!-- Screen 1: Guidelines Cover -->
-        <div class="screen-feature-block">
-            <div class="screen-img-wrap" onclick="openLightbox('images/brand-identity/1-guidelines-cover.png', 'Branding Identity Guidelines — Complete Manual Cover')">
+        <!-- SCREEN 01: Guidelines Cover -->
+        <div class="flow-item">
+            <div class="flow-img-frame" onclick="openLightbox('images/brand-identity/1-guidelines-cover.png', 'Branding Identity Guidelines — Complete Manual Cover')">
                 <img src="images/brand-identity/1-guidelines-cover.png" alt="Branding Identity Guidelines Cover" loading="lazy">
-                <div class="screen-zoom-hint">
+                <div class="flow-zoom-badge">
                     <i class='bx bx-zoom-in'></i> Click to Expand
                 </div>
             </div>
-            <div class="screen-caption-row">
-                <div class="screen-caption-left">
-                    <span class="badge-num">Screen 01 • Master Manual</span>
-                    <h3>The Strategic Brand Foundation</h3>
-                    <p>
-                        A unified design language that governs how Signature Studio looks, communicates, and scales across digital and print touchpoints. High-contrast typography paired with signature mint geometry builds instant credibility.
-                    </p>
+            <div class="flow-text-wrap">
+                <div class="flow-header-row">
+                    <span class="flow-step-tag">01 • Master Manual</span>
+                    <h3 class="flow-title">Branding Identity <span>Guidelines</span></h3>
                 </div>
-                <div class="screen-caption-right">
-                    <span class="screen-tag">Brand Strategy</span>
-                    <span class="screen-tag">Manual Guidelines</span>
-                </div>
+                <p class="flow-description">
+                    Shaping unique visual identities that stand out, building powerful brand recognition with purpose, and establishing clear guidelines for a consistent legacy. This master manual establishes the typography hierarchy, color codes, and mathematical safe-space rules for Signature Studio across all commercial platforms.
+                </p>
             </div>
         </div>
 
-        <!-- Section 2: Sketching & Motif Evolution -->
-        <div class="section-header-clean">
-            <span class="sec-badge">Design Evolution & Process</span>
-            <h2>From Pencil Sketch to <span>Vector Precision</span></h2>
-            <p>
-                The wolf motif represents intelligence, loyalty, and fierce originality. This progression shows the design's evolution from a freehand sketch and grid structure to a bold geometric form and circular emblem.
-            </p>
-        </div>
-
-        <!-- Screen 2: Sketching Evolution -->
-        <div class="screen-feature-block">
-            <div class="screen-img-wrap" onclick="openLightbox('images/brand-identity/6-sketching-evolution.png', 'Sketching & Geometric Design Progression')">
+        <!-- SCREEN 02: Sketching Evolution & Grid -->
+        <div class="flow-item">
+            <div class="flow-img-frame" onclick="openLightbox('images/brand-identity/6-sketching-evolution.png', 'Sketching Progression & Geometric Grid Structure')">
                 <img src="images/brand-identity/6-sketching-evolution.png" alt="Sketching Progression & Geometric Grid Structure" loading="lazy">
-                <div class="screen-zoom-hint">
+                <div class="flow-zoom-badge">
                     <i class='bx bx-zoom-in'></i> Click to Expand
                 </div>
             </div>
-            <div class="screen-caption-row">
-                <div class="screen-caption-left">
-                    <span class="badge-num">Screen 02 • Ideation & Geometry</span>
-                    <h3>Hand-Drawn Form to Circular Vector Geometry</h3>
-                    <p>
-                        Every curve and angle follows mathematical curvature guidelines. Starting from loose conceptual hand-drawn sketches, structural grid circles were drafted in Adobe Illustrator to lock in symmetry, negative space flow, and optical weight.
-                    </p>
+            <div class="flow-text-wrap">
+                <div class="flow-header-row">
+                    <span class="flow-step-tag">02 • Ideation & Geometry</span>
+                    <h3 class="flow-title">From Sketch to <span>Vector Precision</span></h3>
                 </div>
-                <div class="screen-caption-right">
-                    <span class="screen-tag">Hand Sketching</span>
-                    <span class="screen-tag">Grid Construction</span>
-                </div>
+                <p class="flow-description">
+                    The wolf motif represents intelligence, loyalty, and fierce originality. This progression shows the design's evolution — from a freehand sketch and circular grid structure to a bold geometric form and final circular emblem, turning a raw concept into an unforgettable brand icon.
+                </p>
             </div>
         </div>
 
-        <!-- Section 3: The Primary Logo Presentation -->
-        <div class="section-header-clean">
-            <span class="sec-badge">Primary Emblem Lockup</span>
-            <h2>Signature Studio <span>Official Logo</span></h2>
-            <p>
-                The centerpiece of the brand — a striking circular fox/wolf emblem balanced with bespoke serif and clean sans-serif typography.
-            </p>
-        </div>
-
-        <!-- Screen 3: Primary Logo Presentation -->
-        <div class="screen-feature-block">
-            <div class="screen-img-wrap" onclick="openLightbox('images/brand-identity/3-fox-logo-presentation.png', 'Primary Brand Logo Presentation')">
-                <img src="images/brand-identity/3-fox-logo-presentation.png" alt="Signature Studio Official Fox Logo" loading="lazy">
-                <div class="screen-zoom-hint">
-                    <i class='bx bx-zoom-in'></i> Click to Expand
-                </div>
-            </div>
-            <div class="screen-caption-row">
-                <div class="screen-caption-left">
-                    <span class="badge-num">Screen 03 • Brand Mark</span>
-                    <h3>Iconic Wolf Emblem & Wordmark Lockup</h3>
-                    <p>
-                        Rendered in pure mint-cyan against deep pitch black. The emblem maintains crisp readability at favicon sizes while possessing the detail needed for luxury physical embossing, signage, and screen applications.
-                    </p>
-                </div>
-                <div class="screen-caption-right">
-                    <span class="screen-tag">Primary Logo</span>
-                    <span class="screen-tag">Vector Asset</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 4: Brand Color System -->
-        <div class="color-palette-card">
-            <div class="section-header-clean" style="margin-bottom: 2rem;">
-                <span class="sec-badge">Color Psychology</span>
-                <h2>Official <span>Brand Palette</span></h2>
-                <p>Curated to balance modern digital vibrancy with timeless corporate authority.</p>
-            </div>
-
-            <div class="color-palette-grid">
-                <div class="swatch-card">
-                    <div class="swatch-circle" style="background: #5fce9b;"></div>
-                    <div class="swatch-info">
-                        <h4>Signature Mint</h4>
-                        <p>Primary Accent / Innovation & Energy</p>
-                        <span class="swatch-code">HEX #5FCE9B</span>
-                    </div>
-                </div>
-
-                <div class="swatch-card">
-                    <div class="swatch-circle" style="background: #000000; border-color: rgba(95, 206, 155, 0.4);"></div>
-                    <div class="swatch-info">
-                        <h4>Pitch Black</h4>
-                        <p>Authority / Premium Depth & Contrast</p>
-                        <span class="swatch-code">HEX #000000</span>
-                    </div>
-                </div>
-
-                <div class="swatch-card">
-                    <div class="swatch-circle" style="background: #ffffff;"></div>
-                    <div class="swatch-info">
-                        <h4>Crisp Pure White</h4>
-                        <p>Typography / Clarity & Modern Space</p>
-                        <span class="swatch-code">HEX #FFFFFF</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section 5: Brand System & Stationery Suite -->
-        <div class="section-header-clean">
-            <span class="sec-badge">Corporate Collateral</span>
-            <h2>Stationery Suite & <span>Brand Collateral</span></h2>
-            <p>
-                Extending the identity system to tangible touchpoints: business cards, official stationery, wax-seal envelopes, and branded merchandising.
-            </p>
-        </div>
-
-        <!-- Screen 4: Brand Overview Collateral -->
-        <div class="screen-feature-block">
-            <div class="screen-img-wrap" onclick="openLightbox('images/brand-identity/2-brand-overview.png', 'Stationery Suite, Business Cards, Envelope & Merchandising')">
+        <!-- SCREEN 03: Corporate Collateral Suite & Stationery -->
+        <div class="flow-item">
+            <div class="flow-img-frame" onclick="openLightbox('images/brand-identity/2-brand-overview.png', 'Stationery Suite, Business Cards, Envelope & Merchandising')">
                 <img src="images/brand-identity/2-brand-overview.png" alt="Brand Identity Collateral, Business Cards and Mockups" loading="lazy">
-                <div class="screen-zoom-hint">
+                <div class="flow-zoom-badge">
                     <i class='bx bx-zoom-in'></i> Click to Expand
                 </div>
             </div>
-            <div class="screen-caption-row">
-                <div class="screen-caption-left">
-                    <span class="badge-num">Screen 04 • Collateral Suite</span>
-                    <h3>Executive Stationery & Physical Touchpoints</h3>
-                    <p>
-                        Luxury matte business cards with painted edge accents, formal company letterhead with typographic hierarchy, bespoke wax-seal envelope closures, and eco-cotton tote bag merchandising.
-                    </p>
+            <div class="flow-text-wrap">
+                <div class="flow-header-row">
+                    <span class="flow-step-tag">03 • Corporate Collateral</span>
+                    <h3 class="flow-title">Stationery Suite & <span>Brand Colors</span></h3>
                 </div>
-                <div class="screen-caption-right">
-                    <span class="screen-tag">Stationery Suite</span>
-                    <span class="screen-tag">Merchandise</span>
+                <p class="flow-description">
+                    Signature Studio is a creative design studio focused on building strong brands through clean, modern, and impactful visuals. This complete collateral suite features luxury matte-black business cards with painted edge details, official corporate letterhead, bespoke wax-seal envelope closures, and branded eco-cotton tote bags.
+                </p>
+
+                <!-- Color Palette breakdown -->
+                <div class="flow-colors-wrap">
+                    <div class="flow-color-item">
+                        <div class="flow-color-circle" style="background: #5fce9b;"></div>
+                        <div class="flow-color-data">
+                            <h5>Signature Mint</h5>
+                            <span>HEX #5FCE9B</span>
+                        </div>
+                    </div>
+                    <div class="flow-color-item">
+                        <div class="flow-color-circle" style="background: #000000; border-color: rgba(95, 206, 155, 0.4);"></div>
+                        <div class="flow-color-data">
+                            <h5>Pitch Black</h5>
+                            <span>HEX #000000</span>
+                        </div>
+                    </div>
+                    <div class="flow-color-item">
+                        <div class="flow-color-circle" style="background: #ffffff;"></div>
+                        <div class="flow-color-data">
+                            <h5>Crisp White</h5>
+                            <span>HEX #FFFFFF</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Section 6: Lifestyle Mockup & Real-World Application -->
-        <div class="screen-pair-grid">
-            <!-- Screen 5: Coffee Cup Mockup -->
-            <div class="screen-pair-card">
-                <div class="screen-img-wrap" onclick="openLightbox('images/brand-identity/4-coffee-cup-mockup.png', 'Commercial Packaging Mockup — But First Let\'s Take A Coffee')">
-                    <img src="images/brand-identity/4-coffee-cup-mockup.png" alt="Commercial Packaging Coffee Cup Mockup" loading="lazy">
-                    <div class="screen-zoom-hint">
-                        <i class='bx bx-zoom-in'></i> Expand
-                    </div>
-                </div>
-                <div class="screen-pair-caption">
-                    <span class="badge-num">Screen 05 • Packaging</span>
-                    <h4>Commercial Packaging Mockup</h4>
-                    <p>
-                        Clean takeaway cup branding with watermark wolf background motif demonstrating real-world hospitality application.
-                    </p>
+        <!-- SCREEN 04: Lifestyle Packaging Mockup -->
+        <div class="flow-item">
+            <div class="flow-img-frame" onclick="openLightbox('images/brand-identity/4-coffee-cup-mockup.png', 'Commercial Packaging Mockup — But First Let\'s Take A Coffee')">
+                <img src="images/brand-identity/4-coffee-cup-mockup.png" alt="Commercial Packaging Coffee Cup Mockup" loading="lazy">
+                <div class="flow-zoom-badge">
+                    <i class='bx bx-zoom-in'></i> Click to Expand
                 </div>
             </div>
-
-            <!-- Screen 6: Let's Get Started Skyline -->
-            <div class="screen-pair-card">
-                <div class="screen-img-wrap" onclick="openLightbox('images/brand-identity/5-lets-get-started.png', 'Corporate Cityscape — Let\'s Get Started')">
-                    <img src="images/brand-identity/5-lets-get-started.png" alt="Executive Workspace Skyline Banner" loading="lazy">
-                    <div class="screen-zoom-hint">
-                        <i class='bx bx-zoom-in'></i> Expand
-                    </div>
+            <div class="flow-text-wrap">
+                <div class="flow-header-row">
+                    <span class="flow-step-tag">04 • Real-World Packaging</span>
+                    <h3 class="flow-title">Lifestyle Merchandising & <span>Packaging</span></h3>
                 </div>
-                <div class="screen-pair-caption">
-                    <span class="badge-num">Screen 06 • Vision</span>
-                    <h4>Corporate Vision & Impact</h4>
-                    <p>
-                        High-altitude executive office visual reflecting commercial ambition, international scalability, and executive clarity.
-                    </p>
-                </div>
+                <p class="flow-description">
+                    "But first let's take a coffee" — Everyday consumer touchpoint showing how the signature mint fox emblem pairs with a subtle dark watermark motif. Demonstrates the brand's versatility across hospitality, takeaway coffee merchandise, and physical retail experiences.
+                </p>
             </div>
         </div>
 
-        <!-- Screen 7: Thank You Screen -->
-        <div class="screen-feature-block">
-            <div class="screen-img-wrap" onclick="openLightbox('images/brand-identity/7-thank-you.png', 'Thank You — Let\'s Create Something Amazing Together!')">
+        <!-- SCREEN 05: Corporate Vision -->
+        <div class="flow-item">
+            <div class="flow-img-frame" onclick="openLightbox('images/brand-identity/5-lets-get-started.png', 'Corporate Cityscape — Let\'s Get Started')">
+                <img src="images/brand-identity/5-lets-get-started.png" alt="Executive Workspace Skyline Banner" loading="lazy">
+                <div class="flow-zoom-badge">
+                    <i class='bx bx-zoom-in'></i> Click to Expand
+                </div>
+            </div>
+            <div class="flow-text-wrap">
+                <div class="flow-header-row">
+                    <span class="flow-step-tag">05 • Commercial Scalability</span>
+                    <h3 class="flow-title">Corporate Vision & <span>Execution</span></h3>
+                </div>
+                <p class="flow-description">
+                    "Let's Get Started" — An executive cityscape backdrop symbolizing corporate readiness, international scaling, and confidence in every design decision delivered to commercial clients.
+                </p>
+            </div>
+        </div>
+
+        <!-- SCREEN 06: Closing Statement -->
+        <div class="flow-item">
+            <div class="flow-img-frame" onclick="openLightbox('images/brand-identity/7-thank-you.png', 'Thank You — Let\'s Create Something Amazing Together!')">
                 <img src="images/brand-identity/7-thank-you.png" alt="Signature Studio Thank You Presentation" loading="lazy">
-                <div class="screen-zoom-hint">
+                <div class="flow-zoom-badge">
                     <i class='bx bx-zoom-in'></i> Click to Expand
                 </div>
             </div>
-            <div class="screen-caption-row">
-                <div class="screen-caption-left">
-                    <span class="badge-num">Screen 07 • Conclusion</span>
-                    <h3>Let’s Create Something Amazing Together</h3>
-                    <p>
-                        A closing statement to prospective clients and collaborators ready to elevate their brands into industry icons.
-                    </p>
+            <div class="flow-text-wrap">
+                <div class="flow-header-row">
+                    <span class="flow-step-tag">06 • Conclusion</span>
+                    <h3 class="flow-title">Let's Create Something <span>Amazing Together</span></h3>
                 </div>
-                <div class="screen-caption-right">
-                    <span class="screen-tag">Collaborate</span>
-                    <span class="screen-tag">Signature Studio</span>
-                </div>
+                <p class="flow-description">
+                    "Thank You! Let's Create Something Amazing Together!" — The closing visual statement inviting visionary brands, founders, and businesses to collaborate on unforgettable identity systems.
+                </p>
             </div>
         </div>
 
-        <!-- Call To Action Section -->
-        <div class="case-cta-section">
+        <!-- Call To Action Section (Dark & Mint Theme) -->
+        <div class="brand-cta-wrap">
             <h2>Ready to Elevate <span>Your Brand?</span></h2>
             <p>
-                From initial sketch and identity strategy to full vector systems and production-ready brand guidelines — let's build a brand identity that commands attention.
+                From initial sketch to full vector systems and production-ready brand guidelines — let's build an identity that commands market respect.
             </p>
-            <div class="case-cta-buttons">
-                <a href="https://wa.me/923067517024?text=Hello%20Muhammad%20Arslan%2C%20I%20saw%20your%20Signature%20Studio%20Brand%20Identity%20case%20study%20and%20would%20like%20to%20discuss%20a%20project!" target="_blank" class="cta-btn-main">
+            <div class="cta-btn-group">
+                <a href="https://wa.me/923067517024?text=Hello%20Muhammad%20Arslan%2C%20I%20saw%20your%20Signature%20Studio%20Brand%20Identity%20showcase%20and%20would%20like%20to%20discuss%20a%20project!" target="_blank" class="cta-btn-primary">
                     <i class='bx bxl-whatsapp'></i>
                     <span>Let's Talk on WhatsApp</span>
                 </a>
-                <a href="index.html#contact" class="cta-btn-alt">
+                <a href="index.html#contact" class="cta-btn-secondary">
                     <i class='bx bx-envelope'></i>
                     <span>Send Project Brief</span>
                 </a>
@@ -1105,27 +995,27 @@
 
     <!-- Interactive Lightbox Modal -->
     <div class="lightbox-modal" id="lightbox-modal" onclick="closeLightbox(event)">
-        <div class="lightbox-content-box">
-            <span class="lightbox-close-btn" onclick="closeLightboxDirect()">&times;</span>
+        <div class="lightbox-box">
+            <span class="lightbox-close" onclick="closeLightboxDirect()">&times;</span>
             <img src="" alt="Expanded View" id="lightbox-img">
-            <div class="lightbox-caption" id="lightbox-caption"></div>
+            <div class="lightbox-title" id="lightbox-title"></div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="case-footer">
+    <footer class="brand-footer">
         <p>Copyright &copy; 2026 Muhammad Arslan | Signature Studio | All Rights Reserved.</p>
     </footer>
 
-    <!-- Lightbox Script -->
+    <!-- Interactive Scripts: Lightbox & Scroll Reveal -->
     <script>
-        function openLightbox(src, caption) {
+        function openLightbox(src, title) {
             const modal = document.getElementById('lightbox-modal');
             const img = document.getElementById('lightbox-img');
-            const cap = document.getElementById('lightbox-caption');
+            const cap = document.getElementById('lightbox-title');
 
             img.src = src;
-            cap.textContent = caption || '';
+            cap.textContent = title || '';
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
@@ -1145,6 +1035,22 @@
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeLightboxDirect();
         });
+
+        // Scroll Reveal for Flow Items
+        const flowItems = document.querySelectorAll('.flow-item');
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            flowItems.forEach(item => observer.observe(item));
+        } else {
+            flowItems.forEach(item => item.classList.add('visible'));
+        }
     </script>
 </body>
 
