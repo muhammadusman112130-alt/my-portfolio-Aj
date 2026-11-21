@@ -126,6 +126,22 @@ section {
     padding: 10rem 9% 2rem;
 }
 
+.heading {
+    position: relative;
+    font-size: 5.2rem;
+    font-weight: 800;
+    text-align: center;
+    width: 100%;
+    margin: 0 auto 3.5rem;
+    color: #ffffff;
+    letter-spacing: .1rem;
+    display: block;
+}
+
+.heading span {
+    color: var(--main-color);
+}
+
 .home {
     position: relative;
     display: flex;
@@ -1038,9 +1054,14 @@ section {
     animation: tickerScrollRight 28s linear infinite;
 }
 
+/* Keep running continuously without pausing when cursor hovers */
+.ticker-wrapper {
+    pointer-events: none;
+}
+
 .ticker-wrapper:hover .track-left,
 .ticker-wrapper:hover .track-right {
-    animation-play-state: paused;
+    animation-play-state: running;
 }
 
 @keyframes tickerScrollLeft {
@@ -1322,7 +1343,20 @@ section {
     align-items: center;
     flex-direction: column;
     min-height: auto;
-    padding-bottom: 5rem;
+    padding: 6.5rem 9% 6rem;
+}
+
+.education .heading {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto 3.8rem;
+    font-size: 5.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: .1rem;
+    display: block;
+    transform: none;
+    left: auto;
 }
 
 .education .education-row {
@@ -1428,31 +1462,51 @@ section {
 
 .skills {
     min-height: auto;
-    padding-bottom: 7rem;
+    padding: 6.5rem 9% 7rem;
     background: var(--second-bg-color);
 }
 
-.skills h2 {
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
+.skills .heading {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto 4rem;
+    font-size: 5.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: .1rem;
+    display: block;
+    transform: none;
+    left: auto;
 }
 
 .skills .skills-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 5rem;
+    gap: 4rem;
+    max-width: 125rem;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .skills-row .skills-column {
-    flex: 1 1 40rem;
+    flex: 1 1 42rem;
 }
 
 .skills-column .title {
     position: relative;
-    display: inline-block;
-    font-size: 2.5rem;
-    margin: 0 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2.3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 1.8rem;
+    letter-spacing: .05rem;
+}
+
+.skills-column .title i {
+    color: var(--main-color);
+    font-size: 2.6rem;
 }
 
 .skills-column .skills-box {
@@ -1461,99 +1515,144 @@ section {
 
 .skills-box .skills-content {
     position: relative;
-    border: .2rem solid var(--main-color);
-    border-radius: .6rem;
-    padding: .5rem 1.5rem;
-    z-index: 1;
+    border: .18rem solid rgba(95, 206, 155, 0.3);
+    border-radius: 1.4rem;
+    padding: 1.8rem 2.2rem;
+    background: rgba(14, 20, 16, 0.65);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), inset 0 0 20px rgba(95, 206, 155, 0.04);
     overflow: hidden;
+    transition: all .35s ease;
 }
 
-.skills-box .skills-content::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: var(--bg-color);
-    z-index: -1;
-    transition: .5s;
-}
-
-.skills-box .skills-content:hover::before {
-    width: 100%;
+.skills-box .skills-content:hover {
+    border-color: rgba(95, 206, 155, 0.55);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7), 0 0 25px rgba(95, 206, 155, 0.15);
 }
 
 .skills-content .progress {
-    padding: 1rem 0;
+    position: relative;
+    padding: 1.2rem 1.4rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(95, 206, 155, 0.12);
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+}
+
+.skills-content .progress:last-child {
+    margin-bottom: 0;
+}
+
+.skills-content .progress:hover {
+    background: rgba(95, 206, 155, 0.08);
+    border-color: var(--main-color);
+    transform: translateX(8px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45), 0 0 15px rgba(95, 206, 155, 0.15);
 }
 
 .skills-content .progress h3 {
-    font-size: 1.7rem;
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: #ffffff;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    transition: color 0.3s ease;
 }
 
 .skills-content .progress h3 span {
-    color: var(--text-color);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--main-color);
+    background: rgba(95, 206, 155, 0.15);
+    border: 1px solid rgba(95, 206, 155, 0.4);
+    padding: 0.25rem 0.9rem;
+    border-radius: 1.2rem;
+    transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.skills-content .progress:hover h3 span {
+    background: var(--main-color);
+    color: #08080a;
+    transform: scale(1.12);
+    box-shadow: 0 0 15px var(--main-glow);
 }
 
 .skills-content .progress .bar {
-    height: 2.5rem;
-    border-radius: .6rem;
-    border: .2rem solid var(--main-color);
-    padding: .5rem;
-    margin: 1rem 0;
+    height: 1.2rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(95, 206, 155, 0.25);
+    padding: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.35s ease;
+}
+
+.skills-content .progress:hover .bar {
+    border-color: var(--main-color);
+    box-shadow: 0 0 12px rgba(95, 206, 155, 0.3);
 }
 
 .skills-content .progress .bar span {
     display: block;
     height: 100%;
-    border-radius: .3rem;
-    background: var(--main-color);
+    border-radius: 0.8rem;
+    background: linear-gradient(90deg, #2a8355 0%, #5fce9b 60%, #a8f5d0 100%);
+    position: relative;
+    transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 0 10px rgba(95, 206, 155, 0.35);
 }
 
-.skills-column:nth-child(1) .skills-content .progress:nth-child(1) .bar span {
-    width: 90%;
+.skills-content .progress .bar span::after {
+    content: '';
+    position: absolute;
+    right: 1px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 0 6px #ffffff, 0 0 10px var(--main-color);
+    opacity: 0.9;
 }
 
-.skills-column:nth-child(1) .skills-content .progress:nth-child(2) .bar span {
-    width: 80%;
+.skills-content .progress:hover .bar span {
+    background: linear-gradient(90deg, #3aa372, #a8f5d0, #ffffff, #5fce9b, #3aa372);
+    background-size: 200% 100%;
+    animation: skillBarShimmer 1.8s linear infinite;
+    box-shadow: 0 0 18px var(--main-color), 0 0 30px rgba(95, 206, 155, 0.5);
 }
 
-.skills-column:nth-child(1) .skills-content .progress:nth-child(3) .bar span {
-    width: 65%;
-}
-
-.skills-column:nth-child(1) .skills-content .progress:nth-child(4) .bar span {
-    width: 75%;
-}
-
-.skills-column:nth-child(2) .skills-content .progress:nth-child(1) .bar span {
-    width: 95%;
-}
-
-.skills-column:nth-child(2) .skills-content .progress:nth-child(2) .bar span {
-    width: 67%;
-}
-
-.skills-column:nth-child(2) .skills-content .progress:nth-child(3) .bar span {
-    width: 85%;
-}
-
-.skills-column:nth-child(2) .skills-content .progress:nth-child(4) .bar span {
-    width: 60%;
+@keyframes skillBarShimmer {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
 }
 
 .contact {
     min-height: auto;
-    padding-bottom: 7rem;
+    padding: 6.5rem 9% 7rem;
 }
 
-.contact h2 {
-    display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
+.contact .heading {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto 4rem;
+    font-size: 5.2rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: .1rem;
+    display: block;
+    transform: none;
+    left: auto;
 }
 
 /* Contact Info Cards */
@@ -1676,11 +1775,31 @@ section {
     resize: none;
 }
 
+.contact form .btn-box.btns {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
 .contact form .btn-box.btns .btn {
     cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: auto !important;
+    min-width: 24rem;
+    padding: 0 3.5rem;
+    height: 5.4rem;
+    font-size: 1.85rem;
+    font-weight: 700;
+    white-space: nowrap !important;
+}
+
+.contact form .btn-box.btns .btn span,
+.contact form .btn-box.btns .btn .btn-text {
+    white-space: nowrap !important;
+    display: inline-block;
 }
 
 /* ==================== CONTACT FORM STATUS FEEDBACK ==================== */
@@ -2120,6 +2239,19 @@ section:nth-child(odd) .animate.scroll,
 }
 
 @media (max-width: 768px) {
+    .heading,
+    .education .heading,
+    .skills .heading,
+    .contact .heading {
+        font-size: 3.8rem !important;
+        margin-bottom: 2.8rem !important;
+        text-align: center !important;
+        width: 100% !important;
+        display: block !important;
+        transform: none !important;
+        left: auto !important;
+    }
+
     .header {
         background: var(--bg-color);
         padding: 1.6rem 5%;
@@ -2254,14 +2386,70 @@ section:nth-child(odd) .animate.scroll,
     }
 
     .contact form .btn-box.btns .btn {
-        width: 100%;
-        max-width: 24rem;
+        width: auto !important;
+        min-width: 24rem;
+        padding: 0 3.2rem;
+        white-space: nowrap !important;
     }
 }
 
 @media (max-width: 520px) {
     html {
         font-size: 50%;
+    }
+
+    .heading,
+    .education .heading,
+    .skills .heading,
+    .contact .heading {
+        font-size: 3.2rem !important;
+        margin-bottom: 2.2rem !important;
+        text-align: center !important;
+        width: 100% !important;
+        display: block !important;
+        transform: none !important;
+        left: auto !important;
+    }
+
+    .education {
+        padding: 5rem 5% 4rem !important;
+    }
+
+    .skills {
+        padding: 5rem 5% 5rem !important;
+    }
+
+    .contact {
+        padding: 5rem 5% 5rem !important;
+    }
+
+    .skills-row {
+        gap: 2.8rem !important;
+    }
+
+    .skills-box .skills-content {
+        padding: 1.4rem 1.4rem !important;
+    }
+
+    .skills-content .progress {
+        padding: 1rem 1.1rem !important;
+    }
+
+    .skills-content .progress h3 {
+        font-size: 1.45rem !important;
+    }
+
+    .skills-content .progress h3 span {
+        font-size: 1.25rem !important;
+        padding: .2rem .75rem !important;
+    }
+
+    .contact form .btn-box.btns .btn {
+        width: auto !important;
+        min-width: 22rem;
+        padding: 0 2.8rem;
+        white-space: nowrap !important;
+        font-size: 1.65rem;
     }
 
     .portfolio-title {
@@ -2429,7 +2617,7 @@ section:nth-child(odd) .animate.scroll,
     }
 
     .education {
-        padding: 8rem 4% 4rem;
+        padding: 5rem 4% 3.5rem;
     }
 
     .footer {
@@ -2446,6 +2634,26 @@ section:nth-child(odd) .animate.scroll,
 @media (max-width: 371px) {
     html {
         font-size: 45%;
+    }
+
+    .heading,
+    .education .heading,
+    .skills .heading,
+    .contact .heading {
+        font-size: 2.8rem !important;
+        margin-bottom: 2rem !important;
+        text-align: center !important;
+        width: 100% !important;
+        display: block !important;
+        transform: none !important;
+        left: auto !important;
+    }
+
+    .contact form .btn-box.btns .btn {
+        min-width: 20rem;
+        padding: 0 2rem;
+        font-size: 1.5rem;
+        white-space: nowrap !important;
     }
 
     .portfolio-title {
@@ -2596,6 +2804,52 @@ section:nth-child(odd) .animate.scroll,
         width: 0;
     }
 }
+
+/* ==================== CREATIVE INTERACTIVITY & ACCENTS ==================== */
+.skill-bubble.bubble-pop {
+    transform: scale(1.32) !important;
+    border-color: var(--main-color) !important;
+    box-shadow: 0 0 35px var(--main-color), inset 0 0 20px rgba(95, 206, 155, 0.5) !important;
+    z-index: 35 !important;
+}
+
+.eye-letter .eye.winking {
+    transform: scaleY(0.05) !important;
+    transition: transform 0.12s ease-in !important;
+}
+
+.eye-letter .eye {
+    cursor: pointer;
+}
+
+.service-box::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 1.8rem;
+    background: linear-gradient(135deg, rgba(95, 206, 155, 0.45), transparent 45%, rgba(95, 206, 155, 0.2));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.service-box:hover::after {
+    opacity: 1;
+}
+
+/* Global paragraph justification fallback across all sections */
+.hero-text p,
+.about-content p,
+.service-info p,
+.service-box p,
+.education-content .content p {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
 
 /* ==================== CREATIVE INTERACTIVITY & ACCENTS ==================== */
 .skill-bubble.bubble-pop {
