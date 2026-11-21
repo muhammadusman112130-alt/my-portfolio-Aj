@@ -49,17 +49,38 @@
         }
 
         .service-nav-logo img {
-            width: 4.4rem;
-            height: 4.4rem;
+            width: 5.4rem;
+            height: 5.4rem;
             object-fit: contain;
-            border-radius: 50%;
-            border: 2px solid var(--main-color);
-            box-shadow: 0 0 15px var(--main-glow);
+            filter: drop-shadow(0 0 14px var(--main-glow));
             transition: transform 0.3s ease;
         }
 
         .service-nav-logo:hover img {
-            transform: scale(1.08);
+            transform: scale(1.1) rotate(4deg);
+        }
+
+        .service-nav-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.75rem 1.6rem;
+            background: rgba(95, 206, 155, 0.12);
+            border: 1.5px solid var(--main-color);
+            border-radius: 2.5rem;
+            color: var(--main-color);
+            font-size: 1.45rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(95, 206, 155, 0.2);
+        }
+
+        .service-nav-brand:hover {
+            background: var(--main-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 25px rgba(95, 206, 155, 0.6);
+            transform: translateY(-2px);
         }
 
         .service-nav-links {
@@ -925,6 +946,10 @@
         </a>
 
         <div class="service-nav-links">
+            <a href="https://www.behance.net/gallery/256480675/Signature-Studio-Brand-Identity?platform=direct" target="_blank" rel="noopener noreferrer" class="service-nav-brand">
+                <i class='bx bx-badge-check'></i>
+                <span>Brand Identity</span>
+            </a>
             <a href="https://wa.me/923067517024" target="_blank" class="service-nav-cta">
                 <i class='bx bxl-whatsapp'></i>
                 <span>Let's Talk</span>

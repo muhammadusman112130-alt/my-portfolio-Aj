@@ -47,6 +47,16 @@ window.onscroll = () => {
     footer.classList.toggle('show-animate', this.innerHeight + this.scrollY >= document.scrollingElement.scrollHeight);
 }
 
+// Close mobile navbar on click for any nav link (including external buttons)
+document.querySelectorAll('.navbar a').forEach(link => {
+    link.addEventListener('click', () => {
+        if (menuIcon && navbar) {
+            menuIcon.classList.remove('bx-x');
+            navbar.classList.remove('active');
+        }
+    });
+});
+
 // ==================== PORTFOLIO EYE-O's CURSOR TRACKING ====================
 const pupils = document.querySelectorAll('.eye-letter .pupil');
 const eyeElements = document.querySelectorAll('.eye-letter .eye');
