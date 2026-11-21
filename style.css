@@ -206,15 +206,9 @@ section {
     perspective: 800px;
 }
 
-/* ==================== FLOATING SKILL BUBBLES (8 BRAND LOGOS - 4 ON LEFT, 4 ON RIGHT, SIDES ONLY) ==================== */
+/* ==================== FLOATING SKILL BUBBLES ==================== */
 .portfolio-bubbles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 10;
+    display: none !important;
 }
 
 .skill-bubble {
@@ -341,27 +335,21 @@ section {
 
 /* ---- RIGHT SIDE BUBBLES ---- */
 .bubble-meta {
-    top: 2%;
-    right: 2%;
+    top: 12%;
+    right: 0%;
     animation: floatMeta 9s ease-in-out infinite;
 }
 
-.bubble-etsy {
-    top: 36%;
-    right: -5.5rem;
-    animation: floatEtsy 8.2s ease-in-out infinite;
+.bubble-insta {
+    top: 62%;
+    right: -2rem;
+    animation: floatInsta 8.5s ease-in-out infinite;
 }
 
-.bubble-ebay {
-    top: 66%;
-    right: 0%;
-    animation: floatEbay 9.5s ease-in-out infinite;
-}
-
-.bubble-ali {
-    bottom: -1.5rem;
-    right: 6%;
-    animation: floatAli 8.8s ease-in-out infinite;
+@keyframes floatInsta {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    30% { transform: translate(-10px, -14px) rotate(-4deg); }
+    70% { transform: translate(12px, 8px) rotate(3deg); }
 }
 
 /* Organic Floating Keyframes */
@@ -928,6 +916,91 @@ section {
     font-weight: 600;
 }
 
+/* Visual Feature Pillars Grid (High Impact, Less Theory) */
+.about-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.8rem;
+    margin: 2.8rem 0 3.2rem;
+    width: 100%;
+}
+
+.about-pillar-card {
+    background: rgba(14, 18, 22, 0.7);
+    border: .15rem solid rgba(95, 206, 155, 0.22);
+    border-radius: 1.4rem;
+    padding: 1.8rem 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1.6rem;
+    backdrop-filter: blur(8px);
+    transition: all .35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-pillar-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, rgba(95, 206, 155, 0.12) 0%, transparent 65%);
+    opacity: 0;
+    transition: opacity .35s ease;
+}
+
+.about-pillar-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--main-color);
+    box-shadow: 0 10px 25px rgba(95, 206, 155, 0.2);
+}
+
+.about-pillar-card:hover::before {
+    opacity: 1;
+}
+
+.about-pillar-icon {
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 1.2rem;
+    background: rgba(95, 206, 155, 0.12);
+    border: .15rem solid rgba(95, 206, 155, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    color: var(--main-color);
+    flex-shrink: 0;
+    transition: transform .35s ease, background-color .35s ease;
+}
+
+.about-pillar-card:hover .about-pillar-icon {
+    transform: scale(1.1);
+    background: rgba(95, 206, 155, 0.2);
+}
+
+.about-pillar-info {
+    flex: 1;
+}
+
+.about-pillar-info h4 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: .4rem;
+    line-height: 1.3;
+}
+
+.about-pillar-info p {
+    font-size: 1.35rem !important;
+    color: rgba(237, 237, 237, 0.75) !important;
+    margin: 0 !important;
+    line-height: 1.45 !important;
+    text-align: left !important;
+}
+
 /* Stats Highlights Grid */
 .about-stats-grid {
     display: grid;
@@ -1419,23 +1492,9 @@ section {
     pointer-events: none;
 }
 
-/* Floating Corner Badge Icon */
+/* Floating Corner Badge Icon (Removed per user request) */
 .service-box .service-badge-icon {
-    position: absolute;
-    bottom: 1.2rem;
-    right: 1.6rem;
-    width: 4.8rem;
-    height: 4.8rem;
-    border-radius: 1.2rem;
-    background: rgba(10, 24, 18, 0.92);
-    border: 1.6px solid var(--main-color);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.65), 0 0 14px rgba(95, 206, 155, 0.35);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(10px);
-    transition: all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    z-index: 3;
+    display: none !important;
 }
 
 .service-box .service-badge-icon i {
@@ -2778,33 +2837,18 @@ section:nth-child(odd) .animate.scroll,
     }
 
     .bubble-canva {
-        top: 5.8rem;
-        left: 0.8rem;
-    }
-
-    .bubble-wp {
-        top: 10.2rem;
-        left: 2.6rem;
+        top: 7.2rem;
+        left: 1.0rem;
     }
 
     .bubble-meta {
-        top: -2.8rem;
-        right: 1.2rem;
-    }
-
-    .bubble-etsy {
-        top: 1.4rem;
-        right: -0.4rem;
-    }
-
-    .bubble-ebay {
-        top: 5.8rem;
+        top: -1.6rem;
         right: 0.8rem;
     }
 
-    .bubble-ali {
-        top: 10.2rem;
-        right: 2.6rem;
+    .bubble-insta {
+        top: 5.2rem;
+        right: -0.4rem;
     }
 
     .skill-bubble {
@@ -2856,6 +2900,17 @@ section:nth-child(odd) .animate.scroll,
     .eye-letter .pupil {
         width: 1.6rem;
         height: 1.6rem;
+    }
+
+    .about-pillars-grid {
+        grid-template-columns: 1fr;
+        gap: 1.4rem;
+        margin: 2rem 0 2.5rem;
+    }
+
+    .about-pillar-card {
+        padding: 1.5rem 1.6rem;
+        gap: 1.4rem;
     }
 
     .about-stats-grid {
@@ -2986,33 +3041,18 @@ section:nth-child(odd) .animate.scroll,
     }
 
     .bubble-canva {
-        top: 5.2rem;
-        left: 0.5rem;
-    }
-
-    .bubble-wp {
-        top: 9.0rem;
-        left: 2.2rem;
+        top: 6.2rem;
+        left: 0.6rem;
     }
 
     .bubble-meta {
-        top: -2.4rem;
-        right: 0.8rem;
+        top: -1.4rem;
+        right: 0.6rem;
     }
 
-    .bubble-etsy {
-        top: 1.4rem;
-        right: -0.6rem;
-    }
-
-    .bubble-ebay {
-        top: 5.2rem;
-        right: 0.5rem;
-    }
-
-    .bubble-ali {
-        top: 9.0rem;
-        right: 2.2rem;
+    .bubble-insta {
+        top: 4.8rem;
+        right: -0.4rem;
     }
 
     .eye-letter {
