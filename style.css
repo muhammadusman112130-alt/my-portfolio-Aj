@@ -1158,10 +1158,150 @@ section {
     text-shadow: 0 0 12px rgba(95, 206, 155, 0.4);
 }
 
+/* ==================== BIG BRAND IDENTITY SPOTLIGHT SECTION ==================== */
+.brand-spotlight {
+    min-height: auto;
+    padding: 7.5rem 9% 3rem;
+    background: var(--bg-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.brand-spotlight-container {
+    max-width: 120rem;
+    margin: 0 auto;
+}
+
+.brand-spotlight-card {
+    display: block;
+    text-decoration: none;
+    margin-top: 1rem;
+    border-radius: 2.4rem;
+    background: #080a0e;
+    border: 1.5px solid rgba(95, 206, 155, 0.28);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    position: relative;
+    transition: transform .4s cubic-bezier(0.165, 0.84, 0.44, 1), border-color .35s ease, box-shadow .4s ease;
+}
+
+.brand-spotlight-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--main-color);
+    box-shadow: 0 25px 65px rgba(95, 206, 155, 0.25), 0 0 35px rgba(95, 206, 155, 0.18);
+}
+
+.brand-spotlight-img-wrap {
+    position: relative;
+    width: 100%;
+    background: #000000;
+    overflow: hidden;
+    border-bottom: 1px solid rgba(95, 206, 155, 0.18);
+}
+
+.brand-spotlight-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transition: transform .6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.brand-spotlight-card:hover .brand-spotlight-img {
+    transform: scale(1.025);
+}
+
+.brand-spotlight-badge-overlay {
+    position: absolute;
+    top: 2.2rem;
+    right: 2.6rem;
+    z-index: 2;
+}
+
+.spotlight-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .7rem;
+    padding: .65rem 1.8rem;
+    background: rgba(8, 8, 10, 0.88);
+    border: 1.2px solid var(--main-color);
+    border-radius: 2rem;
+    color: var(--main-color);
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: .04rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.65);
+}
+
+.brand-spotlight-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.8rem 3.6rem;
+    background: linear-gradient(180deg, rgba(14, 18, 24, 0.85) 0%, #07090c 100%);
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.brand-spotlight-text h3 {
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: .8rem;
+    transition: color .3s ease;
+}
+
+.brand-spotlight-card:hover .brand-spotlight-text h3 {
+    color: var(--main-color);
+}
+
+.brand-spotlight-text p {
+    font-size: 1.55rem;
+    color: #c4d7e5;
+    line-height: 1.65;
+    max-width: 72rem;
+    margin: 0;
+}
+
+.brand-spotlight-cta {
+    flex-shrink: 0;
+}
+
+.spotlight-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.3rem 2.8rem;
+    background: var(--main-color);
+    color: var(--bg-color);
+    font-size: 1.6rem;
+    font-weight: 700;
+    border-radius: 3rem;
+    box-shadow: 0 0 22px rgba(95, 206, 155, 0.45);
+    transition: all .35s ease;
+}
+
+.spotlight-action-btn i {
+    font-size: 2.1rem;
+    transition: transform .35s ease;
+}
+
+.brand-spotlight-card:hover .spotlight-action-btn {
+    background: #ffffff;
+    color: #000000;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+    transform: scale(1.04);
+}
+
+.brand-spotlight-card:hover .spotlight-action-btn i {
+    transform: translateX(4px);
+}
+
 /* ==================== SERVICES SECTION ==================== */
 .services {
     min-height: auto;
-    padding: 8rem 9% 8rem;
+    padding: 4.5rem 9% 8rem;
     background: var(--bg-color);
     position: relative;
     overflow: hidden;
@@ -2974,5 +3114,70 @@ section:nth-child(odd) .animate.scroll,
         border-color: var(--main-color) !important;
         box-shadow: 0 12px 30px rgba(95, 206, 155, 0.35) !important;
         z-index: 5;
+    }
+}
+
+/* ==================== RESPONSIVE FOR BRAND IDENTITY SPOTLIGHT ==================== */
+@media (max-width: 768px) {
+    .brand-spotlight {
+        padding: 5rem 5% 2rem;
+    }
+
+    .brand-spotlight-content {
+        padding: 2.2rem 2.4rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .brand-spotlight-text h3 {
+        font-size: 2.2rem;
+    }
+
+    .brand-spotlight-text p {
+        font-size: 1.45rem;
+    }
+
+    .brand-spotlight-cta {
+        width: 100%;
+    }
+
+    .spotlight-action-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 1.15rem 2.2rem;
+        font-size: 1.5rem;
+    }
+
+    .brand-spotlight-badge-overlay {
+        top: 1.4rem;
+        right: 1.4rem;
+    }
+
+    .spotlight-chip {
+        font-size: 1.2rem;
+        padding: .45rem 1.3rem;
+    }
+}
+
+@media (max-width: 462px) {
+    .brand-spotlight {
+        padding: 4rem 4% 1.5rem;
+    }
+
+    .brand-spotlight-card {
+        border-radius: 1.8rem;
+    }
+
+    .brand-spotlight-content {
+        padding: 1.8rem 1.6rem;
+    }
+
+    .brand-spotlight-text h3 {
+        font-size: 1.95rem;
+    }
+
+    .brand-spotlight-text p {
+        font-size: 1.35rem;
     }
 }
