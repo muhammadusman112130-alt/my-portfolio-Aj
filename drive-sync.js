@@ -1,7 +1,7 @@
 /**
  * ====================================================================================
  * SIGNATURES STUDIO - GOOGLE DRIVE CLIENT SYNC
- * Author: Muhammad Arslan (workstation112130@gmail.com)
+ * Author: Muhammad Arslan
  * Description: Client-side integration that dynamically loads and displays portfolio
  *              projects directly from your Google Drive folders.
  *              Whenever you add new designs to Google Drive, they automatically appear here!

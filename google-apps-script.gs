@@ -1,7 +1,7 @@
 /**
  * ====================================================================================
  * SIGNATURES STUDIO - GOOGLE DRIVE PORTFOLIO SYNC ENDPOINT
- * Author: Muhammad Arslan (workstation112130@gmail.com)
+ * Author: Muhammad Arslan
  * Description: Secure serverless Google Apps Script Web App that reads portfolio
  *              images directly from your designated Google Drive folders and serves
  *              them as JSON to your static portfolio website.
@@ -29,8 +29,8 @@ const FOLDERS_CONFIG = {
  */
 function doGet(e) {
   try {
-    const params = e && e.parameter ? e.parameter : {};
-    const service = params.service ? params.service.toLowerCase().trim() : "";
+    const params = e && e.parameter ? e.parameter : { service: "all" };
+    const service = params.service ? params.service.toLowerCase().trim() : "all";
 
     // 1. If requesting all predefined services in one batch
     if (service === "all") {
@@ -133,4 +133,14 @@ function formatTitle(filename) {
 function createJsonResponse(payload) {
   return ContentService.createTextOutput(JSON.stringify(payload))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+/**
+ * Test function to trigger Google Drive authorization and verify folder access
+ */
+function testConnection() {
+  Logger.log("Testing Google Drive connection...");
+  const files = fetchFolderFiles(FOLDERS_CONFIG["logo-design"]);
+  Logger.log("Successfully connected to Drive! Found " + files.length + " files.");
+  return files;
 }

@@ -107,6 +107,112 @@ if (eyeElements.length > 0) {
     requestAnimationFrame(animateEyes);
 }
 
+// ==================== INTERACTIVE EYE WINK & MOBILE GAZE ====================
+eyeElements.forEach(eye => {
+    eye.addEventListener('click', () => {
+        eye.classList.add('winking');
+        setTimeout(() => eye.classList.remove('winking'), 380);
+    });
+});
+
+let lastInteraction = Date.now();
+window.addEventListener('touchstart', (e) => {
+    lastInteraction = Date.now();
+    if (e.touches && e.touches.length > 0) {
+        targetX = e.touches[0].clientX;
+        targetY = e.touches[0].clientY;
+    }
+}, { passive: true });
+
+window.addEventListener('touchmove', (e) => {
+    lastInteraction = Date.now();
+    if (e.touches && e.touches.length > 0) {
+        targetX = e.touches[0].clientX;
+        targetY = e.touches[0].clientY;
+    }
+}, { passive: true });
+
+window.addEventListener('mousemove', () => {
+    lastInteraction = Date.now();
+});
+
+// Organic wandering gaze when idle on phone/desktop
+setInterval(() => {
+    if (Date.now() - lastInteraction > 3500 && eyeElements.length > 0) {
+        const eyeRect = eyeElements[0].getBoundingClientRect();
+        const wanderRadius = 130;
+        const wanderAngle = Math.random() * Math.PI * 2;
+        targetX = eyeRect.left + eyeRect.width / 2 + Math.cos(wanderAngle) * wanderRadius;
+        targetY = eyeRect.top + eyeRect.height / 2 + Math.sin(wanderAngle) * wanderRadius;
+    }
+}, 3200);
+
+// ==================== INTERACTIVE BUBBLE TAP REACTION ====================
+const skillBubbles = document.querySelectorAll('.skill-bubble');
+skillBubbles.forEach(bubble => {
+    bubble.addEventListener('click', () => {
+        bubble.classList.add('bubble-pop');
+        const label = bubble.querySelector('.bubble-label');
+        if (label) {
+            label.style.opacity = '1';
+            label.style.visibility = 'visible';
+            label.style.transform = 'translateX(-50%) translateY(0)';
+        }
+        setTimeout(() => {
+            bubble.classList.remove('bubble-pop');
+            if (label) {
+                label.style.opacity = '';
+                label.style.visibility = '';
+                label.style.transform = '';
+            }
+        }, 2200);
+    });
+});
+
+// ==================== ABOUT STATS COUNTER ANIMATION ====================
+const counterNums = document.querySelectorAll('.counter-num');
+let statsCountersStarted = false;
+
+function startStatsCounters() {
+    if (statsCountersStarted) return;
+    statsCountersStarted = true;
+
+    counterNums.forEach(counter => {
+        const target = +counter.getAttribute('data-target') || 0;
+        const duration = 1800; // ms
+        const startTime = performance.now();
+
+        function stepCount(now) {
+            const progress = Math.min((now - startTime) / duration, 1);
+            // Smooth easeOutCubic
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            counter.innerText = Math.floor(easeOut * target);
+
+            if (progress < 1) {
+                requestAnimationFrame(stepCount);
+            } else {
+                counter.innerText = target;
+            }
+        }
+        requestAnimationFrame(stepCount);
+    });
+}
+
+const statsGridElem = document.querySelector('.about-stats-grid');
+if (statsGridElem && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                startStatsCounters();
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.25 });
+    observer.observe(statsGridElem);
+} else if (statsGridElem) {
+    startStatsCounters();
+}
+
 // ==================== CONTACT FORM SUBMISSION TO WORKSTATION EMAIL ====================
 const contactForm = document.getElementById('contact-form');
 const formStatus = document.getElementById('form-status');
@@ -137,12 +243,14 @@ if (contactForm) {
         const originalBtnHtml = sendBtn.innerHTML;
         sendBtn.disabled = true;
         sendBtn.innerHTML = '<span>Sending...</span> <i class="bx bx-loader-alt bx-spin" style="margin-left:.8rem; font-size: 1.8rem;"></i>';
-        formStatus.innerHTML = '<span class="status-sending"><i class="bx bx-loader-alt bx-spin"></i> Sending message directly to <strong>workstation112130@gmail.com</strong>...</span>';
+        formStatus.innerHTML = '<span class="status-sending"><i class="bx bx-loader-alt bx-spin"></i> Sending message...</span>';
 
         const formData = new FormData(contactForm);
+        const formAction = contactForm.getAttribute('action') || 'https://formsubmit.co/workstation.arslan@gmail.com';
+        const submitUrl = formAction.includes('formsubmit.co') ? formAction.replace('formsubmit.co/', 'formsubmit.co/ajax/') : formAction;
 
         try {
-            const response = await fetch('https://formsubmit.co/ajax/workstation112130@gmail.com', {
+            const response = await fetch(submitUrl, {
                 method: 'POST',
                 headers: { 
                     'Accept': 'application/json'
@@ -151,7 +259,7 @@ if (contactForm) {
             });
 
             if (response.ok) {
-                formStatus.innerHTML = `<span class="status-success"><i class="bx bxs-check-circle" style="font-size:2rem;"></i> Thank you, <strong>${name}</strong>! Your inquiry has been sent directly to <strong>workstation112130@gmail.com</strong>. I will get back to you shortly!</span>`;
+                formStatus.innerHTML = `<span class="status-success"><i class="bx bxs-check-circle" style="font-size:2rem;"></i> Thank you, <strong>${name}</strong>! Your inquiry has been sent successfully. I will get back to you shortly!</span>`;
                 contactForm.reset();
             } else {
                 throw new Error('Form submission failed');
@@ -166,9 +274,11 @@ if (contactForm) {
                 `Project Type: ${project}\n\n` +
                 `Project Requirements:\n${message}`
             );
-            window.location.href = `mailto:workstation112130@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
+            const mailtoLink = document.querySelector('a[href^="mailto:"]');
+            const targetEmail = mailtoLink ? mailtoLink.getAttribute('href').replace('mailto:', '').split('?')[0] : 'workstation.arslan@gmail.com';
+            window.location.href = `mailto:${targetEmail}?subject=${mailtoSubject}&body=${mailtoBody}`;
 
-            formStatus.innerHTML = `<span class="status-success"><i class="bx bxs-envelope" style="font-size:2rem;"></i> Opening email to send directly to <strong>workstation112130@gmail.com</strong>...</span>`;
+            formStatus.innerHTML = `<span class="status-success"><i class="bx bxs-envelope" style="font-size:2rem;"></i> Opening email to send your message directly...</span>`;
         } finally {
             sendBtn.disabled = false;
             sendBtn.innerHTML = originalBtnHtml;

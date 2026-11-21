@@ -429,14 +429,6 @@ section {
 }
 
 .portfolio-floor-shadow .eye-letter {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 9.5rem;
-    height: 9.5rem;
-    flex-shrink: 0;
-    margin: 0 0.3rem;
     transform: scaleY(-1);
     transform-origin: center center;
 }
@@ -567,7 +559,25 @@ section {
 }
 
 .hero-text h1 span {
-    color: var(--text-color);
+    background: linear-gradient(120deg, #5fce9b 0%, #ffffff 32%, #5fce9b 65%, #a8f5d0 85%, #5fce9b 100%);
+    background-size: 250% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textShimmer 6s ease-in-out infinite;
+    display: inline-block;
+    filter: drop-shadow(0 0 16px rgba(95, 206, 155, 0.45));
+}
+
+@keyframes textShimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .hero-text .text-animate {
@@ -590,11 +600,78 @@ section {
 .hero-text p {
     position: relative;
     font-size: 1.75rem;
-    margin: 2.2rem 0 3.2rem;
+    margin: 2.2rem 0 2.2rem;
     line-height: 1.85;
     color: rgba(237, 237, 237, 0.9);
     width: 100%;
-    text-align: left;
+    text-align: justify;
+    text-justify: inter-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+/* Creative Designer Floating Badges in Hero */
+.hero-creative-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin: 0 0 2.8rem;
+    width: 100%;
+}
+
+.creative-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: .7rem;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: rgba(14, 26, 20, 0.85);
+    border: 1px solid rgba(95, 206, 155, 0.4);
+    padding: .65rem 1.6rem;
+    border-radius: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4), 0 0 12px rgba(95, 206, 155, 0.15);
+    backdrop-filter: blur(8px);
+    transition: all .35s ease;
+    user-select: none;
+}
+
+.creative-badge i {
+    color: var(--main-color);
+    font-size: 1.6rem;
+}
+
+.creative-badge:hover {
+    transform: translateY(-3px) scale(1.03);
+    border-color: var(--main-color);
+    box-shadow: 0 8px 22px rgba(95, 206, 155, 0.35);
+}
+
+.badge-vector {
+    animation: badgeFloat1 5s ease-in-out infinite;
+}
+
+.badge-brand {
+    animation: badgeFloat2 6s ease-in-out infinite 0.8s;
+}
+
+.badge-print {
+    animation: badgeFloat3 5.5s ease-in-out infinite 1.5s;
+}
+
+@keyframes badgeFloat1 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes badgeFloat2 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+
+@keyframes badgeFloat3 {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
 }
 
 /* Right-aligned container for Hire Me button & icons under the paragraph */
@@ -781,7 +858,10 @@ section {
     line-height: 1.85;
     color: rgba(237, 237, 237, 0.9);
     margin-bottom: 2.2rem;
-    text-align: left;
+    text-align: justify;
+    text-justify: inter-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 .about-content p strong {
@@ -1193,6 +1273,10 @@ section {
     line-height: 1.65;
     margin-bottom: 2rem;
     flex-grow: 1;
+    text-align: justify;
+    text-justify: inter-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 .service-box .service-btn {
@@ -1336,6 +1420,10 @@ section {
     font-size: 1.6rem;
     padding-top: .5rem;
     line-height: 1.6;
+    text-align: justify;
+    text-justify: inter-word;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 .skills {
@@ -2176,11 +2264,16 @@ section:nth-child(odd) .animate.scroll,
         font-size: 50%;
     }
 
-    .portfolio-title,
-    .portfolio-text-wrapper {
+    .portfolio-title {
         max-width: 100%;
         width: 100%;
-        overflow: hidden;
+        overflow: visible;
+        margin-top: 3.5rem;
+        margin-bottom: 3rem;
+    }
+
+    .portfolio-bubbles {
+        overflow: visible;
     }
 
     .portfolio-letters,
@@ -2188,28 +2281,67 @@ section:nth-child(odd) .animate.scroll,
         gap: 0;
         justify-content: center;
         max-width: 100%;
+        width: 100%;
     }
 
     .portfolio-letters .p-letter,
     .portfolio-floor-shadow .p-letter {
         font-size: 3.3rem;
+        letter-spacing: 0.12rem;
     }
 
     .portfolio-floor-shadow {
-        margin-top: 0rem;
+        transform: rotateX(60deg) scaleY(0.7);
+        transform-origin: top center;
+        margin-top: -0.2rem;
+        margin-bottom: 1.5rem;
+        opacity: 0.7;
     }
 
-    .bubble-ps, .bubble-ai {
-        left: 0.5rem;
+    /* Floating bubbles spread out (khulla) naturally without crowding or overlapping */
+    .bubble-ps {
+        top: -2.8rem;
+        left: 1.2rem;
     }
 
-    .bubble-meta, .bubble-etsy {
-        right: 0.5rem;
+    .bubble-ai {
+        top: 1.4rem;
+        left: -0.4rem;
+    }
+
+    .bubble-canva {
+        top: 5.8rem;
+        left: 0.8rem;
+    }
+
+    .bubble-wp {
+        top: 10.2rem;
+        left: 2.6rem;
+    }
+
+    .bubble-meta {
+        top: -2.8rem;
+        right: 1.2rem;
+    }
+
+    .bubble-etsy {
+        top: 1.4rem;
+        right: -0.4rem;
+    }
+
+    .bubble-ebay {
+        top: 5.8rem;
+        right: 0.8rem;
+    }
+
+    .bubble-ali {
+        top: 10.2rem;
+        right: 2.6rem;
     }
 
     .skill-bubble {
-        width: 3.2rem;
-        height: 3.2rem;
+        width: 3.3rem;
+        height: 3.3rem;
     }
 
     .logo .nav-logo-img {
@@ -2239,6 +2371,7 @@ section:nth-child(odd) .animate.scroll,
     .eye-letter {
         width: 3.3rem;
         height: 3.3rem;
+        margin: 0 0.15rem;
     }
 
     .eye-letter .eye {
@@ -2315,18 +2448,68 @@ section:nth-child(odd) .animate.scroll,
         font-size: 45%;
     }
 
+    .portfolio-title {
+        overflow: visible;
+        margin-top: 3rem;
+        margin-bottom: 2.8rem;
+    }
+
     .portfolio-letters .p-letter,
     .portfolio-floor-shadow .p-letter {
         font-size: 2.7rem;
     }
 
     .portfolio-floor-shadow {
-        margin-top: 0.1rem;
+        transform: rotateX(60deg) scaleY(0.7);
+        transform-origin: top center;
+        margin-top: -0.1rem;
+        margin-bottom: 1.2rem;
+        opacity: 0.65;
     }
 
     .skill-bubble {
-        width: 2.8rem;
-        height: 2.8rem;
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .bubble-ps {
+        top: -2.4rem;
+        left: 0.8rem;
+    }
+
+    .bubble-ai {
+        top: 1.4rem;
+        left: -0.6rem;
+    }
+
+    .bubble-canva {
+        top: 5.2rem;
+        left: 0.5rem;
+    }
+
+    .bubble-wp {
+        top: 9.0rem;
+        left: 2.2rem;
+    }
+
+    .bubble-meta {
+        top: -2.4rem;
+        right: 0.8rem;
+    }
+
+    .bubble-etsy {
+        top: 1.4rem;
+        right: -0.6rem;
+    }
+
+    .bubble-ebay {
+        top: 5.2rem;
+        right: 0.5rem;
+    }
+
+    .bubble-ali {
+        top: 9.0rem;
+        right: 2.2rem;
     }
 
     .eye-letter {
@@ -2412,4 +2595,49 @@ section:nth-child(odd) .animate.scroll,
     100% {
         width: 0;
     }
+}
+
+/* ==================== CREATIVE INTERACTIVITY & ACCENTS ==================== */
+.skill-bubble.bubble-pop {
+    transform: scale(1.32) !important;
+    border-color: var(--main-color) !important;
+    box-shadow: 0 0 35px var(--main-color), inset 0 0 20px rgba(95, 206, 155, 0.5) !important;
+    z-index: 35 !important;
+}
+
+.eye-letter .eye.winking {
+    transform: scaleY(0.05) !important;
+    transition: transform 0.12s ease-in !important;
+}
+
+.eye-letter .eye {
+    cursor: pointer;
+}
+
+.service-box::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 1.8rem;
+    background: linear-gradient(135deg, rgba(95, 206, 155, 0.45), transparent 45%, rgba(95, 206, 155, 0.2));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.service-box:hover::after {
+    opacity: 1;
+}
+
+/* Global paragraph justification fallback across all sections */
+.hero-text p,
+.about-content p,
+.service-info p,
+.service-box p,
+.education-content .content p {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }

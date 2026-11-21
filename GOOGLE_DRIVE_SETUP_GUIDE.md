@@ -1,6 +1,6 @@
 # Google Drive Dynamic Sync - Setup & Deployment Guide
 
-This guide explains how your portfolio website connects directly to your Google Drive account (**workstation112130@gmail.com**).
+This guide explains how your portfolio website connects directly to your Google Drive account.
 
 Once set up, whenever you drop or upload new images into your designated Google Drive folders, your portfolio will display them **automatically** without editing any HTML/CSS/JavaScript or pushing to GitHub!
 
@@ -25,7 +25,7 @@ To ensure maximum security and privacy:
 ## Architecture Overview
 
 ```
-[ Your Google Drive (workstation112130@gmail.com) ]
+[ Your Google Drive ]
          │
          ├── Designated Portfolio Folders (Only these are accessible):
          │       ├── Product & Social Media  (1Awoa0lRmnk44OlNBI99wCkwplcvmFoAx)
@@ -50,7 +50,7 @@ To ensure maximum security and privacy:
 ## 3-Minute Deployment Instructions
 
 ### Step 1: Open Google Apps Script
-1. Make sure you are signed into **workstation112130@gmail.com** in your browser.
+1. Make sure you are signed into your Google account in your browser.
 2. Go to: **[https://script.google.com/home/start](https://script.google.com/home/start)**
 3. Click the **"+ New project"** button (top left).
 4. Rename the project from *"Untitled project"* to **"Signatures Studio Drive API"** (click the title at top left).
@@ -66,12 +66,12 @@ To ensure maximum security and privacy:
 2. Click the gear icon next to *"Select type"* and choose **"Web app"**.
 3. Fill in the deployment settings:
    - **Description**: `Portfolio Drive Live Sync`
-   - **Execute as**: `Me (workstation112130@gmail.com)`
+   - **Execute as**: `Me (your-account@gmail.com)`
    - **Who has access**: `Anyone` *(Crucial so your portfolio visitors can view your images)*
 4. Click **"Deploy"**.
 5. Google will ask for authorization:
    - Click **"Authorize access"** (or **"Review permissions"**).
-   - Select your account `workstation112130@gmail.com`.
+   - Select your Google account.
    - If Google shows a screen saying *"Google hasn't verified this app"*, click **"Advanced"** (bottom left), then click **"Go to Signatures Studio Drive API (unsafe)"**.
    - Click **"Allow"**.
 6. Google will provide a **Web app URL**. It looks like:
