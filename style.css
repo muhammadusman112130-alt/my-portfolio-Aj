@@ -1789,11 +1789,75 @@ section {
 .skills-content .progress .bar span {
     display: block;
     height: 100%;
+    width: 0%;
     border-radius: 0.8rem;
     background: linear-gradient(90deg, #2a8355 0%, #5fce9b 60%, #a8f5d0 100%);
     position: relative;
-    transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: width 1.3s cubic-bezier(0.22, 1, 0.36, 1);
     box-shadow: 0 0 10px rgba(95, 206, 155, 0.35);
+    will-change: width;
+}
+
+/* Scroll-triggered progress bar fill animation (animates forward from 0% when scrolled into view) */
+.skills.show-animate .skills-column:nth-child(1) .progress:nth-child(1) .bar span,
+.skills.animate-skills .skills-column:nth-child(1) .progress:nth-child(1) .bar span {
+    width: 95%;
+    transition-delay: 0.1s;
+}
+
+.skills.show-animate .skills-column:nth-child(1) .progress:nth-child(2) .bar span,
+.skills.animate-skills .skills-column:nth-child(1) .progress:nth-child(2) .bar span {
+    width: 95%;
+    transition-delay: 0.2s;
+}
+
+.skills.show-animate .skills-column:nth-child(1) .progress:nth-child(3) .bar span,
+.skills.animate-skills .skills-column:nth-child(1) .progress:nth-child(3) .bar span {
+    width: 90%;
+    transition-delay: 0.3s;
+}
+
+.skills.show-animate .skills-column:nth-child(1) .progress:nth-child(4) .bar span,
+.skills.animate-skills .skills-column:nth-child(1) .progress:nth-child(4) .bar span {
+    width: 88%;
+    transition-delay: 0.4s;
+}
+
+.skills.show-animate .skills-column:nth-child(1) .progress:nth-child(5) .bar span,
+.skills.animate-skills .skills-column:nth-child(1) .progress:nth-child(5) .bar span {
+    width: 82%;
+    transition-delay: 0.5s;
+}
+
+/* Right column (Professional & Digital Skills) */
+.skills.show-animate .skills-column:nth-child(2) .progress:nth-child(1) .bar span,
+.skills.animate-skills .skills-column:nth-child(2) .progress:nth-child(1) .bar span {
+    width: 88%;
+    transition-delay: 0.15s;
+}
+
+.skills.show-animate .skills-column:nth-child(2) .progress:nth-child(2) .bar span,
+.skills.animate-skills .skills-column:nth-child(2) .progress:nth-child(2) .bar span {
+    width: 92%;
+    transition-delay: 0.25s;
+}
+
+.skills.show-animate .skills-column:nth-child(2) .progress:nth-child(3) .bar span,
+.skills.animate-skills .skills-column:nth-child(2) .progress:nth-child(3) .bar span {
+    width: 86%;
+    transition-delay: 0.35s;
+}
+
+.skills.show-animate .skills-column:nth-child(2) .progress:nth-child(4) .bar span,
+.skills.animate-skills .skills-column:nth-child(2) .progress:nth-child(4) .bar span {
+    width: 85%;
+    transition-delay: 0.45s;
+}
+
+.skills.show-animate .skills-column:nth-child(2) .progress:nth-child(5) .bar span,
+.skills.animate-skills .skills-column:nth-child(2) .progress:nth-child(5) .bar span {
+    width: 75%;
+    transition-delay: 0.55s;
 }
 
 .skills-content .progress .bar span::after {

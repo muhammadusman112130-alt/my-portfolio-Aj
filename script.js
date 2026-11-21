@@ -357,3 +357,52 @@ if (document.readyState === 'loading') {
 } else {
     initMobileServiceCardFocus();
 }
+
+// ==================== SKILLS PROGRESS BARS SCROLL ANIMATION ====================
+function initSkillsProgressAnimation() {
+    const skillsSection = document.querySelector('#skills');
+    const skillBarSpans = document.querySelectorAll('.skills-content .progress .bar span');
+    if (!skillsSection || skillBarSpans.length === 0) return;
+
+    function triggerFill() {
+        skillsSection.classList.add('animate-skills');
+        skillBarSpans.forEach((span, idx) => {
+            const targetWidth = span.getAttribute('data-width');
+            if (targetWidth) {
+                setTimeout(() => {
+                    span.style.width = targetWidth;
+                }, idx * 60);
+            }
+        });
+    }
+
+    function triggerReset() {
+        skillsSection.classList.remove('animate-skills');
+        skillBarSpans.forEach(span => {
+            span.style.width = '0%';
+        });
+    }
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    triggerFill();
+                } else {
+                    triggerReset();
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+        observer.observe(skillsSection);
+    } else {
+        triggerFill();
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSkillsProgressAnimation);
+} else {
+    initSkillsProgressAnimation();
+}
