@@ -409,32 +409,23 @@
             gap: 2rem;
         }
 
-        .drive-folder-btn {
+        .gallery-interactive-chip {
             display: inline-flex;
             align-items: center;
             gap: 0.9rem;
-            font-size: 1.45rem;
-            font-weight: 700;
+            font-size: 1.4rem;
+            font-weight: 600;
             color: var(--main-color);
-            background: rgba(95, 206, 155, 0.12);
-            border: 1.5px solid rgba(95, 206, 155, 0.4);
-            padding: 0.9rem 2.2rem;
+            background: rgba(95, 206, 155, 0.1);
+            border: 1px solid rgba(95, 206, 155, 0.35);
+            padding: 0.8rem 1.8rem;
             border-radius: 2.5rem;
-            text-decoration: none;
-            transition: all 0.35s ease;
-            box-shadow: 0 0 15px rgba(95, 206, 155, 0.15);
+            user-select: none;
+            box-shadow: 0 0 15px rgba(95, 206, 155, 0.12);
         }
 
-        .drive-folder-btn:hover {
-            color: var(--bg-color);
-            background: var(--main-color);
-            border-color: var(--main-color);
-            box-shadow: 0 0 25px var(--main-glow);
-            transform: translateY(-2px);
-        }
-
-        .drive-folder-btn i {
-            font-size: 1.9rem;
+        .gallery-interactive-chip i {
+            font-size: 1.8rem;
         }
 
         .work-gallery-grid {
@@ -452,7 +443,15 @@
             background: #060c09;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
             display: block;
+            cursor: pointer;
             text-decoration: none;
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .work-gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--main-color);
+            box-shadow: 0 15px 35px rgba(95, 206, 155, 0.25);
         }
 
         .work-gallery-item img {
@@ -465,6 +464,220 @@
 
         .work-gallery-item:hover img {
             transform: scale(1.08);
+        }
+
+        /* Transparent Custom Add-Image Card */
+        .add-custom-work-card {
+            border: 2px dashed rgba(95, 206, 155, 0.45) !important;
+            background: rgba(95, 206, 155, 0.04) !important;
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .add-custom-work-card:hover {
+            border-color: var(--main-color) !important;
+            background: rgba(95, 206, 155, 0.09) !important;
+            box-shadow: 0 10px 30px rgba(95, 206, 155, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .add-custom-card-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.2rem;
+            width: 100%;
+        }
+
+        .add-custom-icon-pulse {
+            width: 5.6rem;
+            height: 5.6rem;
+            border-radius: 50%;
+            background: rgba(95, 206, 155, 0.12);
+            border: 1.5px solid rgba(95, 206, 155, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.8rem;
+            color: var(--main-color);
+            transition: transform 0.35s ease, background 0.35s ease;
+        }
+
+        .add-custom-work-card:hover .add-custom-icon-pulse {
+            transform: scale(1.12);
+            background: rgba(95, 206, 155, 0.25);
+        }
+
+        .add-custom-title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .add-custom-subtitle {
+            font-size: 1.25rem;
+            color: rgba(237, 237, 237, 0.7);
+            margin: 0;
+            line-height: 1.4;
+            max-width: 22rem;
+        }
+
+        .add-custom-btn-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--bg-color);
+            background: var(--main-color);
+            padding: 0.7rem 1.6rem;
+            border-radius: 2rem;
+            margin-top: 0.4rem;
+            box-shadow: 0 0 15px rgba(95, 206, 155, 0.3);
+        }
+
+        /* Lightbox Modal Card Popup */
+        .image-lightbox-modal {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999999;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            padding: 2rem;
+        }
+
+        .image-lightbox-modal.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .lightbox-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(4, 6, 8, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+        }
+
+        .lightbox-card-container {
+            position: relative;
+            z-index: 10;
+            max-width: 96rem;
+            width: 92%;
+            max-height: 90vh;
+            background: rgba(12, 16, 20, 0.96);
+            border: 1.5px solid rgba(95, 206, 155, 0.45);
+            border-radius: 2rem;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.95), 0 0 40px rgba(95, 206, 155, 0.2);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transform: scale(0.92);
+            transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .image-lightbox-modal.active .lightbox-card-container {
+            transform: scale(1);
+        }
+
+        .lightbox-card-header {
+            padding: 1.8rem 2.4rem;
+            border-bottom: 1px solid rgba(95, 206, 155, 0.18);
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            padding-right: 6rem;
+        }
+
+        .lightbox-tag {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--main-color);
+            text-transform: uppercase;
+            letter-spacing: 0.12rem;
+        }
+
+        .lightbox-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .lightbox-close-btn {
+            position: absolute;
+            top: 1.6rem;
+            right: 2rem;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(95, 206, 155, 0.4);
+            color: #ffffff;
+            font-size: 2.6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            z-index: 20;
+        }
+
+        .lightbox-close-btn:hover {
+            background: rgba(255, 59, 48, 0.9);
+            border-color: #ff3b30;
+            transform: rotate(90deg) scale(1.08);
+            box-shadow: 0 0 20px rgba(255, 59, 48, 0.5);
+        }
+
+        .lightbox-image-wrap {
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #030507;
+            overflow: hidden;
+            max-height: 65vh;
+        }
+
+        .lightbox-main-img {
+            max-width: 100%;
+            max-height: 62vh;
+            object-fit: contain;
+            border-radius: 1.2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            display: block;
+        }
+
+        .lightbox-card-footer {
+            padding: 1.2rem 2.4rem;
+            border-top: 1px solid rgba(95, 206, 155, 0.12);
+            background: rgba(8, 10, 14, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .lightbox-hint {
+            font-size: 1.25rem;
+            color: rgba(237, 237, 237, 0.55);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
         }
 
         .work-gallery-overlay {
@@ -1061,13 +1274,10 @@
                         commercial visual assets from our design archive.</p>
                 </div>
                 <div>
-                    <a id="drive-folder-link"
-                        href="https://drive.google.com/drive/folders/1Awoa0lRmnk44OlNBI99wCkwplcvmFoAx?usp=drive_link"
-                        target="_blank" class="drive-folder-btn">
-                        <i class='bx bxl-google-cloud'></i>
-                        <span>Open Drive Portfolio</span>
-                        <i class='bx bx-right-arrow-alt'></i>
-                    </a>
+                    <span class="gallery-interactive-chip">
+                        <i class='bx bx-zoom-in'></i>
+                        <span>Click Any Image to Enlarge</span>
+                    </span>
                 </div>
             </div>
 
@@ -1188,9 +1398,6 @@
         </div>
     </footer>
 
-    <!-- Google Drive Live Sync Module -->
-    <script src="drive-sync.js"></script>
-
     <!-- Service Data & Dynamic Page Script -->
     <script>
         const servicesData = {
@@ -1204,7 +1411,6 @@
                 spotlightP1: "At Signatures Studio, designing social media content and product assets is where visual storytelling meets conversion strategy. We capture attention, build deep consumer connection, and elevate your brand credibility. From high-converting e-commerce product feature graphics to viral-ready social media campaigns, we engineer visual assets that your audience won’t forget.",
                 spotlightP2: "Whether you're launching a new product line on Shopify or Amazon, introducing your company to new demographics, or scaling your paid Meta and Google ads, our creative process turns your marketing objectives into powerful digital visuals. We craft every graphic with calculated purpose—to catch attention, spark immediate curiosity, and drive measurable revenue. We don’t just create images; we craft visual stories that connect and deliver.",
                 spotlightImage: "images/services/service-product.jpg",
-                driveFolder: "https://drive.google.com/drive/folders/1Awoa0lRmnk44OlNBI99wCkwplcvmFoAx?usp=drive_link",
                 offerings: [
                     "Brand & Product Social Media Posts",
                     "Promotional & Campaign Ad Creatives",
@@ -1263,7 +1469,6 @@
                 spotlightP1: "At Signatures Studio, logo design is where company vision meets mathematical geometric balance. We distill your business mission into an iconic mark that inspires authority, commands customer trust, and stands resilient against changing design trends.",
                 spotlightP2: "Whether you're founding an ambitious startup, rebranding an established firm, or updating an outdated visual mark, we create distinctive logos engineered for versatile real-world application. Every vector path is mathematically aligned to guarantee flawless clarity from smartphone app icons to massive storefront signage.",
                 spotlightImage: "images/services/service-logo-v2.jpg",
-                driveFolder: "https://drive.google.com/drive/folders/1jiJzG9vRMzTrw_TUez2B62y0aPyGEVPb?usp=drive_link",
                 offerings: [
                     "Minimalist & Modern Brand Wordmarks",
                     "Distinctive Vector Emblems & Crests",
@@ -1323,7 +1528,6 @@
                 spotlightP1: "At Signatures Studio, advertisement design is engineered to stop foot and highway traffic. Backed by 6+ months of specialized Canadian signage and large-format print production experience, we design commercial billboards, storefront signage, roll-up banners, and promotional print media that deliver undeniable presence.",
                 spotlightP2: "Whether you are outfitting a retail commercial space in Canada or launching a multi-channel digital ad campaign, we craft artwork with strict adherence to viewing distance, color profiles, bleed tolerances, and safe zones. We create high-converting advertising collateral that attracts high-value prospects and amplifies your brand's reach.",
                 spotlightImage: "images/services/service-ad-pointing.png",
-                driveFolder: "https://drive.google.com/drive/folders/1f18YtVHh3Ln0ZRAb_HSkAoUM7lXShJgR?usp=drive_link",
                 offerings: [
                     "Commercial Outdoor Roadside Billboards",
                     "Storefront Signage & Large-Format Banners",
@@ -1384,7 +1588,6 @@
                 spotlightP1: "At Signatures Studio, custom vector illustration is a powerful creative differentiator. In an era dominated by generic stock photos and repetitive AI art, our hand-crafted vector graphics, character mascots, and editorial compositions inject warmth, soul, and unforgettable identity into your product.",
                 spotlightP2: "Whether you require hero illustrations for your web application, bespoke vector icons, custom apparel graphics, or packaging patterns, each artwork is crafted in mathematical vectors with clean anchor points. This guarantees crisp, pixel-perfect rendering across any device display or physical print medium.",
                 spotlightImage: "images/services/service-illustration-v2.png",
-                driveFolder: "https://drive.google.com/drive/folders/1QGxx5J0kp4HjtTHvu5i5s4sG3YfAdcMq?usp=drive_link",
                 offerings: [
                     "Bespoke Vector Brand & Editorial Illustrations",
                     "Custom Character & Mascot Designs",
@@ -1442,7 +1645,6 @@
                 spotlightP1: "At Signatures Studio, book cover design is where literary storytelling meets commercial publishing impact. A standout book cover must evoke mood, signal genre conventions instantly, and command clicks in crowded online bookstores like Amazon Kindle and Apple Books.",
                 spotlightP2: "We engineer complete mechanical print files for paperbacks and hardcovers—calculating spine widths down to millimeter accuracy based on paper GSM and final page count. Combined with ISBN barcode placement and genre-specific typography, our book covers pass Amazon KDP and IngramSpark technical checks on the first upload.",
                 spotlightImage: "images/services/service-bookcover-v2.jpg",
-                driveFolder: "https://drive.google.com/drive/folders/1Kj8kcu-jD0KNyNeNWeh3r8CRguNX45He?usp=drive_link",
                 offerings: [
                     "Full Wrap Paperback Covers (Front, Spine, Back)",
                     "Hardcover Dust Jacket & Case Laminate Wraps",
@@ -1500,7 +1702,6 @@
                 spotlightP1: "At Signatures Studio, brand identity is the complete visual operating system of your business. Combining formal agribusiness entrepreneurship studies with hands-on international design experience, we build identity systems that align design elegance with commercial growth.",
                 spotlightP2: "We construct exhaustive brand guidelines covering primary and secondary logo lockups, digital and print color systems (HEX, CMYK, Pantone), typography rules, luxury business cards, executive stationery, and social media kits. This empowers your company to project premium consistency across every client touchpoint.",
                 spotlightImage: "images/services/service-branding-v2.jpg",
-                driveFolder: "https://drive.google.com/drive/folders/1ufEEa8sXFrWPf_SinYk9uBpdIsl3NcVP?usp=drive_link",
                 offerings: [
                     "Complete Brand Identity Style Guide (PDF Booklet)",
                     "Primary, Secondary & Sub-Mark Logo Suites",
@@ -1560,7 +1761,6 @@
                 spotlightP1: "Our e-commerce design services are laser-focused on maximizing store revenue, improving buyer trust, and increasing average order value. From custom hero banners to feature-rich Amazon A+ content, we craft visual assets that make your products irresistible.",
                 spotlightP2: "Whether you run an independent Shopify boutique or sell across global marketplaces like eBay, AliExpress, and Walmart, our team crafts cohesive, high-converting product listings and store branding that outshines the competition.",
                 spotlightImage: "images/services/service-ecommerce.jpg",
-                driveFolder: "https://drive.google.com/drive/folders/1Awoa0lRmnk44OlNBI99wCkwplcvmFoAx?usp=drive_link",
                 offerings: [
                     "Custom Shopify & WooCommerce Store Banners",
                     "Amazon A+ Content & Enhanced Brand Graphics",
@@ -1619,7 +1819,6 @@
                 spotlightP1: "Transform your social media channels into authoritative brand hubs that attract followers, build community trust, and generate high-value inquiries. We handle everything from daily posting and story schedules to aesthetic grid planning and engagement management.",
                 spotlightP2: "Specializing in Instagram account handling, TikTok curation, and Facebook page optimization, we design high-retention Reels, engaging carousels, and strategic hashtag/caption frameworks tailored to your industry.",
                 spotlightImage: "images/services/service-social-handling.jpg",
-                driveFolder: "https://drive.google.com/drive/folders/1Awoa0lRmnk44OlNBI99wCkwplcvmFoAx?usp=drive_link",
                 offerings: [
                     "Complete Instagram Account Handling & Day-to-Day Management",
                     "Monthly Content Calendar Planning & Publishing Strategy",
@@ -1636,10 +1835,10 @@
                 deepDiveP1: "Building a loyal social media following requires consistency, aesthetic polish, and authentic community engagement. We take the stress out of day-to-day posting by executing a tailored content strategy that turns passive scrollers into active brand advocates.",
                 deepDiveP2: "From viral short-form video hooks to aesthetic carousel guides and daily story updates, our management covers every touchpoint needed to cultivate a thriving, premium social presence.",
                 workImages: [
-                    { src: "images/services/service-social-handling.jpg", title: "Instagram Profile Curation & Grid Layout", tag: "Instagram Handling" },
-                    { src: "images/services/work-social-front.jpg", title: "Social Campaign & Reel Content", tag: "Reels & Posts" },
-                    { src: "images/services/work-social-branding.jpg", title: "Brand Identity Social Kit", tag: "Social Kit" },
-                    { src: "images/services/work-social-0001.jpg", title: "Story & Carousel Engagement Designs", tag: "Carousels" }
+                    { src: "images/services/work-smm-instagram.jpg", title: "Instagram Account Handling & Grid Curation", tag: "Instagram Growth" },
+                    { src: "images/services/work-smm-youtube.jpg", title: "YouTube Channel Management & High-CTR Thumbnails", tag: "YouTube Branding" },
+                    { src: "images/services/work-smm-tiktok.jpg", title: "TikTok Viral Short-Form Video Strategy", tag: "TikTok Strategy" },
+                    { src: "images/services/work-smm-analytics.jpg", title: "Multi-Platform SMM Growth & Analytics Dashboard", tag: "Cross-Platform Growth" }
                 ],
                 faqs: [
                     {
@@ -1678,7 +1877,6 @@
                 spotlightP1: "Meta advertising demands visuals that break feed fatigue and capture consumer attention within the first fraction of a second. We engineer data-backed ad creatives designed to optimize click-through rates and drive profitable conversions.",
                 spotlightP2: "From single static hooks and dynamic multi-slide carousels to vertical 9:16 Story/Reels assets, we combine psychological design principles with bold typography and clear visual hierarchy to boost your campaign ROAS.",
                 spotlightImage: "images/services/service-meta-ads.jpg",
-                driveFolder: "https://drive.google.com/drive/folders/1Awoa0lRmnk44OlNBI99wCkwplcvmFoAx?usp=drive_link",
                 offerings: [
                     "Static Feed Ad Creatives (1:1 & 4:5 Ratios)",
                     "Dynamic Story & Reels Ad Formats (9:16)",
@@ -1695,10 +1893,10 @@
                 deepDiveP1: "Winning ad creatives don't happen by accident. We analyze top-performing creative angles in your niche to design eye-catching ad layouts that maximize your return on ad spend.",
                 deepDiveP2: "Every design is crafted with platform guidelines in mind, ensuring optimal text-to-image ratios, readable mobile typography, and compelling calls-to-action.",
                 workImages: [
-                    { src: "images/services/service-meta-ads.jpg", title: "Meta Feed Campaign Creative", tag: "Facebook & IG" },
-                    { src: "images/services/work-ad-skinzeal.jpg", title: "Commercial Marketing Ad Design", tag: "Direct Response" },
-                    { src: "images/services/work-social-branding.jpg", title: "Product Promo Social Ad", tag: "Social Ads" },
-                    { src: "images/services/work-ad-joybeans.jpeg", title: "Promotional Ad Campaign", tag: "Paid Social" }
+                    { src: "images/services/work-meta-feed-ad.jpg", title: "High-ROAS Meta Feed Ad Creative", tag: "Direct Response" },
+                    { src: "images/services/work-meta-carousel-ad.jpg", title: "Interactive E-Commerce Multi-Product Carousel", tag: "Carousel Ads" },
+                    { src: "images/services/work-meta-ecommerce-ad.jpg", title: "Dynamic Retargeting & Cart Recovery Creative", tag: "Retargeting Ads" },
+                    { src: "images/services/work-meta-leadgen-ad.jpg", title: "High-Converting Instant Lead Form Ad Campaign", tag: "Lead Generation" }
                 ],
                 faqs: [
                     {
@@ -1737,7 +1935,6 @@
                 spotlightP1: "On Etsy, trust and craftsmanship determine success. A cohesive shop identity makes your store look established, professional, and worthy of premium pricing. We design comprehensive Etsy branding suites that turn casual browsers into loyal buyers.",
                 spotlightP2: "From big responsive shop banners and branded shop icons to pixel-perfect listing mockup templates and thank-you receipt graphics, we give your handmade or digital download store a competitive edge.",
                 spotlightImage: "images/services/service-etsy.jpg",
-                driveFolder: "https://drive.google.com/drive/folders/1Awoa0lRmnk44OlNBI99wCkwplcvmFoAx?usp=drive_link",
                 offerings: [
                     "Big & Mini Etsy Cover Banners (Desktop & Mobile)",
                     "Custom Etsy Shop Icon & Profile Branding",
@@ -1796,7 +1993,6 @@
                 spotlightP1: "Your website is your 24/7 digital storefront. We design clean, high-performance WordPress websites paired with strategic on-page SEO that boosts organic visibility and turns web visitors into qualified leads.",
                 spotlightP2: "Specializing in Elementor, custom WordPress themes, fast page-speed optimization, and semantic search engine markup, we ensure your business site looks stunning on all devices while climbing Google rankings.",
                 spotlightImage: "images/services/service-wordpress-seo.jpg",
-                driveFolder: "https://drive.google.com/drive/folders/1Awoa0lRmnk44OlNBI99wCkwplcvmFoAx?usp=drive_link",
                 offerings: [
                     "Custom WordPress Website Development & Redesign",
                     "Elementor & Modern Page Builder Implementation",
@@ -1892,29 +2088,98 @@
             document.getElementById('deepdive-p1').textContent = data.deepDiveP1;
             document.getElementById('deepdive-p2').textContent = data.deepDiveP2;
 
-            // 6. Work Portfolio Gallery (Live Drive Images)
-            document.getElementById('drive-folder-link').href = data.driveFolder;
+            // 6. Work Portfolio Gallery (Click-to-Enlarge Modal & Transparent Add-Work Card)
             const workGalleryContainer = document.getElementById('work-gallery-grid');
-            workGalleryContainer.innerHTML = data.workImages.map(img => `
-                <a href="${data.driveFolder}" target="_blank" class="work-gallery-item">
-                    <img src="${img.src}" alt="${img.title}">
-                    <div class="work-gallery-overlay">
-                        <div>
-                            <div class="work-caption-tag">${img.tag}</div>
-                            <h4 class="work-caption-title">${img.title}</h4>
+
+            // Load any custom images added in this session for this specific service
+            let customImages = [];
+            try {
+                const stored = sessionStorage.getItem('custom_work_' + serviceKey);
+                if (stored) customImages = JSON.parse(stored);
+            } catch (e) {}
+
+            const currentAllImages = [...data.workImages, ...customImages];
+
+            function renderGalleryItems() {
+                const imagesHtml = currentAllImages.map((img) => `
+                    <div class="work-gallery-item" data-src="${img.src}" data-title="${img.title}" data-tag="${img.tag}" title="Click to enlarge view">
+                        <img src="${img.src}" alt="${img.title}" loading="lazy">
+                        <div class="work-gallery-overlay">
+                            <div>
+                                <div class="work-caption-tag">${img.tag}</div>
+                                <h4 class="work-caption-title">${img.title}</h4>
+                            </div>
                         </div>
                     </div>
-                </a>
-            `).join('');
+                `).join('');
 
-            // Automatically check and sync live files from Google Drive in background
-            if (window.GoogleDriveSync) {
-                window.GoogleDriveSync.syncServiceDetailGallery(
-                    serviceKey,
-                    data.workImages,
-                    data.category || data.heroTitleFormatted.replace(/<[^>]*>/g, '')
-                );
+                const addCardHtml = `
+                    <div class="work-gallery-item add-custom-work-card" id="add-custom-card" title="Click to upload and preview your own design">
+                        <input type="file" id="custom-image-file-input" accept="image/*" style="display: none;">
+                        <div class="add-custom-card-inner">
+                            <div class="add-custom-icon-pulse">
+                                <i class='bx bx-cloud-upload'></i>
+                            </div>
+                            <h4 class="add-custom-title">Add Your Design</h4>
+                            <p class="add-custom-subtitle">Tap to upload and preview your custom artwork in this portfolio</p>
+                            <span class="add-custom-btn-pill">
+                                <i class='bx bx-plus'></i> Upload Image
+                            </span>
+                        </div>
+                    </div>
+                `;
+
+                workGalleryContainer.innerHTML = imagesHtml + addCardHtml;
+                attachGalleryEventListeners();
             }
+
+            function attachGalleryEventListeners() {
+                // Lightbox click on items
+                const galleryItems = workGalleryContainer.querySelectorAll('.work-gallery-item:not(.add-custom-work-card)');
+                galleryItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const src = item.getAttribute('data-src');
+                        const title = item.getAttribute('data-title');
+                        const tag = item.getAttribute('data-tag');
+                        openImageLightbox(src, title, tag);
+                    });
+                });
+
+                // File Upload handler on Add Card
+                const addCard = document.getElementById('add-custom-card');
+                const fileInput = document.getElementById('custom-image-file-input');
+
+                if (addCard && fileInput) {
+                    addCard.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        fileInput.click();
+                    });
+
+                    fileInput.addEventListener('change', (e) => {
+                        const file = e.target.files && e.target.files[0];
+                        if (file) {
+                            const reader = new FileReader();
+                            reader.onload = function(evt) {
+                                const newImg = {
+                                    src: evt.target.result,
+                                    title: file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, ' '),
+                                    tag: "Custom Upload"
+                                };
+                                currentAllImages.push(newImg);
+                                customImages.push(newImg);
+                                try {
+                                    sessionStorage.setItem('custom_work_' + serviceKey, JSON.stringify(customImages));
+                                } catch (err) {}
+                                renderGalleryItems();
+                                openImageLightbox(newImg.src, newImg.title, newImg.tag);
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    });
+                }
+            }
+
+            renderGalleryItems();
 
             // 7. Frequently Asked Questions (Clean list on background)
             const faqContainer = document.getElementById('faq-accordion-container');
@@ -1944,11 +2209,65 @@
             });
         }
 
+        // Lightbox Modal Controller
+        const lightboxModal = document.getElementById('image-lightbox-modal');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxTitle = document.getElementById('lightbox-title');
+        const lightboxTag = document.getElementById('lightbox-tag');
+        const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
+        const lightboxBackdrop = document.getElementById('lightbox-backdrop');
+
+        function openImageLightbox(src, title, tag) {
+            if (!lightboxModal || !lightboxImg) return;
+            lightboxImg.src = src;
+            lightboxImg.alt = title || 'Work Preview';
+            if (lightboxTitle) lightboxTitle.textContent = title || 'Portfolio Showcase';
+            if (lightboxTag) lightboxTag.textContent = tag || 'DELIVERABLE';
+            lightboxModal.classList.add('active');
+            lightboxModal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageLightbox() {
+            if (!lightboxModal) return;
+            lightboxModal.classList.remove('active');
+            lightboxModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        if (lightboxCloseBtn) lightboxCloseBtn.addEventListener('click', closeImageLightbox);
+        if (lightboxBackdrop) lightboxBackdrop.addEventListener('click', closeImageLightbox);
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightboxModal && lightboxModal.classList.contains('active')) {
+                closeImageLightbox();
+            }
+        });
+
         // Initialize from URL query param
         const urlParams = new URLSearchParams(window.location.search);
         let initialKey = urlParams.get('service') || "product-social";
         renderService(initialKey);
     </script>
+
+    <!-- Image Lightbox Modal Popup (Card with Close Button) -->
+    <div id="image-lightbox-modal" class="image-lightbox-modal" aria-hidden="true">
+        <div class="lightbox-overlay" id="lightbox-backdrop"></div>
+        <div class="lightbox-card-container">
+            <button class="lightbox-close-btn" id="lightbox-close-btn" aria-label="Close Preview" title="Close Preview">
+                <i class='bx bx-x'></i>
+            </button>
+            <div class="lightbox-card-header">
+                <span class="lightbox-tag" id="lightbox-tag">PORTFOLIO WORK</span>
+                <h3 class="lightbox-title" id="lightbox-title">Image Preview</h3>
+            </div>
+            <div class="lightbox-image-wrap">
+                <img src="" alt="" id="lightbox-img" class="lightbox-main-img">
+            </div>
+            <div class="lightbox-card-footer">
+                <span class="lightbox-hint"><i class='bx bx-info-circle'></i> Click anywhere outside or press ESC to close</span>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
