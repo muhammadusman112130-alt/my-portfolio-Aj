@@ -285,3 +285,65 @@ if (contactForm) {
         }
     });
 }
+
+// ==================== MOBILE SERVICE CARDS SCROLL-FOCUS DEPTH BLUR ====================
+function initMobileServiceCardFocus() {
+    const servicesContainer = document.querySelector('.services-container');
+    const serviceCards = document.querySelectorAll('.services-container .service-box');
+
+    if (!servicesContainer || serviceCards.length === 0) return;
+
+    let ticking = false;
+
+    function updateActiveCard() {
+        if (window.innerWidth > 768) {
+            servicesContainer.classList.remove('has-scroll-focus');
+            serviceCards.forEach(c => c.classList.remove('card-active'));
+            ticking = false;
+            return;
+        }
+
+        servicesContainer.classList.add('has-scroll-focus');
+        const viewportCenter = window.innerHeight / 2;
+        let closestCard = null;
+        let minDistance = Infinity;
+
+        serviceCards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            const cardCenter = rect.top + rect.height / 2;
+            const distance = Math.abs(cardCenter - viewportCenter);
+
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestCard = card;
+            }
+        });
+
+        serviceCards.forEach(card => {
+            if (card === closestCard) {
+                card.classList.add('card-active');
+            } else {
+                card.classList.remove('card-active');
+            }
+        });
+
+        ticking = false;
+    }
+
+    function onScroll() {
+        if (!ticking) {
+            requestAnimationFrame(updateActiveCard);
+            ticking = true;
+        }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    updateActiveCard();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileServiceCardFocus);
+} else {
+    initMobileServiceCardFocus();
+}
